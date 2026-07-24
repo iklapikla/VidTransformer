@@ -483,187 +483,8 @@
             gap: 12px;
             flex-wrap: wrap;
         }
-        /* Tools Grid */
-        .section-title-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        .section-title {
-            font-size: 20px;
-            font-weight: 700;
-        }
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        .tool-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            transition: var(--transition-smooth);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 200px;
-        }
-        .tool-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(168, 85, 247, 0.4);
-            box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.3);
-            background: var(--bg-card-hover);
-        }
-        .tool-icon-wrap {
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius-md);
-            background: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--secondary);
-            margin-bottom: 16px;
-            transition: var(--transition-smooth);
-        }
-        .tool-card:hover .tool-icon-wrap {
-            background: var(--accent);
-            color: white;
-            transform: scale(1.05);
-        }
-        .tool-name {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-        .tool-desc {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-        .tool-action-btn {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--secondary);
-            margin-top: 12px;
-        }
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        .project-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            transition: var(--transition-smooth);
-            cursor: pointer;
-        }
-        .project-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: var(--shadow-subtle);
-        }
-        .project-thumb {
-            height: 160px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            padding: 12px;
-        }
-        .project-duration {
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(4px);
-            padding: 3px 8px;
-            border-radius: var(--radius-sm);
-            font-size: 11px;
-            font-weight: 600;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .project-info {
-            padding: 16px;
-        }
-        .project-title {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 6px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .project-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 2px 8px;
-            border-radius: var(--radius-full);
-            font-size: 11px;
-            font-weight: 600;
-        }
-        .status-completed { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
-        .status-processing { background: rgba(245, 158, 11, 0.15); color: #fcd34d; }
-        /* Publish Grid */
-        .publish-platforms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 16px;
-            margin-top: 20px;
-        }
-        .platform-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition-smooth);
-            cursor: pointer;
-        }
-        .platform-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: var(--secondary);
-            transform: translateY(-3px);
-        }
-        .platform-icon {
-            font-size: 28px;
-        }
-        .platform-name {
-            font-size: 13px;
-            font-weight: 600;
-        }
-        .connected-status {
-            font-size: 10px;
-            color: var(--success);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
         /* ==========================================
-           6. PROPER 16:9 AI EDITOR VIEW (FIXED VIDEO PLAYER)
+           6. PROPER 16:9 AI EDITOR VIEW
            ========================================== */
         .editor-container {
             display: grid;
@@ -716,7 +537,6 @@
             overflow: hidden;
             padding: 16px;
         }
-        /* PROPER 16:9 VIDEO CONTAINER FIX */
         .video-viewport-16-9 {
             width: 100%;
             max-width: 820px;
@@ -858,7 +678,6 @@
             background: #ef4444;
             clip-path: polygon(50% 100%, 0 0, 100% 0);
         }
-        /* Right AI Tools Sidebar */
         .editor-sidebar {
             grid-row: span 2;
             background: var(--bg-card);
@@ -962,7 +781,7 @@
         }
         
         /* ==========================================
-           7. AI SHORTS PRO STYLES
+           7. GENERAL REUSABLE UI STYLES
            ========================================== */
         .shorts-pro-layout {
             display: grid;
@@ -1000,16 +819,6 @@
             color: var(--secondary);
             margin-bottom: 10px;
         }
-        .uploaded-file-banner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-subtle);
-            padding: 12px 16px;
-            border-radius: var(--radius-md);
-            margin-top: 10px;
-        }
         .form-group-custom {
             display: flex;
             flex-direction: column;
@@ -1023,7 +832,7 @@
             align-items: center;
             justify-content: space-between;
         }
-        .select-custom, .input-custom {
+        .select-custom, .input-custom, .textarea-custom {
             width: 100%;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-subtle);
@@ -1034,7 +843,11 @@
             outline: none;
             transition: var(--transition-smooth);
         }
-        .select-custom:focus, .input-custom:focus {
+        .textarea-custom {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .select-custom:focus, .input-custom:focus, .textarea-custom:focus {
             border-color: var(--secondary);
             box-shadow: 0 0 12px rgba(168, 85, 247, 0.2);
             background: rgba(255, 255, 255, 0.07);
@@ -1156,59 +969,56 @@
             overflow: hidden;
         }
 
-        /* Analytics View */
-        .stats-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: 20px;
-        }
-        .stat-header {
+        /* Tab Inner Options Header */
+        .tab-mode-selector {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: var(--text-muted);
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 12px;
+        }
+        .tab-mode-btn {
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
             font-size: 13px;
-            margin-bottom: 12px;
-        }
-        .stat-num {
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 4px;
-        }
-        .stat-change {
-            font-size: 12px;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .stat-change.up { color: var(--success); }
-        .charts-container {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-        }
-        .chart-box {
-            background: var(--bg-card);
+            color: var(--text-muted);
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: 24px;
+            transition: var(--transition-smooth);
         }
+        .tab-mode-btn.active {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: var(--secondary);
+            color: #d8b4fe;
+        }
+
+        /* Chat Prompt Box (Gemini / ChatGPT Style) */
+        .ai-chat-prompt-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .chat-history-pill {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-subtle);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .sidebar { width: 80px; padding: 16px 8px; }
             .brand-title, .nav-item span, .upgrade-title, .upgrade-desc, .sidebar-upgrade .btn, .nav-section-title, .nav-pill { display: none; }
             .editor-container { grid-template-columns: 1fr; }
             .editor-sidebar { display: none; }
-            .charts-container { grid-template-columns: 1fr; }
             .shorts-pro-layout { grid-template-columns: 1fr; }
         }
     </style>
@@ -1216,7 +1026,7 @@
 <body>
     <div class="app-container">
         <!-- ==========================================
-             SIDEBAR NAVIGATION (UPDATED MATCHING IMAGE)
+             SIDEBAR NAVIGATION
              ========================================== -->
         <aside class="sidebar">
             <div>
@@ -1300,6 +1110,7 @@
                 <button class="btn btn-primary btn-glow" style="width: 100%; font-size: 12px; padding: 8px;">Upgrade Now</button>
             </div>
         </aside>
+
         <!-- ==========================================
              MAIN CONTENT WRAPPER
              ========================================== -->
@@ -1327,9 +1138,10 @@
                     </div>
                 </div>
             </header>
+
             <!-- CONTENT VIEWPORT -->
             <div class="content-area">
-                <!-- 1. AI EDITOR VIEW (PROPER 16:9 PLAYER) -->
+                <!-- 1. AI EDITOR VIEW -->
                 <section id="tab-editor" class="tab-content active">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                         <div style="display: flex; align-items: center; gap: 12px;">
@@ -1478,6 +1290,7 @@
                         </div>
                     </div>
                 </section>
+
                 <!-- 2. DASHBOARD VIEW -->
                 <section id="tab-dashboard" class="tab-content">
                     <div class="hero-banner">
@@ -1489,12 +1302,10 @@
                         </div>
                     </div>
                 </section>
-                <!-- OTHER TABS PLACEHOLDERS -->
+                
                 <section id="tab-projects" class="tab-content"><h2>Projects</h2></section>
 
-                <!-- ==========================================
-                     AI SHORTS PRO SECTION (NEW IMPLEMENTATION)
-                     ========================================== -->
+                <!-- 3. AI SHORTS PRO SECTION -->
                 <section id="tab-shorts" class="tab-content">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                         <div>
@@ -1509,7 +1320,6 @@
                     <div class="shorts-pro-layout">
                         <!-- Left Control Panel -->
                         <div class="shorts-config-card">
-                            <!-- Video Upload Box -->
                             <div class="form-group-custom">
                                 <label class="form-label-custom">
                                     <span>Source Long-Form Video</span>
@@ -1527,7 +1337,6 @@
                                 </div>
                             </div>
 
-                            <!-- Quantity Selector -->
                             <div class="form-group-custom">
                                 <label class="form-label-custom">
                                     <span>Number of Shorts to Generate</span>
@@ -1541,7 +1350,6 @@
                                 </select>
                             </div>
 
-                            <!-- Caption Options -->
                             <div class="form-group-custom">
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <label class="form-label-custom" style="margin-bottom: 0;">
@@ -1561,64 +1369,11 @@
                                             <option value="en">English (US/UK)</option>
                                             <option value="hi">Hindi (हिंदी)</option>
                                             <option value="hinglish">Hinglish (Hindi + English)</option>
-                                            <option value="es">Spanish (Español)</option>
-                                            <option value="fr">French (Français)</option>
-                                            <option value="de">German (Deutsch)</option>
                                         </select>
                                     </div>
-                                    <div class="form-group-custom">
-                                        <span style="font-size: 11px; color: var(--text-muted);">Subtitle Style Preset</span>
-                                        <div class="chip-options-grid">
-                                            <div class="chip-btn selected" onclick="selectChip(this, 'style')"><i class="fa-solid fa-bolt"></i> Hormozi</div>
-                                            <div class="chip-btn" onclick="selectChip(this, 'style')"><i class="fa-solid fa-fire"></i> Viral Pop</div>
-                                            <div class="chip-btn" onclick="selectChip(this, 'style')"><i class="fa-solid fa-font"></i> Minimalist</div>
-                                            <div class="chip-btn" onclick="selectChip(this, 'style')"><i class="fa-solid fa-icons"></i> Emoji Auto</div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Video Type & Content Category -->
-                            <div class="form-group-custom">
-                                <label class="form-label-custom">Video Category & Vibe</label>
-                                <select class="select-custom" id="shortsCategorySelect">
-                                    <option value="podcast">Podcast & Talking Head</option>
-                                    <option value="gaming">Gaming & Stream Highlights</option>
-                                    <option value="tech">Tech Review & Tutorial</option>
-                                    <option value="vlog">Vlog & Lifestyle</option>
-                                    <option value="business">Business & Motivation</option>
-                                </select>
-                            </div>
-
-                            <!-- Highlight Extraction Mode -->
-                            <div class="form-group-custom">
-                                <label class="form-label-custom">Highlight Extraction Strategy</label>
-                                <div class="chip-options-grid" style="grid-template-columns: 1fr;">
-                                    <div class="chip-btn selected" style="justify-content: flex-start; padding: 10px 14px;" onclick="selectChip(this, 'highlight')">
-                                        <i class="fa-solid fa-brain" style="color: var(--secondary);"></i>
-                                        <div style="text-align: left;">
-                                            <div>AI Smart Viral Hook Finder</div>
-                                            <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">Detects emotional spikes & key moments</div>
-                                        </div>
-                                    </div>
-                                    <div class="chip-btn" style="justify-content: flex-start; padding: 10px 14px;" onclick="selectChip(this, 'highlight')">
-                                        <i class="fa-solid fa-comments" style="color: var(--secondary);"></i>
-                                        <div style="text-align: left;">
-                                            <div>Speech & Keyword Focused</div>
-                                            <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">Extracts punchy sentences & soundbites</div>
-                                        </div>
-                                    </div>
-                                    <div class="chip-btn" style="justify-content: flex-start; padding: 10px 14px;" onclick="selectChip(this, 'highlight')">
-                                        <i class="fa-solid fa-clock" style="color: var(--secondary);"></i>
-                                        <div style="text-align: left;">
-                                            <div>Uniform Interval Splitting</div>
-                                            <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">Cuts video into equal 30s/60s clips</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Generate Button -->
                             <button class="btn btn-primary btn-glow" style="width: 100%; padding: 14px; font-size: 14px; margin-top: 10px;" onclick="generateShortsProcess()">
                                 <i class="fa-solid fa-wand-magic-sparkles"></i> Generate AI Shorts Now
                             </button>
@@ -1631,74 +1386,20 @@
                                     <h3 style="font-size: 16px;">Generated AI Shorts Clips</h3>
                                     <p style="font-size: 12px; color: var(--text-muted);" id="shortsResultsCountText">Showing 3 viral shorts extracted from video</p>
                                 </div>
-                                <div style="display: flex; gap: 10px;">
-                                    <button class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px;" onclick="triggerToast('Downloading all clips zip...')"><i class="fa-solid fa-file-zipper"></i> Download All</button>
-                                </div>
                             </div>
 
                             <div class="generated-shorts-grid" id="shortsGridContainer">
-                                <!-- Short Card 1 -->
                                 <div class="short-card-vertical">
                                     <div class="short-preview-9-16">
                                         <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Short Preview">
-                                        <div class="viral-score-badge">
-                                            <i class="fa-solid fa-fire"></i> 98/100 Viral Score
-                                        </div>
+                                        <div class="viral-score-badge"><i class="fa-solid fa-fire"></i> 98/100 Viral Score</div>
                                         <div class="short-duration-badge">00:42</div>
                                     </div>
                                     <div class="short-card-info">
                                         <div class="short-card-title">The Secret AI Shortcut Nobody Talks About in 2026 🔥</div>
-                                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                                            <span style="font-size: 10px; background: rgba(168,85,247,0.15); color: #c084fc; padding: 2px 6px; border-radius: 4px;">Dynamic Captions</span>
-                                            <span style="font-size: 10px; background: rgba(34,197,94,0.15); color: #4ade80; padding: 2px 6px; border-radius: 4px;">Auto Re-frame</span>
-                                        </div>
                                         <div style="display: flex; gap: 8px; margin-top: 6px;">
                                             <button class="btn btn-primary" style="flex: 1; font-size: 11px; padding: 6px;" onclick="switchTab('editor')"><i class="fa-solid fa-sliders"></i> Edit</button>
                                             <button class="btn btn-secondary" style="padding: 6px 10px; font-size: 11px;" onclick="triggerToast('Downloading Short #1...')"><i class="fa-solid fa-download"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Short Card 2 -->
-                                <div class="short-card-vertical">
-                                    <div class="short-preview-9-16">
-                                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Short Preview 2">
-                                        <div class="viral-score-badge">
-                                            <i class="fa-solid fa-fire"></i> 94/100 Viral Score
-                                        </div>
-                                        <div class="short-duration-badge">00:28</div>
-                                    </div>
-                                    <div class="short-card-info">
-                                        <div class="short-card-title">Why Creators Are Leaving Traditional Editing Software 🚀</div>
-                                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                                            <span style="font-size: 10px; background: rgba(168,85,247,0.15); color: #c084fc; padding: 2px 6px; border-radius: 4px;">Dynamic Captions</span>
-                                            <span style="font-size: 10px; background: rgba(37,99,235,0.15); color: #60a5fa; padding: 2px 6px; border-radius: 4px;">Highlight Clip</span>
-                                        </div>
-                                        <div style="display: flex; gap: 8px; margin-top: 6px;">
-                                            <button class="btn btn-primary" style="flex: 1; font-size: 11px; padding: 6px;" onclick="switchTab('editor')"><i class="fa-solid fa-sliders"></i> Edit</button>
-                                            <button class="btn btn-secondary" style="padding: 6px 10px; font-size: 11px;" onclick="triggerToast('Downloading Short #2...')"><i class="fa-solid fa-download"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Short Card 3 -->
-                                <div class="short-card-vertical">
-                                    <div class="short-preview-9-16">
-                                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80" alt="Short Preview 3">
-                                        <div class="viral-score-badge">
-                                            <i class="fa-solid fa-fire"></i> 89/100 Viral Score
-                                        </div>
-                                        <div class="short-duration-badge">00:55</div>
-                                    </div>
-                                    <div class="short-card-info">
-                                        <div class="short-card-title">How To Scale Content Output 10x With One Single Click 💡</div>
-                                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                                            <span style="font-size: 10px; background: rgba(168,85,247,0.15); color: #c084fc; padding: 2px 6px; border-radius: 4px;">Dynamic Captions</span>
-                                            <span style="font-size: 10px; background: rgba(245,158,11,0.15); color: #fbbf24; padding: 2px 6px; border-radius: 4px;">Sound Hook</span>
-                                        </div>
-                                        <div style="display: flex; gap: 8px; margin-top: 6px;">
-                                            <button class="btn btn-primary" style="flex: 1; font-size: 11px; padding: 6px;" onclick="switchTab('editor')"><i class="fa-solid fa-sliders"></i> Edit</button>
-                                            <button class="btn btn-secondary" style="padding: 6px 10px; font-size: 11px;" onclick="triggerToast('Downloading Short #3...')"><i class="fa-solid fa-download"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -1707,17 +1408,301 @@
                     </div>
                 </section>
 
-                <section id="tab-thumbnail" class="tab-content"><h2>AI Thumbnail</h2></section>
-                <section id="tab-captions" class="tab-content"><h2>Auto Captions</h2></section>
-                <section id="tab-voice" class="tab-content"><h2>Voiceover & Clones</h2></section>
-                <section id="tab-translate" class="tab-content"><h2>AI Translate / Dub</h2></section>
+                <!-- ==========================================
+                     4. ADVANCED AI THUMBNAIL STUDIO
+                     ========================================== -->
+                <section id="tab-thumbnail" class="tab-content">
+                    <div style="margin-bottom: 20px;">
+                        <h2 style="font-size: 22px;">AI Thumbnail Creator & Chat Editor</h2>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Generate high-CTR 16:9 & 9:16 thumbnails from prompt, extract best frames from video, or edit thumbnails with ChatGPT/Gemini style prompt edits.</p>
+                    </div>
+
+                    <div class="tab-mode-selector">
+                        <div class="tab-mode-btn active" onclick="switchThumbMode('prompt', this)"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt to Thumbnail</div>
+                        <div class="tab-mode-btn" onclick="switchThumbMode('video', this)"><i class="fa-solid fa-film"></i> Extract Best Frame from Video</div>
+                        <div class="tab-mode-btn" onclick="switchThumbMode('editor', this)"><i class="fa-solid fa-message"></i> AI Image Chat Edit (Gemini Style)</div>
+                    </div>
+
+                    <!-- THUMBNAIL MODE 1: PROMPT TO THUMBNAIL -->
+                    <div id="thumb-mode-prompt" class="shorts-pro-layout" style="min-height: auto;">
+                        <div class="shorts-config-card">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Thumbnail Prompt</label>
+                                <textarea class="textarea-custom" placeholder="E.g., High-energy tech reviewer pointing at glowing futuristic AI phone, shocked expression, bold yellow text 'SECRET REVEALED!', dark background, YouTube viral style..." id="thumbPromptInput"></textarea>
+                            </div>
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Style Preset</label>
+                                <select class="select-custom">
+                                    <option value="youtube">YouTube High CTR (Bold & Vivid)</option>
+                                    <option value="3d">3D Render & Cinematic</option>
+                                    <option value="gaming">Esports / Gaming Neon</option>
+                                    <option value="minimal">Minimalist Business</option>
+                                </select>
+                            </div>
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Aspect Ratio</label>
+                                <div class="chip-options-grid">
+                                    <div class="chip-btn selected" onclick="selectChip(this)"><i class="fa-solid fa-desktop"></i> 16:9 Landscape</div>
+                                    <div class="chip-btn" onclick="selectChip(this)"><i class="fa-solid fa-mobile-screen"></i> 9:16 Vertical</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-glow" style="width: 100%; padding: 12px;" onclick="triggerToast('Generating AI Thumbnail from Prompt...')">
+                                <i class="fa-solid fa-bolt"></i> Generate Thumbnail
+                            </button>
+                        </div>
+                        <div class="shorts-config-card" style="align-items: center; justify-content: center; background: #000;">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" style="width: 100%; border-radius: var(--radius-md); max-height: 380px; object-fit: cover;" id="thumbPreviewImg">
+                            <div style="display: flex; gap: 10px; width: 100%; margin-top: 14px;">
+                                <button class="btn btn-primary" style="flex: 1;" onclick="triggerToast('Downloading 4K Thumbnail...')"><i class="fa-solid fa-download"></i> Download 4K</button>
+                                <button class="btn btn-secondary" onclick="switchThumbMode('editor', document.querySelectorAll('.tab-mode-btn')[2])"><i class="fa-solid fa-pen-to-square"></i> Edit with AI Chat</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THUMBNAIL MODE 2: VIDEO FRAME EXTRACTOR -->
+                    <div id="thumb-mode-video" class="shorts-pro-layout" style="display: none; min-height: auto;">
+                        <div class="shorts-config-card">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Upload Video for Frame Analysis</label>
+                                <div class="upload-dropzone">
+                                    <i class="fa-solid fa-file-video dropzone-icon"></i>
+                                    <p style="font-size: 13px; font-weight: 600;">Drop Video File Here</p>
+                                    <p style="font-size: 11px; color: var(--text-muted);">AI scans face expressions & high movement frames</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-glow" style="width: 100%; padding: 12px;" onclick="triggerToast('Scanning video for top 4 thumbnail frames...')">
+                                <i class="fa-solid fa-magnifying-glass"></i> Extract Best Frames
+                            </button>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;">
+                            <div style="position: relative; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle);">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;">
+                                <span class="viral-score-badge"><i class="fa-solid fa-fire"></i> 96% CTR Potential</span>
+                            </div>
+                            <div style="position: relative; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle);">
+                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;">
+                                <span class="viral-score-badge"><i class="fa-solid fa-fire"></i> 91% CTR Potential</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THUMBNAIL MODE 3: CHATGPT / GEMINI STYLE CONVERSATIONAL EDIT -->
+                    <div id="thumb-mode-editor" class="shorts-pro-layout" style="display: none; min-height: auto;">
+                        <div class="shorts-config-card" style="justify-content: space-between;">
+                            <div style="display: flex; flex-direction: column; gap: 14px;">
+                                <div class="form-group-custom">
+                                    <label class="form-label-custom">Upload Base Image / Thumbnail</label>
+                                    <div class="upload-dropzone" style="padding: 16px;">
+                                        <i class="fa-solid fa-cloud-arrow-up" style="font-size: 20px; color: var(--secondary);"></i>
+                                        <span style="font-size: 12px; font-weight: 600; margin-left: 8px;">Upload Image</span>
+                                    </div>
+                                </div>
+                                <div class="ai-chat-prompt-box">
+                                    <div style="font-size: 12px; font-weight: 700; color: var(--secondary);"><i class="fa-solid fa-sparkles"></i> AI Conversational Image Editor</div>
+                                    <div class="chat-history-pill"><i class="fa-solid fa-user"></i> You: Add glowing neon outline to person and change background to dark cyberpunk city.</div>
+                                    <div class="chat-history-pill"><i class="fa-solid fa-robot"></i> AI: Applied neon rim light & modified background context!</div>
+                                    <textarea class="textarea-custom" placeholder="Type edit command (e.g. 'Add text WOW! in top right', 'Enhance face lighting', 'Remove background noise')..." id="chatEditPrompt"></textarea>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-glow" style="width: 100%; padding: 12px;" onclick="triggerToast('Applying ChatGPT/Gemini Style AI Image Modification...')">
+                                <i class="fa-solid fa-paper-plane"></i> Apply Image Prompt Edits
+                            </button>
+                        </div>
+                        <div class="shorts-config-card" style="align-items: center; justify-content: center; background: #000;">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80" style="width: 100%; border-radius: var(--radius-md); filter: brightness(1.1) contrast(1.15);" id="chatEditedPreview">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==========================================
+                     5. ADVANCED AUTO CAPTIONS SECTION
+                     ========================================== -->
+                <section id="tab-captions" class="tab-content">
+                    <div style="margin-bottom: 20px;">
+                        <h2 style="font-size: 22px;">AI Auto Captions & Subtitle Studio</h2>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Upload video and generate highly accurate animated captions with sound-synced highlights, emojis & custom styles.</p>
+                    </div>
+
+                    <div class="shorts-pro-layout">
+                        <div class="shorts-config-card">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Upload Target Video</label>
+                                <div class="upload-dropzone">
+                                    <i class="fa-solid fa-closed-captioning dropzone-icon"></i>
+                                    <p style="font-size: 13px; font-weight: 600;">Drag Video for Captioning</p>
+                                    <p style="font-size: 11px; color: var(--text-muted);">Supports MP4, MOV, WEBM</p>
+                                </div>
+                            </div>
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Spoken Language</label>
+                                <select class="select-custom">
+                                    <option value="auto">Auto-Detect Audio Language</option>
+                                    <option value="hi">Hindi (हिंदी)</option>
+                                    <option value="hinglish">Hinglish (Hindi-English mix)</option>
+                                    <option value="en">English (US/UK)</option>
+                                </select>
+                            </div>
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Caption Preset & Animation</label>
+                                <div class="chip-options-grid">
+                                    <div class="chip-btn selected" onclick="selectChip(this)"><i class="fa-solid fa-bolt"></i> Alex Hormozi</div>
+                                    <div class="chip-btn" onclick="selectChip(this)"><i class="fa-solid fa-fire"></i> Submagic Pop</div>
+                                    <div class="chip-btn" onclick="selectChip(this)"><i class="fa-solid fa-wand-magic"></i> Auto-Emoji</div>
+                                    <div class="chip-btn" onclick="selectChip(this)"><i class="fa-solid fa-font"></i> Neon Minimal</div>
+                                </div>
+                            </div>
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Advanced Features</label>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted);">
+                                        <input type="checkbox" checked> Highlight Active Word in Color
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted);">
+                                        <input type="checkbox" checked> Sound Effect on Key Words
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-glow" style="width: 100%; padding: 12px;" onclick="triggerToast('Transcribing & Rendering Subtitles...')">
+                                <i class="fa-solid fa-closed-captioning"></i> Generate Auto Captions
+                            </button>
+                        </div>
+
+                        <div class="shorts-config-card" style="background: #000; position: relative;">
+                            <div class="short-preview-9-16" style="max-height: 460px; margin: 0 auto; border-radius: 12px; border: 1px solid var(--border-subtle);">
+                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80">
+                                <div style="position: absolute; bottom: 80px; text-align: center; width: 90%; font-weight: 900; font-size: 20px; text-shadow: 0 4px 10px rgba(0,0,0,0.9);">
+                                    <span style="color: #facc15;">THIS AI TOOL</span> WILL CHANGE <span style="color: #38bdf8;">EVERYTHING! 🚀</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==========================================
+                     6. ADVANCED VOICEOVER & CLONES SECTION
+                     ========================================== -->
+                <section id="tab-voice" class="tab-content">
+                    <div style="margin-bottom: 20px;">
+                        <h2 style="font-size: 22px;">Voiceover & AI Voice Cloning Studio</h2>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Generate human-like text-to-speech audio or clone your voice with just 10 seconds of audio sample.</p>
+                    </div>
+
+                    <div class="shorts-pro-layout">
+                        <div class="shorts-config-card">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Select AI Voice Model</label>
+                                <select class="select-custom">
+                                    <option>Custom Cloned Voice #1 (Your Voice)</option>
+                                    <option>Aarav - Energetic Male (Hindi / Hinglish)</option>
+                                    <option>Ananya - Natural Female (Hindi / English)</option>
+                                    <option>Marcus - Deep Movie Trailer (US English)</option>
+                                </select>
+                            </div>
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Instant Voice Cloning Upload</label>
+                                <div class="upload-dropzone" style="padding: 16px;">
+                                    <i class="fa-solid fa-microphone dropzone-icon" style="font-size: 24px;"></i>
+                                    <p style="font-size: 12px; font-weight: 600;">Drop 10s Voice Sample to Clone</p>
+                                </div>
+                            </div>
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Script Text</label>
+                                <textarea class="textarea-custom" style="min-height: 120px;" placeholder="Type or paste script here for studio quality AI voiceover generation..."></textarea>
+                            </div>
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Emotion & Pace Tone</label>
+                                <div class="chip-options-grid">
+                                    <div class="chip-btn selected" onclick="selectChip(this)"><i class="fa-solid fa-fire"></i> Hyped</div>
+                                    <div class="chip-btn" onclick="selectChip(this)"><i class="fa-solid fa-book-open"></i> Storyteller</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-glow" style="width: 100%; padding: 12px;" onclick="triggerToast('Generating High Precision Studio Voiceover...')">
+                                <i class="fa-solid fa-play"></i> Generate Voiceover Audio
+                            </button>
+                        </div>
+
+                        <div class="shorts-config-card" style="justify-content: center; gap: 20px;">
+                            <h3 style="font-size: 16px;">AI Generated Voice Track</h3>
+                            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: space-between;">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <button class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; padding: 0;"><i class="fa-solid fa-play"></i></button>
+                                    <div>
+                                        <div style="font-size: 13px; font-weight: 700;">Voiceover_Aarav_Master.wav</div>
+                                        <div style="font-size: 11px; color: var(--text-muted);">00:00:48 • 24-bit studio quality</div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-secondary" onclick="triggerToast('Downloading Audio WAV...')"><i class="fa-solid fa-download"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==========================================
+                     7. ADVANCED AI TRANSLATE & DUB SECTION
+                     ========================================== -->
+                <section id="tab-translate" class="tab-content">
+                    <div style="margin-bottom: 20px;">
+                        <h2 style="font-size: 22px;">AI Video Translation & Lip-Sync Dubbing</h2>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Translate videos into 40+ global languages with original speaker voice cloning and automatic lip sync.</p>
+                    </div>
+
+                    <div class="shorts-pro-layout">
+                        <div class="shorts-config-card">
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Source Video File</label>
+                                <div class="upload-dropzone">
+                                    <i class="fa-solid fa-language dropzone-icon"></i>
+                                    <p style="font-size: 13px; font-weight: 600;">Upload Video for AI Dubbing</p>
+                                </div>
+                            </div>
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Target Dubbing Language</label>
+                                <select class="select-custom">
+                                    <option value="es">Spanish (Español)</option>
+                                    <option value="hi">Hindi (हिंदी)</option>
+                                    <option value="en">English (US)</option>
+                                    <option value="fr">French (Français)</option>
+                                    <option value="de">German (Deutsch)</option>
+                                    <option value="ja">Japanese (日本語)</option>
+                                </select>
+                            </div>
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">AI Voice & Lip Match</label>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted);">
+                                        <input type="checkbox" checked> Clone Original Speaker Voice Accent
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted);">
+                                        <input type="checkbox" checked> Apply Visual AI Lip-Sync Modification
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-glow" style="width: 100%; padding: 12px;" onclick="triggerToast('Translating & Dubbing Video with Lip-Sync...')">
+                                <i class="fa-solid fa-globe"></i> Start AI Dubbing Process
+                            </button>
+                        </div>
+
+                        <div class="shorts-config-card" style="justify-content: center; align-items: center;">
+                            <div class="video-viewport-16-9" style="max-height: 320px;">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80">
+                            </div>
+                            <div style="display: flex; gap: 12px; margin-top: 16px; width: 100%;">
+                                <button class="btn btn-primary" style="flex: 1;" onclick="triggerToast('Downloading Dubbed 4K Video...')"><i class="fa-solid fa-download"></i> Download Dubbed Video</button>
+                                <button class="btn btn-secondary" onclick="triggerToast('Exporting Translated SRT Subtitles...')"><i class="fa-solid fa-file-lines"></i> Export SRT</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <section id="tab-publishing" class="tab-content"><h2>Publishing</h2></section>
                 <section id="tab-analytics" class="tab-content"><h2>Analytics</h2></section>
             </div>
         </main>
     </div>
+
     <!-- TOAST NOTIFICATION CONTAINER -->
     <div id="toastContainer" style="position: fixed; top: 80px; right: 24px; z-index: 9999;"></div>
+
     <script>
         function switchTab(tabId, element) {
             const tabs = document.querySelectorAll('.tab-content');
@@ -1732,6 +1717,17 @@
                 element.classList.add('active');
             }
         }
+
+        function switchThumbMode(mode, btnElement) {
+            document.getElementById('thumb-mode-prompt').style.display = mode === 'prompt' ? 'grid' : 'none';
+            document.getElementById('thumb-mode-video').style.display = mode === 'video' ? 'grid' : 'none';
+            document.getElementById('thumb-mode-editor').style.display = mode === 'editor' ? 'grid' : 'none';
+
+            const btns = document.querySelectorAll('.tab-mode-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            if(btnElement) btnElement.classList.add('active');
+        }
+
         function triggerToast(message) {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
@@ -1752,7 +1748,6 @@
             }, 3000);
         }
 
-        /* AI SHORTS PRO SPECIFIC JAVASCRIPT */
         function handleShortsVideoUpload(event) {
             const file = event.target.files[0];
             if (file) {
@@ -1779,7 +1774,7 @@
             block.style.display = checked ? 'flex' : 'none';
         }
 
-        function selectChip(element, group) {
+        function selectChip(element) {
             const parent = element.parentElement;
             const chips = parent.querySelectorAll('.chip-btn');
             chips.forEach(c => c.classList.remove('selected'));
@@ -1788,14 +1783,9 @@
 
         function generateShortsProcess() {
             const count = document.getElementById('shortsCountSelect').value;
-            const lang = document.getElementById('shortsLanguageSelect').value;
-            triggerToast(`AI is analyzing video & generating ${count} Shorts (${lang})...`);
-            
-            document.getElementById('shortsResultsCountText').innerText = `Generating ${count} shorts with AI...`;
-            
+            triggerToast(`AI is analyzing video & generating ${count} Shorts...`);
             setTimeout(() => {
                 triggerToast(`${count} AI Shorts generated successfully!`);
-                document.getElementById('shortsResultsCountText').innerText = `Showing ${count} viral shorts extracted from video`;
             }, 1800);
         }
     </script>
