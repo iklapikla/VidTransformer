@@ -282,7 +282,6 @@
             padding: 2px 7px;
             border-radius: 6px;
         }
-
         .sidebar-upgrade {
             background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(37, 99, 235, 0.15));
             border: 1px solid rgba(124, 58, 237, 0.3);
@@ -625,7 +624,6 @@
         }
         .status-completed { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
         .status-processing { background: rgba(245, 158, 11, 0.15); color: #fcd34d; }
-
         /* Publish Grid */
         .publish-platforms-grid {
             display: grid;
@@ -664,7 +662,6 @@
             align-items: center;
             gap: 4px;
         }
-
         /* ==========================================
            6. PROPER 16:9 AI EDITOR VIEW (FIXED VIDEO PLAYER)
            ========================================== */
@@ -751,7 +748,6 @@
             border-top: 1px solid var(--border-subtle);
             z-index: 10;
         }
-
         /* Timeline Styling */
         .editor-timeline {
             grid-column: span 1;
@@ -862,7 +858,6 @@
             background: #ef4444;
             clip-path: polygon(50% 100%, 0 0, 100% 0);
         }
-
         /* Right AI Tools Sidebar */
         .editor-sidebar {
             grid-row: span 2;
@@ -925,7 +920,6 @@
             color: var(--text-muted);
             margin-top: 2px;
         }
-
         /* IOS Style Switch Toggle */
         .switch {
             position: relative;
@@ -965,6 +959,201 @@
         }
         input:checked + .slider:before {
             transform: translateX(18px);
+        }
+        
+        /* ==========================================
+           7. AI SHORTS PRO STYLES
+           ========================================== */
+        .shorts-pro-layout {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 24px;
+            min-height: calc(100vh - 120px);
+            padding-bottom: 24px;
+        }
+        .shorts-config-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .upload-dropzone {
+            border: 2px dashed rgba(168, 85, 247, 0.3);
+            background: rgba(168, 85, 247, 0.03);
+            border-radius: var(--radius-md);
+            padding: 28px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+        .upload-dropzone:hover {
+            border-color: var(--secondary);
+            background: rgba(168, 85, 247, 0.08);
+            transform: translateY(-2px);
+        }
+        .dropzone-icon {
+            font-size: 36px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        .uploaded-file-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            margin-top: 10px;
+        }
+        .form-group-custom {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-label-custom {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .select-custom, .input-custom {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 11px 14px;
+            color: white;
+            font-size: 13px;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+        .select-custom:focus, .input-custom:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.2);
+            background: rgba(255, 255, 255, 0.07);
+        }
+        .chip-options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        .chip-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            text-align: center;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .chip-btn:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        .chip-btn.selected {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: var(--secondary);
+            color: #d8b4fe;
+        }
+        
+        .shorts-results-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .generated-shorts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .short-card-vertical {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .short-card-vertical:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+        }
+        .short-preview-9-16 {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .short-preview-9-16 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .viral-score-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 700;
+            color: #4ade80;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            z-index: 2;
+        }
+        .short-duration-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            padding: 3px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            z-index: 2;
+        }
+        .short-card-info {
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+        .short-card-title {
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         /* Analytics View */
@@ -1013,7 +1202,6 @@
             border-radius: var(--radius-lg);
             padding: 24px;
         }
-
         /* Responsive */
         @media (max-width: 1024px) {
             .sidebar { width: 80px; padding: 16px 8px; }
@@ -1021,6 +1209,7 @@
             .editor-container { grid-template-columns: 1fr; }
             .editor-sidebar { display: none; }
             .charts-container { grid-template-columns: 1fr; }
+            .shorts-pro-layout { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1035,7 +1224,6 @@
                     <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
                     <div class="brand-title">VidTransformer</div>
                 </div>
-
                 <ul class="nav-list">
                     <a href="#" class="nav-item" onclick="switchTab('dashboard', this)">
                         <div class="nav-item-left">
@@ -1050,7 +1238,6 @@
                         </div>
                     </a>
                 </ul>
-
                 <div class="nav-section-title">AI SUITE</div>
                 <ul class="nav-list">
                     <a href="#" class="nav-item active" onclick="switchTab('editor', this)">
@@ -1091,7 +1278,6 @@
                         </div>
                     </a>
                 </ul>
-
                 <div class="nav-section-title">PUBLISH & TRACK</div>
                 <ul class="nav-list">
                     <a href="#" class="nav-item" onclick="switchTab('publishing', this)">
@@ -1108,14 +1294,12 @@
                     </a>
                 </ul>
             </div>
-
             <div class="sidebar-upgrade">
                 <div class="upgrade-title">Pro Creator Plan</div>
                 <div class="upgrade-desc">4K Rendering, Unlimited AI Generation & Voice Clones.</div>
                 <button class="btn btn-primary btn-glow" style="width: 100%; font-size: 12px; padding: 8px;">Upgrade Now</button>
             </div>
         </aside>
-
         <!-- ==========================================
              MAIN CONTENT WRAPPER
              ========================================== -->
@@ -1143,7 +1327,6 @@
                     </div>
                 </div>
             </header>
-
             <!-- CONTENT VIEWPORT -->
             <div class="content-area">
                 <!-- 1. AI EDITOR VIEW (PROPER 16:9 PLAYER) -->
@@ -1195,7 +1378,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- Right AI Control Center -->
                         <div class="editor-sidebar">
                             <div>
@@ -1251,7 +1433,6 @@
                                 <i class="fa-solid fa-bolt"></i> Generate & Apply AI Edits
                             </button>
                         </div>
-
                         <!-- Real Timeline Panel -->
                         <div class="editor-timeline">
                             <div class="timeline-header">
@@ -1297,7 +1478,6 @@
                         </div>
                     </div>
                 </section>
-
                 <!-- 2. DASHBOARD VIEW -->
                 <section id="tab-dashboard" class="tab-content">
                     <div class="hero-banner">
@@ -1309,10 +1489,224 @@
                         </div>
                     </div>
                 </section>
-
                 <!-- OTHER TABS PLACEHOLDERS -->
                 <section id="tab-projects" class="tab-content"><h2>Projects</h2></section>
-                <section id="tab-shorts" class="tab-content"><h2>AI Shorts Pro</h2></section>
+
+                <!-- ==========================================
+                     AI SHORTS PRO SECTION (NEW IMPLEMENTATION)
+                     ========================================== -->
+                <section id="tab-shorts" class="tab-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <div>
+                            <h2 style="font-size: 22px;">AI Shorts Pro Generator</h2>
+                            <p style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Transform long-form video into high-engagement viral 9:16 Shorts with smart AI highlight detection.</p>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <span class="status-badge status-completed"><i class="fa-solid fa-bolt"></i> Auto-Face Tracking Active</span>
+                        </div>
+                    </div>
+
+                    <div class="shorts-pro-layout">
+                        <!-- Left Control Panel -->
+                        <div class="shorts-config-card">
+                            <!-- Video Upload Box -->
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">
+                                    <span>Source Long-Form Video</span>
+                                    <span style="font-size: 11px; color: var(--secondary);">MP4, MOV up to 2GB</span>
+                                </label>
+                                <div class="upload-dropzone" onclick="document.getElementById('shortsVideoInput').click()">
+                                    <input type="file" id="shortsVideoInput" accept="video/*" style="display: none;" onchange="handleShortsVideoUpload(event)">
+                                    <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+                                    <p style="font-size: 13px; font-weight: 600; margin-bottom: 4px;" id="shortsUploadFileName">Click or Drag & Drop Long Video</p>
+                                    <p style="font-size: 11px; color: var(--text-muted);" id="shortsUploadSub">Supports YouTube Links or Video Files</p>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
+                                    <input type="text" class="input-custom" placeholder="Or paste YouTube URL..." id="ytUrlInput">
+                                    <button class="btn btn-secondary" style="padding: 10px 14px;" onclick="importYtVideo()"><i class="fa-solid fa-link"></i></button>
+                                </div>
+                            </div>
+
+                            <!-- Quantity Selector -->
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">
+                                    <span>Number of Shorts to Generate</span>
+                                    <span id="quantityVal" style="color: var(--secondary); font-weight: 700;">3 Shorts</span>
+                                </label>
+                                <select class="select-custom" id="shortsCountSelect" onchange="document.getElementById('quantityVal').innerText = this.value + ' Shorts'">
+                                    <option value="1">1 Short (Best Highlight)</option>
+                                    <option value="3" selected>3 Shorts (High Engagement Clip Set)</option>
+                                    <option value="5">5 Shorts (Full Multi-Clip Breakdown)</option>
+                                    <option value="10">10 Shorts (Maximum Output)</option>
+                                </select>
+                            </div>
+
+                            <!-- Caption Options -->
+                            <div class="form-group-custom">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <label class="form-label-custom" style="margin-bottom: 0;">
+                                        <span>Dynamic Captions / Subtitles</span>
+                                    </label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="shortsCaptionToggle" checked onchange="toggleCaptionOptions()">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div id="captionSettingsBlock" style="margin-top: 8px; display: flex; flex-direction: column; gap: 10px;">
+                                    <div class="form-group-custom">
+                                        <span style="font-size: 11px; color: var(--text-muted);">Caption Language</span>
+                                        <select class="select-custom" id="shortsLanguageSelect">
+                                            <option value="auto" selected>Auto-Detect Language</option>
+                                            <option value="en">English (US/UK)</option>
+                                            <option value="hi">Hindi (हिंदी)</option>
+                                            <option value="hinglish">Hinglish (Hindi + English)</option>
+                                            <option value="es">Spanish (Español)</option>
+                                            <option value="fr">French (Français)</option>
+                                            <option value="de">German (Deutsch)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group-custom">
+                                        <span style="font-size: 11px; color: var(--text-muted);">Subtitle Style Preset</span>
+                                        <div class="chip-options-grid">
+                                            <div class="chip-btn selected" onclick="selectChip(this, 'style')"><i class="fa-solid fa-bolt"></i> Hormozi</div>
+                                            <div class="chip-btn" onclick="selectChip(this, 'style')"><i class="fa-solid fa-fire"></i> Viral Pop</div>
+                                            <div class="chip-btn" onclick="selectChip(this, 'style')"><i class="fa-solid fa-font"></i> Minimalist</div>
+                                            <div class="chip-btn" onclick="selectChip(this, 'style')"><i class="fa-solid fa-icons"></i> Emoji Auto</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Video Type & Content Category -->
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Video Category & Vibe</label>
+                                <select class="select-custom" id="shortsCategorySelect">
+                                    <option value="podcast">Podcast & Talking Head</option>
+                                    <option value="gaming">Gaming & Stream Highlights</option>
+                                    <option value="tech">Tech Review & Tutorial</option>
+                                    <option value="vlog">Vlog & Lifestyle</option>
+                                    <option value="business">Business & Motivation</option>
+                                </select>
+                            </div>
+
+                            <!-- Highlight Extraction Mode -->
+                            <div class="form-group-custom">
+                                <label class="form-label-custom">Highlight Extraction Strategy</label>
+                                <div class="chip-options-grid" style="grid-template-columns: 1fr;">
+                                    <div class="chip-btn selected" style="justify-content: flex-start; padding: 10px 14px;" onclick="selectChip(this, 'highlight')">
+                                        <i class="fa-solid fa-brain" style="color: var(--secondary);"></i>
+                                        <div style="text-align: left;">
+                                            <div>AI Smart Viral Hook Finder</div>
+                                            <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">Detects emotional spikes & key moments</div>
+                                        </div>
+                                    </div>
+                                    <div class="chip-btn" style="justify-content: flex-start; padding: 10px 14px;" onclick="selectChip(this, 'highlight')">
+                                        <i class="fa-solid fa-comments" style="color: var(--secondary);"></i>
+                                        <div style="text-align: left;">
+                                            <div>Speech & Keyword Focused</div>
+                                            <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">Extracts punchy sentences & soundbites</div>
+                                        </div>
+                                    </div>
+                                    <div class="chip-btn" style="justify-content: flex-start; padding: 10px 14px;" onclick="selectChip(this, 'highlight')">
+                                        <i class="fa-solid fa-clock" style="color: var(--secondary);"></i>
+                                        <div style="text-align: left;">
+                                            <div>Uniform Interval Splitting</div>
+                                            <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">Cuts video into equal 30s/60s clips</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Generate Button -->
+                            <button class="btn btn-primary btn-glow" style="width: 100%; padding: 14px; font-size: 14px; margin-top: 10px;" onclick="generateShortsProcess()">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Generate AI Shorts Now
+                            </button>
+                        </div>
+
+                        <!-- Right Output / Preview Area -->
+                        <div class="shorts-results-area">
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 16px 20px;">
+                                <div>
+                                    <h3 style="font-size: 16px;">Generated AI Shorts Clips</h3>
+                                    <p style="font-size: 12px; color: var(--text-muted);" id="shortsResultsCountText">Showing 3 viral shorts extracted from video</p>
+                                </div>
+                                <div style="display: flex; gap: 10px;">
+                                    <button class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px;" onclick="triggerToast('Downloading all clips zip...')"><i class="fa-solid fa-file-zipper"></i> Download All</button>
+                                </div>
+                            </div>
+
+                            <div class="generated-shorts-grid" id="shortsGridContainer">
+                                <!-- Short Card 1 -->
+                                <div class="short-card-vertical">
+                                    <div class="short-preview-9-16">
+                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Short Preview">
+                                        <div class="viral-score-badge">
+                                            <i class="fa-solid fa-fire"></i> 98/100 Viral Score
+                                        </div>
+                                        <div class="short-duration-badge">00:42</div>
+                                    </div>
+                                    <div class="short-card-info">
+                                        <div class="short-card-title">The Secret AI Shortcut Nobody Talks About in 2026 🔥</div>
+                                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                                            <span style="font-size: 10px; background: rgba(168,85,247,0.15); color: #c084fc; padding: 2px 6px; border-radius: 4px;">Dynamic Captions</span>
+                                            <span style="font-size: 10px; background: rgba(34,197,94,0.15); color: #4ade80; padding: 2px 6px; border-radius: 4px;">Auto Re-frame</span>
+                                        </div>
+                                        <div style="display: flex; gap: 8px; margin-top: 6px;">
+                                            <button class="btn btn-primary" style="flex: 1; font-size: 11px; padding: 6px;" onclick="switchTab('editor')"><i class="fa-solid fa-sliders"></i> Edit</button>
+                                            <button class="btn btn-secondary" style="padding: 6px 10px; font-size: 11px;" onclick="triggerToast('Downloading Short #1...')"><i class="fa-solid fa-download"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Short Card 2 -->
+                                <div class="short-card-vertical">
+                                    <div class="short-preview-9-16">
+                                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Short Preview 2">
+                                        <div class="viral-score-badge">
+                                            <i class="fa-solid fa-fire"></i> 94/100 Viral Score
+                                        </div>
+                                        <div class="short-duration-badge">00:28</div>
+                                    </div>
+                                    <div class="short-card-info">
+                                        <div class="short-card-title">Why Creators Are Leaving Traditional Editing Software 🚀</div>
+                                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                                            <span style="font-size: 10px; background: rgba(168,85,247,0.15); color: #c084fc; padding: 2px 6px; border-radius: 4px;">Dynamic Captions</span>
+                                            <span style="font-size: 10px; background: rgba(37,99,235,0.15); color: #60a5fa; padding: 2px 6px; border-radius: 4px;">Highlight Clip</span>
+                                        </div>
+                                        <div style="display: flex; gap: 8px; margin-top: 6px;">
+                                            <button class="btn btn-primary" style="flex: 1; font-size: 11px; padding: 6px;" onclick="switchTab('editor')"><i class="fa-solid fa-sliders"></i> Edit</button>
+                                            <button class="btn btn-secondary" style="padding: 6px 10px; font-size: 11px;" onclick="triggerToast('Downloading Short #2...')"><i class="fa-solid fa-download"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Short Card 3 -->
+                                <div class="short-card-vertical">
+                                    <div class="short-preview-9-16">
+                                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80" alt="Short Preview 3">
+                                        <div class="viral-score-badge">
+                                            <i class="fa-solid fa-fire"></i> 89/100 Viral Score
+                                        </div>
+                                        <div class="short-duration-badge">00:55</div>
+                                    </div>
+                                    <div class="short-card-info">
+                                        <div class="short-card-title">How To Scale Content Output 10x With One Single Click 💡</div>
+                                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                                            <span style="font-size: 10px; background: rgba(168,85,247,0.15); color: #c084fc; padding: 2px 6px; border-radius: 4px;">Dynamic Captions</span>
+                                            <span style="font-size: 10px; background: rgba(245,158,11,0.15); color: #fbbf24; padding: 2px 6px; border-radius: 4px;">Sound Hook</span>
+                                        </div>
+                                        <div style="display: flex; gap: 8px; margin-top: 6px;">
+                                            <button class="btn btn-primary" style="flex: 1; font-size: 11px; padding: 6px;" onclick="switchTab('editor')"><i class="fa-solid fa-sliders"></i> Edit</button>
+                                            <button class="btn btn-secondary" style="padding: 6px 10px; font-size: 11px;" onclick="triggerToast('Downloading Short #3...')"><i class="fa-solid fa-download"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <section id="tab-thumbnail" class="tab-content"><h2>AI Thumbnail</h2></section>
                 <section id="tab-captions" class="tab-content"><h2>Auto Captions</h2></section>
                 <section id="tab-voice" class="tab-content"><h2>Voiceover & Clones</h2></section>
@@ -1322,10 +1716,8 @@
             </div>
         </main>
     </div>
-
     <!-- TOAST NOTIFICATION CONTAINER -->
     <div id="toastContainer" style="position: fixed; top: 80px; right: 24px; z-index: 9999;"></div>
-
     <script>
         function switchTab(tabId, element) {
             const tabs = document.querySelectorAll('.tab-content');
@@ -1340,7 +1732,6 @@
                 element.classList.add('active');
             }
         }
-
         function triggerToast(message) {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
@@ -1359,6 +1750,53 @@
             setTimeout(() => {
                 toast.remove();
             }, 3000);
+        }
+
+        /* AI SHORTS PRO SPECIFIC JAVASCRIPT */
+        function handleShortsVideoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                document.getElementById('shortsUploadFileName').innerText = file.name;
+                document.getElementById('shortsUploadSub').innerText = (file.size / (1024 * 1024)).toFixed(1) + " MB • Ready for processing";
+                triggerToast("Video file attached: " + file.name);
+            }
+        }
+
+        function importYtVideo() {
+            const url = document.getElementById('ytUrlInput').value;
+            if(url) {
+                document.getElementById('shortsUploadFileName').innerText = "YouTube Video Loaded";
+                document.getElementById('shortsUploadSub').innerText = url;
+                triggerToast("YouTube video linked successfully!");
+            } else {
+                triggerToast("Please enter a valid YouTube URL");
+            }
+        }
+
+        function toggleCaptionOptions() {
+            const checked = document.getElementById('shortsCaptionToggle').checked;
+            const block = document.getElementById('captionSettingsBlock');
+            block.style.display = checked ? 'flex' : 'none';
+        }
+
+        function selectChip(element, group) {
+            const parent = element.parentElement;
+            const chips = parent.querySelectorAll('.chip-btn');
+            chips.forEach(c => c.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function generateShortsProcess() {
+            const count = document.getElementById('shortsCountSelect').value;
+            const lang = document.getElementById('shortsLanguageSelect').value;
+            triggerToast(`AI is analyzing video & generating ${count} Shorts (${lang})...`);
+            
+            document.getElementById('shortsResultsCountText').innerText = `Generating ${count} shorts with AI...`;
+            
+            setTimeout(() => {
+                triggerToast(`${count} AI Shorts generated successfully!`);
+                document.getElementById('shortsResultsCountText').innerText = `Showing ${count} viral shorts extracted from video`;
+            }, 1800);
         }
     </script>
 </body>
