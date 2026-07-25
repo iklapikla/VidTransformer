@@ -48,6 +48,11 @@
             border: 1px solid rgba(139, 92, 246, 0.3);
             box-shadow: 0 0 35px -10px rgba(139, 92, 246, 0.25);
         }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3), transparent);
+            margin: 4rem 0;
+        }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0b0f19; }
         ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
@@ -92,7 +97,7 @@
     </header>
 
     <!-- MAIN CONTENT CONTAINER -->
-    <main class="pt-24 space-y-32">
+    <main class="pt-24 space-y-12">
 
         <!-- SECTION 1: HERO & AI STUDIO -->
         <section id="ai-studio" class="max-w-7xl mx-auto px-4 lg:px-8 pt-8">
@@ -115,7 +120,7 @@
                             <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
                             </svg>
-                            <input id="video-url-input" type="text" placeholder="Paste YouTube link or drag & drop video file..." value="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="w-full bg-transparent py-3 text-sm text-white placeholder-gray-500 focus:outline-none">
+                            <input id="video-url-input" type="text" placeholder="Paste YouTube link or drag & drop video file..." value=" " class="w-full bg-transparent py-3 text-sm text-white placeholder-gray-500 focus:outline-none">
                         </div>
                         <button onclick="generateClipsSim()" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brandPurple to-brandPink text-white font-bold text-sm glow-purple hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
                             <span>Get Free Clips</span>
@@ -184,7 +189,7 @@
                         </select>
                     </div>
 
-                    <!-- Voiceover Gender Selector (Both Deselected Default) -->
+                    <!-- Voiceover Gender Selector (Deselected Default) -->
                     <div class="space-y-2">
                         <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Voiceover AI Clone Gender</label>
                         <div class="grid grid-cols-2 gap-2" id="gender-selector">
@@ -240,7 +245,6 @@
                         <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold">100% Complete</span>
                     </div>
 
-                    <!-- Grid of Generated Clips -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <!-- Clip 1 -->
                         <div class="rounded-2xl bg-darkBg border border-white/10 overflow-hidden hover:border-brandPurple transition-all">
@@ -297,6 +301,9 @@
             </div>
         </section>
 
+        <!-- SECTION DIVIDER -->
+        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
+
         <!-- SECTION 2: AI THUMBNAIL GENERATOR -->
         <section id="thumbnail-studio" class="max-w-7xl mx-auto px-4 lg:px-8">
             <div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-4">
@@ -310,20 +317,20 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Tool 1: Prompt to Thumbnail -->
+                <!-- Tool 1 -->
                 <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brandPink/50 transition-all flex flex-col justify-between">
                     <div class="space-y-4">
                         <div class="w-12 h-12 rounded-xl bg-brandPink/20 flex items-center justify-center text-brandPink text-2xl font-bold">🎨</div>
                         <h3 class="text-xl font-bold text-white">Prompt-to-Thumbnail</h3>
                         <p class="text-sm text-gray-400">Describe your concept in plain English. AI creates hyper-realistic, high-clickability cover images instantly.</p>
-                        <textarea id="thumb-prompt" placeholder="e.g., Shocked streamer looking at a giant glowing purple coin..." class="w-full bg-darkBg/90 border border-white/10 rounded-xl p-3 text-sm text-gray-200 placeholder-gray-500 h-28 focus:border-brandPink focus:outline-none resize-none">Shocked face streamer with neon glowing purple background and 4K text 'IMPOSSIBLE!'</textarea>
+                        <textarea placeholder="e.g., Shocked streamer looking at a giant glowing purple coin..." class="w-full bg-darkBg/90 border border-white/10 rounded-xl p-3 text-sm text-gray-200 placeholder-gray-500 h-28 focus:border-brandPink focus:outline-none resize-none">Shocked face streamer with neon glowing purple background and 4K text 'IMPOSSIBLE!'</textarea>
                     </div>
                     <button onclick="generateThumbnailSim()" class="mt-6 w-full py-3 rounded-xl bg-gradient-to-r from-brandPink to-brandPurple text-white font-bold text-sm glow-pink hover:opacity-90 transition-all">
                         Generate Thumbnail
                     </button>
                 </div>
 
-                <!-- Tool 2: Frame Extractor -->
+                <!-- Tool 2 -->
                 <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brandPurple/50 transition-all flex flex-col justify-between">
                     <div class="space-y-4">
                         <div class="w-12 h-12 rounded-xl bg-brandPurple/20 flex items-center justify-center text-brandPurple text-2xl font-bold">🎬</div>
@@ -341,7 +348,7 @@
                     </button>
                 </div>
 
-                <!-- Tool 3: Inpainting -->
+                <!-- Tool 3 -->
                 <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brandCyan/50 transition-all flex flex-col justify-between">
                     <div class="space-y-4">
                         <div class="w-12 h-12 rounded-xl bg-brandCyan/20 flex items-center justify-center text-brandCyan text-2xl font-bold">🪄</div>
@@ -369,10 +376,8 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Result 1 -->
                         <div class="rounded-2xl border border-white/10 overflow-hidden bg-darkBg p-3 space-y-3">
                             <div class="h-56 rounded-xl bg-gradient-to-r from-purple-900 via-pink-800 to-indigo-900 relative flex items-center justify-center overflow-hidden">
-                                <div class="absolute inset-0 bg-black/20"></div>
                                 <span class="text-4xl font-black text-yellow-400 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] tracking-wider transform -rotate-3">IMPOSSIBLE! 😱</span>
                             </div>
                             <div class="flex items-center justify-between">
@@ -381,10 +386,8 @@
                             </div>
                         </div>
 
-                        <!-- Result 2 -->
                         <div class="rounded-2xl border border-white/10 overflow-hidden bg-darkBg p-3 space-y-3">
                             <div class="h-56 rounded-xl bg-gradient-to-r from-blue-900 via-cyan-800 to-purple-900 relative flex items-center justify-center overflow-hidden">
-                                <div class="absolute inset-0 bg-black/20"></div>
                                 <span class="text-4xl font-black text-cyan-300 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] tracking-wider transform rotate-2">10X FASTER 🔥</span>
                             </div>
                             <div class="flex items-center justify-between">
@@ -397,12 +400,15 @@
             </div>
         </section>
 
-        <!-- SECTION 3: MULTI-PLATFORM PUBLISHING -->
+        <!-- SECTION DIVIDER -->
+        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
+
+        <!-- SECTION 3: MULTI-PLATFORM PUBLISHING WITH VIDEO UPLOAD -->
         <section id="publishing" class="max-w-7xl mx-auto px-4 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
                 <div class="text-brandCyan font-semibold text-sm tracking-wider uppercase">Omnichannel Distribution</div>
                 <h2 class="text-3xl sm:text-5xl font-black text-white">One-Click Multi-Stream & Video Publishing</h2>
-                <p class="text-gray-400 text-sm sm:text-base">Broadcast live or publish pre-recorded shorts simultaneously across 30 premier global streaming and social platforms.</p>
+                <p class="text-gray-400 text-sm sm:text-base">Upload pre-recorded videos or broadcast live simultaneously across 30 premier global streaming and social platforms.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -414,6 +420,28 @@
                         Global Publish Studio
                     </h3>
 
+                    <!-- VIDEO UPLOAD BOX ADDED HERE -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider block">Upload Video File</label>
+                        <div class="border-2 border-dashed border-brandCyan/40 hover:border-brandCyan rounded-2xl p-5 text-center bg-darkBg/60 transition-all cursor-pointer relative group" onclick="triggerFileUpload()">
+                            <input type="file" id="pub-video-upload" class="hidden" accept="video/*" onchange="handleFileSelect(this)">
+                            <div id="upload-idle-state" class="space-y-2">
+                                <div class="w-10 h-10 rounded-full bg-brandCyan/10 text-brandCyan flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                                    📹
+                                </div>
+                                <div class="text-xs font-bold text-gray-200">Click to upload video or drag & drop</div>
+                                <div class="text-[10px] text-gray-500">MP4, MOV, WEBM (Up to 4K 60fps)</div>
+                            </div>
+                            <div id="upload-file-state" class="hidden text-left bg-brandCyan/10 p-3 rounded-xl border border-brandCyan/30">
+                                <div class="flex items-center justify-between text-xs font-bold text-brandCyan">
+                                    <span id="uploaded-filename" class="truncate max-w-[200px]">my_awesome_video.mp4</span>
+                                    <span>Ready</span>
+                                </div>
+                                <div class="text-[10px] text-gray-400 mt-0.5">Size: 245.8 MB</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="space-y-4">
                         <div>
                             <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider block mb-2">Video / Stream Title</label>
@@ -422,12 +450,12 @@
 
                         <div>
                             <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider block mb-2">Description & Auto-Hashtags</label>
-                            <textarea class="w-full bg-darkBg border border-white/10 rounded-xl p-3 text-sm text-gray-300 focus:border-brandCyan focus:outline-none h-24 resize-none">In this short snippet, we explore how next-gen AI models are transforming video content creation. #AI #VidTransformer #ViralShorts</textarea>
+                            <textarea class="w-full bg-darkBg border border-white/10 rounded-xl p-3 text-sm text-gray-300 focus:border-brandCyan focus:outline-none h-20 resize-none">In this short snippet, we explore how next-gen AI models are transforming video content creation. #AI #VidTransformer #ViralShorts</textarea>
                         </div>
                     </div>
 
-                    <button onclick="publishSim()" class="w-full py-4 rounded-xl bg-gradient-to-r from-brandCyan via-brandPurple to-brandPink text-white font-bold text-sm glow-cyan hover:scale-[1.01] transition-all">
-                        🚀 Publish / Stream To Selected (<span id="selected-count">0</span> Active)
+                    <button onclick="publishSim()" class="w-full py-4 rounded-xl bg-gradient-to-r from-brandCyan via-brandPurple to-brandPink text-white font-bold text-sm glow-cyan hover:scale-[1.01] transition-all flex items-center justify-center gap-2">
+                        <span>🚀 Publish Video To (<span id="selected-count">0</span> Selected)</span>
                     </button>
                 </div>
 
@@ -440,23 +468,52 @@
                         </button>
                     </div>
 
-                    <div id="platforms-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-[460px] overflow-y-auto pr-2"></div>
+                    <div id="platforms-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-[490px] overflow-y-auto pr-2"></div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 4: COMBINED ANALYTICS -->
+        <!-- SECTION DIVIDER -->
+        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
+
+        <!-- SECTION 4: COMBINED ANALYTICS WITH PLATFORM SELECTOR -->
         <section id="analytics" class="max-w-7xl mx-auto px-4 lg:px-8">
-            <div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-4">
+            <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 gap-4">
                 <div>
                     <div class="text-brandPurple font-semibold text-sm tracking-wider uppercase mb-1">Central Intelligence</div>
                     <h2 class="text-3xl sm:text-5xl font-black text-white">Unified Cross-Platform Analytics</h2>
                 </div>
-                <div class="flex items-center gap-2 bg-darkBg p-1.5 rounded-xl border border-white/10" id="analytics-filter">
-                    <button type="button" onclick="setAnalyticsTimeframe('30d', this)" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-brandPurple text-white transition-all">Last 30 Days</button>
-                    <button type="button" onclick="setAnalyticsTimeframe('7d', this)" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">7 Days</button>
-                    <button type="button" onclick="setAnalyticsTimeframe('all', this)" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">All Time</button>
+                
+                <div class="flex flex-wrap items-center gap-3">
+                    <!-- PLATFORM SELECTOR DROPDOWN ADDED HERE -->
+                    <div class="flex items-center gap-2 bg-darkBg px-3 py-2 rounded-xl border border-white/10">
+                        <span class="text-xs text-gray-400 font-semibold">Platform:</span>
+                        <select id="analytics-platform-select" onchange="filterAnalyticsPlatform(this.value)" class="bg-transparent text-xs font-bold text-brandCyan focus:outline-none cursor-pointer">
+                            <option value="all" class="bg-darkBg text-white">🌐 All Platforms Combined</option>
+                            <option value="twitch" class="bg-darkBg text-white">💜 Twitch</option>
+                            <option value="youtube" class="bg-darkBg text-white">🔴 YouTube Shorts / Live</option>
+                            <option value="tiktok" class="bg-darkBg text-white">🎵 TikTok LIVE</option>
+                            <option value="kick" class="bg-darkBg text-white">🟢 Kick</option>
+                        </select>
+                    </div>
+
+                    <!-- Timeframe Switcher -->
+                    <div class="flex items-center gap-1 bg-darkBg p-1.5 rounded-xl border border-white/10" id="analytics-filter">
+                        <button type="button" onclick="setAnalyticsTimeframe('30d', this)" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-brandPurple text-white transition-all">30D</button>
+                        <button type="button" onclick="setAnalyticsTimeframe('7d', this)" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">7D</button>
+                        <button type="button" onclick="setAnalyticsTimeframe('all', this)" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">All</button>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Platform Quick Switch Pills -->
+            <div class="flex items-center gap-2 mb-6 overflow-x-auto pb-2">
+                <span class="text-xs text-gray-500 font-medium shrink-0">Quick Filter:</span>
+                <button onclick="selectPlatformPill('all')" id="pill-all" class="platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-brandPurple/30 border border-brandPurple text-white shrink-0">All Combined</button>
+                <button onclick="selectPlatformPill('twitch')" id="pill-twitch" class="platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-darkBg/80 border border-white/10 text-gray-400 hover:text-white shrink-0">Twitch</button>
+                <button onclick="selectPlatformPill('youtube')" id="pill-youtube" class="platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-darkBg/80 border border-white/10 text-gray-400 hover:text-white shrink-0">YouTube Shorts</button>
+                <button onclick="selectPlatformPill('tiktok')" id="pill-tiktok" class="platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-darkBg/80 border border-white/10 text-gray-400 hover:text-white shrink-0">TikTok LIVE</button>
+                <button onclick="selectPlatformPill('kick')" id="pill-kick" class="platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-darkBg/80 border border-white/10 text-gray-400 hover:text-white shrink-0">Kick</button>
             </div>
 
             <div class="glass-card rounded-3xl p-6 lg:p-8 border border-white/10 space-y-8">
@@ -483,7 +540,7 @@
                     <div class="flex items-center justify-between">
                         <h4 class="text-sm font-bold text-white flex items-center gap-2">
                             <span class="w-2.5 h-2.5 rounded-full bg-brandPink"></span>
-                            Multi-Stream Growth Trajectory (<span id="chart-time-label">Last 30 Days</span>)
+                            Growth Trajectory for <span id="current-platform-name" class="text-brandCyan font-bold">All Platforms Combined</span> (<span id="chart-time-label">Last 30 Days</span>)
                         </h4>
                         <span class="text-xs text-gray-400">Updated 5 mins ago</span>
                     </div>
@@ -516,6 +573,9 @@
             </div>
         </section>
 
+        <!-- SECTION DIVIDER -->
+        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
+
         <!-- SECTION 5: USE CASES -->
         <section id="use-cases" class="max-w-7xl mx-auto px-4 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
@@ -546,6 +606,9 @@
                 </div>
             </div>
         </section>
+
+        <!-- SECTION DIVIDER -->
+        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
 
         <!-- SECTION 6: PRICING -->
         <section id="pricing" class="max-w-7xl mx-auto px-4 lg:px-8">
@@ -580,6 +643,9 @@
                 </div>
             </div>
         </section>
+
+        <!-- SECTION DIVIDER -->
+        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
 
         <!-- SECTION 7: FAQ (EMPTY PLACEHOLDER SECTION) -->
         <section id="faq" class="max-w-5xl mx-auto px-4 lg:px-8 pb-16">
@@ -617,7 +683,7 @@
 
     <!-- INTERACTIVE SCRIPTS -->
     <script>
-        // --- 1. VOICE GENDER SELECTION (BOTH UNSELECTED DEFAULT) ---
+        // --- 1. VOICE GENDER SELECTION ---
         let selectedGenderState = null;
         function selectGender(gender) {
             const btnMale = document.getElementById('btn-male');
@@ -625,7 +691,6 @@
             
             if(gender === 'male') {
                 if(selectedGenderState === 'male') {
-                    // Deselect if already active
                     selectedGenderState = null;
                     btnMale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
                 } else {
@@ -635,7 +700,6 @@
                 }
             } else if(gender === 'female') {
                 if(selectedGenderState === 'female') {
-                    // Deselect if already active
                     selectedGenderState = null;
                     btnFemale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
                 } else {
@@ -646,7 +710,21 @@
             }
         }
 
-        // --- 2. GENERATE CLIPS SIMULATION ---
+        // --- 2. VIDEO FILE UPLOAD HANDLER FOR PUBLISHING ---
+        function triggerFileUpload() {
+            document.getElementById('pub-video-upload').click();
+        }
+
+        function handleFileSelect(input) {
+            if(input.files && input.files[0]) {
+                const fileName = input.files[0].name;
+                document.getElementById('uploaded-filename').innerText = fileName;
+                document.getElementById('upload-idle-state').classList.add('hidden');
+                document.getElementById('upload-file-state').classList.remove('hidden');
+            }
+        }
+
+        // --- 3. GENERATE CLIPS SIMULATION ---
         function generateClipsSim() {
             showModal("Generating Viral Shorts...", "Scanning audio peaks, face-centering frames, and generating auto-captions.");
             setTimeout(() => {
@@ -657,7 +735,7 @@
             }, 2000);
         }
 
-        // --- 3. GENERATE THUMBNAILS SIMULATION ---
+        // --- 4. GENERATE THUMBNAILS SIMULATION ---
         function generateThumbnailSim() {
             showModal("Rendering AI Thumbnails...", "Generating 4K compositions and applying high-CTR face expressions.");
             setTimeout(() => {
@@ -668,17 +746,17 @@
             }, 1800);
         }
 
-        // --- 4. MULTI-STREAM PUBLISH SIMULATION ---
+        // --- 5. MULTI-STREAM PUBLISH SIMULATION ---
         function publishSim() {
             const count = document.getElementById('selected-count').innerText;
             if(count === "0") {
-                alert("Select atleast one platform!");
+                alert("Kripya kam se kam ek platform select karein!");
                 return;
             }
-            showModal("Publishing Multi-Stream...", `Connecting to ${count} destination servers simultaneously.`);
+            showModal("Publishing Multi-Stream...", `Uploading video file and broadcasting to ${count} destination servers.`);
             setTimeout(() => {
                 hideModal();
-                alert(`SUCCESS! 🎉 Broadcast published live to ${count} selected platforms!`);
+                alert(`SUCCESS! 🎉 Video file published live across ${count} selected platforms!`);
             }, 2200);
         }
 
@@ -696,7 +774,7 @@
             document.getElementById('processing-modal').classList.add('hidden');
         }
 
-        // --- 5. PLATFORMS GRID LOGIC ---
+        // --- 6. PLATFORMS GRID LOGIC ---
         const platformsList = [
             "Twitch", "SOOP (AfreecaTV)", "Kick", "Trovo", "CHZZK", "Bigo Live",
             "Tango Live", "MICO Live", "Nonolive", "Poppo Live", "BLive", "DLive",
@@ -752,25 +830,59 @@
             renderPlatforms();
         }
 
-        // --- 6. ANALYTICS FILTER LOGIC ---
-        const analyticsData = {
-            '30d': { label: 'Last 30 Days', views: '14.8M', watch: '382.5k hrs', engagement: '8.64%', revenue: '$42,910' },
-            '7d':  { label: 'Last 7 Days',  views: '3.2M',  watch: '89.1k hrs',  engagement: '9.12%', revenue: '$10,450' },
-            'all': { label: 'All Time',     views: '98.4M', watch: '2.4M hrs',   engagement: '7.85%', revenue: '$310,800' }
+        // --- 7. DETAILED PLATFORM ANALYTICS DATA & SELECTOR ---
+        const platformAnalyticsMap = {
+            'all': {
+                name: 'All Platforms Combined',
+                views: '14.8M', watch: '382.5k hrs', engagement: '8.64%', revenue: '$42,910'
+            },
+            'twitch': {
+                name: 'Twitch',
+                views: '3.4M', watch: '185.2k hrs', engagement: '11.2%', revenue: '$18,400'
+            },
+            'youtube': {
+                name: 'YouTube Shorts / Live',
+                views: '6.1M', watch: '120.4k hrs', engagement: '7.8%', revenue: '$14,250'
+            },
+            'tiktok': {
+                name: 'TikTok LIVE',
+                views: '4.2M', watch: '54.1k hrs', engagement: '9.4%', revenue: '$7,810'
+            },
+            'kick': {
+                name: 'Kick',
+                views: '1.1M', watch: '22.8k hrs', engagement: '6.5%', revenue: '$2,450'
+            }
         };
 
-        function setAnalyticsTimeframe(period, btn) {
-            document.querySelectorAll('#analytics-filter .filter-btn').forEach(b => {
-                b.className = "filter-btn px-3 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all";
-            });
-            btn.className = "filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-brandPurple text-white transition-all";
-
-            const data = analyticsData[period];
+        function filterAnalyticsPlatform(platKey) {
+            const data = platformAnalyticsMap[platKey] || platformAnalyticsMap['all'];
             document.getElementById('metric-views').innerText = data.views;
             document.getElementById('metric-watch').innerText = data.watch;
             document.getElementById('metric-engagement').innerText = data.engagement;
             document.getElementById('metric-revenue').innerText = data.revenue;
-            document.getElementById('chart-time-label').innerText = data.label;
+            document.getElementById('current-platform-name').innerText = data.name;
+            document.getElementById('analytics-platform-select').value = platKey;
+
+            // Highlight active quick pill
+            document.querySelectorAll('.platform-pill').forEach(pill => {
+                pill.className = "platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-darkBg/80 border border-white/10 text-gray-400 hover:text-white shrink-0";
+            });
+            const activePill = document.getElementById(`pill-${platKey}`);
+            if(activePill) {
+                activePill.className = "platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-brandPurple/30 border border-brandPurple text-white shrink-0";
+            }
+        }
+
+        function selectPlatformPill(platKey) {
+            filterAnalyticsPlatform(platKey);
+        }
+
+        function setAnalyticsTimeframe(period, btn) {
+            document.querySelectorAll('#analytics-filter .filter-btn').forEach(b => {
+                b.className = "filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all";
+            });
+            btn.className = "filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-brandPurple text-white transition-all";
+            document.getElementById('chart-time-label').innerText = period === '30d' ? 'Last 30 Days' : period === '7d' ? 'Last 7 Days' : 'All Time';
         }
 
         document.addEventListener('DOMContentLoaded', () => {
