@@ -60,7 +60,6 @@
     </style>
 </head>
 <body class="bg-darkBg text-gray-100 font-sans antialiased selection:bg-brandPurple selection:text-white relative overflow-x-hidden">
-
     <!-- Background Radial Gradients -->
     <div class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-brandPurple/15 rounded-full blur-[120px] pointer-events-none -z-10"></div>
     <div class="fixed top-1/3 right-10 w-[450px] h-[450px] bg-brandPink/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
@@ -77,16 +76,15 @@
                 </div>
                 <span class="tracking-wider">Vid<span class="gradient-text">Transformer</span></span>
             </a>
-
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
                 <a href="#ai-studio" class="hover:text-brandPurple transition-colors">AI Studio</a>
+                <a href="#content-matrix" class="hover:text-brandPink transition-colors">Content Matrix</a>
                 <a href="#thumbnail-studio" class="hover:text-brandPink transition-colors">Thumbnails</a>
                 <a href="#publishing" class="hover:text-brandCyan transition-colors">Multi-Publish</a>
                 <a href="#analytics" class="hover:text-brandPurple transition-colors">Analytics</a>
                 <a href="#use-cases" class="hover:text-gray-100 transition-colors">Use Cases</a>
                 <a href="#pricing" class="hover:text-gray-100 transition-colors">Pricing</a>
             </nav>
-
             <div class="flex items-center gap-4">
                 <a href="#" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors hidden sm:block">Sign In</a>
                 <a href="#ai-studio" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brandPurple via-brandPink to-brandCyan text-white text-sm font-bold glow-purple hover:opacity-90 transition-all">
@@ -98,32 +96,35 @@
 
     <!-- MAIN CONTENT CONTAINER -->
     <main class="pt-24 space-y-12">
-
         <!-- SECTION 1: HERO & AI STUDIO -->
         <section id="ai-studio" class="max-w-7xl mx-auto px-4 lg:px-8 pt-8">
             <div class="text-center max-w-4xl mx-auto space-y-6">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-xs font-semibold text-brandPink border border-brandPink/30 animate-pulse">
                     <span class="w-2 h-2 rounded-full bg-brandPink"></span>
-                    Next-Gen AI Video Engine 3.0 Live
+                    Next-Gen AI Repurposing Engine 3.0 Live
                 </div>
                 <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none">
-                    1 long video, <span class="gradient-text">10 viral clips.</span><br/>Created 10x faster.
+                    1 video to <span class="gradient-text">50 pieces of content.</span><br/>Created 10x faster.
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-400 font-normal max-w-2xl mx-auto">
-                    Turn your podcasts and YouTube videos into short, high-engagement TikToks, Reels, and Shorts automatically.
+                    Turn your podcasts, live streams, and long videos into 25+ viral clips, social posts, written summaries, and creative assets automatically.
                 </p>
-
-                <!-- Main Input Box -->
+                <!-- Main Input Box: Multi-Input Options -->
                 <div class="pt-4 max-w-2xl mx-auto">
-                    <div class="p-2 rounded-2xl glass-card border border-white/10 flex flex-col sm:flex-row gap-2 shadow-2xl">
-                        <div class="flex-1 flex items-center px-4 gap-3 bg-darkBg/50 rounded-xl border border-white/5">
+                    <div class="p-2 rounded-2xl glass-card border border-white/10 flex flex-col sm:flex-row gap-2 shadow-2xl items-center">
+                        <div class="flex-1 flex items-center px-4 gap-2.5 bg-darkBg/50 rounded-xl border border-white/5 w-full">
                             <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 105.656-5.656l-1.1 1.1"/>
                             </svg>
-                            <input id="video-url-input" type="text" placeholder="Paste YouTube link or drag & drop video file..." value=" " class="w-full bg-transparent py-3 text-sm text-white placeholder-gray-500 focus:outline-none">
+                            <input id="video-url-input" type="url" placeholder="Paste Video Link (YouTube, Drive, etc.)..." class="w-full bg-transparent py-3 text-sm text-white placeholder-gray-500 focus:outline-none">
+                            <span class="text-xs text-gray-500 font-semibold px-1 select-none">OR</span>
+                            <label class="cursor-pointer px-3 py-1.5 rounded-lg bg-brandPurple/20 border border-brandPurple/40 hover:bg-brandPurple/40 text-xs font-semibold text-brandCyan transition-colors shrink-0 flex items-center gap-1.5">
+                                <span>📁 Upload Video</span>
+                                <input type="file" accept="video/*" class="hidden" onchange="if(this.files[0]) document.getElementById('video-url-input').value = this.files[0].name;">
+                            </label>
                         </div>
-                        <button onclick="generateClipsSim()" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brandPurple to-brandPink text-white font-bold text-sm glow-purple hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-                            <span>Get Free Clips</span>
+                        <button onclick="generateClipsSim()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-brandPurple to-brandPink text-white font-bold text-sm glow-purple hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shrink-0">
+                            <span>Get Clips Free</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                             </svg>
@@ -147,7 +148,6 @@
                         AI Model: VT-OmniEngine-v4
                     </span>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Framing -->
                     <div class="space-y-2">
@@ -158,7 +158,6 @@
                             <option>Dynamic Reaction Layout</option>
                         </select>
                     </div>
-
                     <!-- Caption Style -->
                     <div class="space-y-2">
                         <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Caption Language & Styles</label>
@@ -168,7 +167,6 @@
                             <option>Hindi (Dynamic Pop-ups)</option>
                         </select>
                     </div>
-
                     <!-- AI Voice Dubbing -->
                     <div class="space-y-2">
                         <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">AI Voice Dubbing Target</label>
@@ -178,7 +176,6 @@
                             <option>Hindi (Natural Conversational)</option>
                         </select>
                     </div>
-
                     <!-- Tone -->
                     <div class="space-y-2">
                         <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Highlight Detection Tone</label>
@@ -188,12 +185,11 @@
                             <option>Dramatic & Suspenseful</option>
                         </select>
                     </div>
-
-                    <!-- Voiceover Gender Selector (Deselected Default) -->
+                    <!-- Voiceover Gender Selector (Male Default Selected) -->
                     <div class="space-y-2">
                         <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Voiceover AI Clone Gender</label>
                         <div class="grid grid-cols-2 gap-2" id="gender-selector">
-                            <button type="button" onclick="selectGender('male')" id="btn-male" class="py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all">
+                            <button type="button" onclick="selectGender('male')" id="btn-male" class="py-2.5 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all">
                                 👨 Male
                             </button>
                             <button type="button" onclick="selectGender('female')" id="btn-female" class="py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all">
@@ -201,7 +197,6 @@
                             </button>
                         </div>
                     </div>
-
                     <!-- Cut Speed -->
                     <div class="space-y-2">
                         <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Video Pacing & Cut Speed</label>
@@ -211,7 +206,6 @@
                         </select>
                     </div>
                 </div>
-
                 <!-- Enhancers -->
                 <div class="mt-8 pt-6 border-t border-white/10">
                     <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-3">Include AI Auto-Enhancers:</span>
@@ -238,13 +232,12 @@
                     <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
                         <div>
                             <h3 class="text-2xl font-black text-white flex items-center gap-2">
-                                🎉 AI Generated Shorts (10 Clips Ready)
+                                🎉 AI Generated Content (25 Clips Ready)
                             </h3>
                             <p class="text-xs text-gray-400 mt-1">Processed with Auto Face-Tracking, Viral Captions & Highlight Detection.</p>
                         </div>
                         <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold">100% Complete</span>
                     </div>
-
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <!-- Clip 1 -->
                         <div class="rounded-2xl bg-darkBg border border-white/10 overflow-hidden hover:border-brandPurple transition-all">
@@ -262,7 +255,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- Clip 2 -->
                         <div class="rounded-2xl bg-darkBg border border-white/10 overflow-hidden hover:border-brandPurple transition-all">
                             <div class="h-48 bg-gradient-to-br from-brandCyan/30 to-brandPurple/30 relative flex items-center justify-center">
@@ -279,7 +271,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- Clip 3 -->
                         <div class="rounded-2xl bg-darkBg border border-white/10 overflow-hidden hover:border-brandPurple transition-all">
                             <div class="h-48 bg-gradient-to-br from-brandPink/30 to-yellow-500/20 relative flex items-center justify-center">
@@ -304,6 +295,97 @@
         <!-- SECTION DIVIDER -->
         <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
 
+        <!-- INTERACTIVE CONTENT MATRIX EXPLORER WITH VIDEO UPLOADER -->
+        <section id="content-matrix" class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+                <div class="text-brandPurple font-semibold text-sm tracking-wider uppercase">Interactive Content Explorer</div>
+                <h2 class="text-3xl sm:text-5xl font-black text-white">1 Video = 120+ Micro-Outputs</h2>
+                <p class="text-gray-400 text-sm sm:text-base">Upload your raw video or click on any category below to explore exact deliverables generated by VidTransformer AI.</p>
+            </div>
+
+            <!-- Upload Video Box Added Here -->
+            <div class="max-w-5xl mx-auto mb-8">
+                <div class="border-2 border-dashed border-brandPurple/40 hover:border-brandPurple rounded-3xl p-6 text-center bg-darkBg/80 transition-all cursor-pointer relative group" onclick="triggerMatrixVideoUpload()">
+                    <input type="file" id="matrix-video-file-input" class="hidden" accept="video/*" onchange="handleMatrixFileSelect(this)">
+                    <div id="matrix-upload-idle" class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-brandPurple/20 text-brandPurple flex items-center justify-center mx-auto group-hover:scale-110 transition-transform text-2xl">
+                            🎬
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Upload Your Video File to Explore Formats</h4>
+                            <p class="text-xs text-gray-400 mt-1">Drag & drop MP4, MOV, WEBM (Up to 4K) or click to browse from device</p>
+                        </div>
+                        <span class="inline-block px-4 py-1.5 rounded-xl bg-brandPurple/30 border border-brandPurple text-xs font-bold text-brandCyan">
+                            Browse File
+                        </span>
+                    </div>
+                    <div id="matrix-upload-selected" class="hidden text-left bg-brandPurple/10 p-4 rounded-2xl border border-brandPurple/40 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">📹</span>
+                            <div>
+                                <div id="matrix-uploaded-filename" class="text-xs font-bold text-white truncate max-w-xs">video_file.mp4</div>
+                                <div class="text-[10px] text-gray-400">File uploaded & ready for AI transformation</div>
+                            </div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold">Ready</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search & Total Badge -->
+            <div class="max-w-5xl mx-auto mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="relative w-full sm:w-80">
+                    <input type="text" id="matrix-search" oninput="filterMatrixItems(this.value)" placeholder="Search outputs (e.g. Shorts, Podcast, LinkedIn)..." class="w-full bg-darkBg/90 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-500 focus:border-brandPurple focus:outline-none">
+                    <span class="absolute right-3 top-2.5 text-gray-500 text-xs">🔍</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl glass-card border border-brandPurple/30 text-xs font-bold text-gray-300">
+                    Total Deliverables: <span class="text-brandPink font-black text-sm">124+ Formats</span>
+                </div>
+            </div>
+
+            <!-- Matrix Explorer Layout -->
+            <div class="glass-card-glow rounded-3xl p-4 sm:p-6 lg:p-8 max-w-5xl mx-auto border border-brandPurple/30 grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Left: Category Selector Tabs -->
+                <div class="lg:col-span-5 space-y-2 max-h-[480px] overflow-y-auto pr-1" id="category-tab-container">
+                    <!-- Dynamically Rendered via JS -->
+                </div>
+
+                <!-- Right: Dynamic Outputs Viewer -->
+                <div class="lg:col-span-7 bg-darkBg/80 rounded-2xl p-5 border border-white/10 flex flex-col justify-between min-h-[420px]">
+                    <div>
+                        <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
+                            <div>
+                                <h3 class="text-lg font-black text-white flex items-center gap-2" id="active-cat-title">
+                                    🎬 Video Formats
+                                </h3>
+                                <p class="text-xs text-gray-400 mt-0.5" id="active-cat-desc">Select an item to preview details</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-brandPurple/20 text-brandCyan border border-brandPurple/30 text-xs font-extrabold" id="active-cat-badge">
+                                16 Outputs
+                            </span>
+                        </div>
+
+                        <!-- Dynamic Items Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[300px] overflow-y-auto pr-1" id="active-items-grid">
+                            <!-- Items rendered via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Bottom Interactive Prompt/Callout -->
+                    <div class="pt-4 border-t border-white/10 mt-4 flex items-center justify-between text-xs text-gray-400">
+                        <span id="item-selection-status">💡 Click any output to auto-configure in AI Studio</span>
+                        <button onclick="document.getElementById('ai-studio').scrollIntoView({behavior: 'smooth'});" class="px-3 py-1.5 rounded-lg bg-brandPurple/30 border border-brandPurple text-white font-bold hover:bg-brandPurple transition-all">
+                            Generate Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION DIVIDER -->
+        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
+
         <!-- SECTION 2: AI THUMBNAIL GENERATOR -->
         <section id="thumbnail-studio" class="max-w-7xl mx-auto px-4 lg:px-8">
             <div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-4">
@@ -315,7 +397,6 @@
                     Generate ultra-high CTR thumbnails using prompt-based generation, frame extractions, and context-aware face enhancements.
                 </p>
             </div>
-
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Tool 1 -->
                 <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brandPink/50 transition-all flex flex-col justify-between">
@@ -329,8 +410,7 @@
                         Generate Thumbnail
                     </button>
                 </div>
-
-                <!-- Tool 2 -->
+                <!-- Tool 2: Active Colorful Button State -->
                 <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brandPurple/50 transition-all flex flex-col justify-between">
                     <div class="space-y-4">
                         <div class="w-12 h-12 rounded-xl bg-brandPurple/20 flex items-center justify-center text-brandPurple text-2xl font-bold">🎬</div>
@@ -343,11 +423,11 @@
                             <span class="text-xs text-gray-400">Upload video or drop file to extract</span>
                         </div>
                     </div>
-                    <button onclick="generateThumbnailSim()" class="mt-6 w-full py-3 rounded-xl bg-white/10 text-white font-bold text-sm hover:bg-white/20 transition-all">
-                        Extract Best Keyframes
+                    <!-- Extract Best Keyframe Colorful Vibrant Button -->
+                    <button onclick="generateThumbnailSim()" class="mt-6 w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-500 hover:via-indigo-500 hover:to-blue-500 text-white font-bold text-sm glow-purple shadow-lg transition-all active:scale-[0.98]">
+                        Extract Best Keyframe
                     </button>
                 </div>
-
                 <!-- Tool 3 -->
                 <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brandCyan/50 transition-all flex flex-col justify-between">
                     <div class="space-y-4">
@@ -364,7 +444,6 @@
                     </button>
                 </div>
             </div>
-
             <!-- DUMMY RESULT OUTPUT CONTAINER (FOR THUMBNAILS) -->
             <div id="thumb-output-container" class="mt-12 hidden">
                 <div class="glass-card rounded-3xl p-6 lg:p-8 border border-brandPink/40 bg-darkBg/90 shadow-2xl">
@@ -374,7 +453,6 @@
                         </h3>
                         <span class="text-xs text-brandPink font-bold">Est. CTR Boost: +310%</span>
                     </div>
-
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="rounded-2xl border border-white/10 overflow-hidden bg-darkBg p-3 space-y-3">
                             <div class="h-56 rounded-xl bg-gradient-to-r from-purple-900 via-pink-800 to-indigo-900 relative flex items-center justify-center overflow-hidden">
@@ -385,7 +463,6 @@
                                 <button onclick="alert('Thumbnail Downloaded in 4K UHD!')" class="px-4 py-1.5 rounded-lg bg-brandPink text-white text-xs font-bold">Download 4K</button>
                             </div>
                         </div>
-
                         <div class="rounded-2xl border border-white/10 overflow-hidden bg-darkBg p-3 space-y-3">
                             <div class="h-56 rounded-xl bg-gradient-to-r from-blue-900 via-cyan-800 to-purple-900 relative flex items-center justify-center overflow-hidden">
                                 <span class="text-4xl font-black text-cyan-300 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] tracking-wider transform rotate-2">10X FASTER 🔥</span>
@@ -410,7 +487,6 @@
                 <h2 class="text-3xl sm:text-5xl font-black text-white">One-Click Multi-Stream & Video Publishing</h2>
                 <p class="text-gray-400 text-sm sm:text-base">Upload pre-recorded videos or broadcast live simultaneously across 30 premier global streaming and social platforms.</p>
             </div>
-
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 <div class="lg:col-span-5 glass-card rounded-3xl p-6 lg:p-8 border border-white/10 space-y-6">
                     <h3 class="text-xl font-bold text-white flex items-center gap-2">
@@ -419,8 +495,6 @@
                         </svg>
                         Global Publish Studio
                     </h3>
-
-                    <!-- VIDEO UPLOAD BOX ADDED HERE -->
                     <div class="space-y-2">
                         <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider block">Upload Video File</label>
                         <div class="border-2 border-dashed border-brandCyan/40 hover:border-brandCyan rounded-2xl p-5 text-center bg-darkBg/60 transition-all cursor-pointer relative group" onclick="triggerFileUpload()">
@@ -441,24 +515,20 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="space-y-4">
                         <div>
                             <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider block mb-2">Video / Stream Title</label>
                             <input type="text" value="THE FUTURE OF AI IN 2026! 🚀 (Unbelievable Breakthroughs)" class="w-full bg-darkBg border border-white/10 rounded-xl p-3 text-sm text-white focus:border-brandCyan focus:outline-none">
                         </div>
-
                         <div>
                             <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider block mb-2">Description & Auto-Hashtags</label>
                             <textarea class="w-full bg-darkBg border border-white/10 rounded-xl p-3 text-sm text-gray-300 focus:border-brandCyan focus:outline-none h-20 resize-none">In this short snippet, we explore how next-gen AI models are transforming video content creation. #AI #VidTransformer #ViralShorts</textarea>
                         </div>
                     </div>
-
                     <button onclick="publishSim()" class="w-full py-4 rounded-xl bg-gradient-to-r from-brandCyan via-brandPurple to-brandPink text-white font-bold text-sm glow-cyan hover:scale-[1.01] transition-all flex items-center justify-center gap-2">
                         <span>🚀 Publish Video To (<span id="selected-count">0</span> Selected)</span>
                     </button>
                 </div>
-
                 <!-- Platform Toggles Grid -->
                 <div class="lg:col-span-7 glass-card rounded-3xl p-6 lg:p-8 border border-white/10">
                     <div class="flex items-center justify-between mb-6">
@@ -467,7 +537,6 @@
                             Select All
                         </button>
                     </div>
-
                     <div id="platforms-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-[490px] overflow-y-auto pr-2"></div>
                 </div>
             </div>
@@ -485,7 +554,6 @@
                 </div>
                 
                 <div class="flex flex-wrap items-center gap-3">
-                    <!-- PLATFORM SELECTOR DROPDOWN ADDED HERE -->
                     <div class="flex items-center gap-2 bg-darkBg px-3 py-2 rounded-xl border border-white/10">
                         <span class="text-xs text-gray-400 font-semibold">Platform:</span>
                         <select id="analytics-platform-select" onchange="filterAnalyticsPlatform(this.value)" class="bg-transparent text-xs font-bold text-brandCyan focus:outline-none cursor-pointer">
@@ -496,16 +564,14 @@
                             <option value="kick" class="bg-darkBg text-white">🟢 Kick</option>
                         </select>
                     </div>
-
-                    <!-- Timeframe Switcher -->
+                    <!-- Timeframe Switcher (All Active & Dynamic) -->
                     <div class="flex items-center gap-1 bg-darkBg p-1.5 rounded-xl border border-white/10" id="analytics-filter">
-                        <button type="button" onclick="setAnalyticsTimeframe('30d', this)" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-brandPurple text-white transition-all">30D</button>
-                        <button type="button" onclick="setAnalyticsTimeframe('7d', this)" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">7D</button>
-                        <button type="button" onclick="setAnalyticsTimeframe('all', this)" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">All</button>
+                        <button type="button" onclick="setAnalyticsTimeframe('30d', this)" id="timeframe-30d" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-brandPurple text-white transition-all">30D</button>
+                        <button type="button" onclick="setAnalyticsTimeframe('7d', this)" id="timeframe-7d" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">7D</button>
+                        <button type="button" onclick="setAnalyticsTimeframe('all', this)" id="timeframe-all" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">All Time</button>
                     </div>
                 </div>
             </div>
-
             <!-- Platform Quick Switch Pills -->
             <div class="flex items-center gap-2 mb-6 overflow-x-auto pb-2">
                 <span class="text-xs text-gray-500 font-medium shrink-0">Quick Filter:</span>
@@ -515,7 +581,6 @@
                 <button onclick="selectPlatformPill('tiktok')" id="pill-tiktok" class="platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-darkBg/80 border border-white/10 text-gray-400 hover:text-white shrink-0">TikTok LIVE</button>
                 <button onclick="selectPlatformPill('kick')" id="pill-kick" class="platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-darkBg/80 border border-white/10 text-gray-400 hover:text-white shrink-0">Kick</button>
             </div>
-
             <div class="glass-card rounded-3xl p-6 lg:p-8 border border-white/10 space-y-8">
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                     <div class="p-5 rounded-2xl bg-darkBg/60 border border-white/5 space-y-2">
@@ -535,7 +600,6 @@
                         <div class="text-2xl sm:text-4xl font-black text-brandCyan" id="metric-revenue">$42,910</div>
                     </div>
                 </div>
-
                 <div class="p-6 rounded-2xl bg-darkBg/80 border border-white/5 space-y-4">
                     <div class="flex items-center justify-between">
                         <h4 class="text-sm font-bold text-white flex items-center gap-2">
@@ -544,7 +608,6 @@
                         </h4>
                         <span class="text-xs text-gray-400">Updated 5 mins ago</span>
                     </div>
-
                     <div class="h-64 w-full relative flex items-end pt-8">
                         <svg class="w-full h-full overflow-visible" viewBox="0 0 1000 200" preserveAspectRatio="none">
                             <defs>
@@ -562,7 +625,6 @@
                             <path id="chart-line" d="M0,160 Q 150,120 300,140 T 600,60 T 900,30 L 1000,10" fill="none" stroke="#ec4899" stroke-width="4" />
                         </svg>
                     </div>
-
                     <div class="flex justify-between text-xs text-gray-500 pt-2 border-t border-white/5" id="chart-x-labels">
                         <span>Week 1</span>
                         <span>Week 2</span>
@@ -582,7 +644,6 @@
                 <div class="text-brandPink font-semibold text-sm tracking-wider uppercase">Built For Creators</div>
                 <h2 class="text-3xl sm:text-5xl font-black text-white">How It Works & Custom Use Cases</h2>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="glass-card rounded-2xl p-6 border border-white/10 space-y-4">
                     <div class="w-12 h-12 rounded-xl bg-brandPurple/20 flex items-center justify-center text-brandPurple text-xl font-bold">🎙️</div>
@@ -616,7 +677,6 @@
                 <div class="text-brandCyan font-semibold text-sm tracking-wider uppercase">Predictable Scaling</div>
                 <h2 class="text-3xl sm:text-5xl font-black text-white">Simple, Transparent Pricing</h2>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
                 <div class="glass-card rounded-3xl p-8 border border-white/10 flex flex-col justify-between space-y-6">
                     <div>
@@ -625,7 +685,6 @@
                     </div>
                     <button class="w-full py-3 rounded-xl bg-white/10 text-white font-bold text-sm">Get Started</button>
                 </div>
-
                 <div class="glass-card-glow rounded-3xl p-8 border-2 border-brandPurple flex flex-col justify-between space-y-6 scale-105">
                     <div>
                         <h3 class="text-xl font-bold text-white">Creator Pro</h3>
@@ -633,7 +692,6 @@
                     </div>
                     <button class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brandPurple to-brandPink text-white font-bold text-sm">Get Started Free Trial</button>
                 </div>
-
                 <div class="glass-card rounded-3xl p-8 border border-white/10 flex flex-col justify-between space-y-6">
                     <div>
                         <h3 class="text-xl font-bold text-white">Enterprise</h3>
@@ -647,7 +705,7 @@
         <!-- SECTION DIVIDER -->
         <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
 
-        <!-- SECTION 7: FAQ (EMPTY PLACEHOLDER SECTION) -->
+        <!-- SECTION 7: FAQ -->
         <section id="faq" class="max-w-5xl mx-auto px-4 lg:px-8 pb-16">
             <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
                 <h2 class="text-3xl font-black text-white">Frequently Asked Questions</h2>
@@ -659,7 +717,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <!-- PROCESSING MODAL / SIMULATION -->
@@ -683,44 +740,45 @@
 
     <!-- INTERACTIVE SCRIPTS -->
     <script>
-        // --- 1. VOICE GENDER SELECTION ---
-        let selectedGenderState = null;
+        // --- 1. VOICE GENDER SELECTION (Default: Male Selected) ---
+        let selectedGenderState = 'male';
         function selectGender(gender) {
             const btnMale = document.getElementById('btn-male');
             const btnFemale = document.getElementById('btn-female');
             
             if(gender === 'male') {
-                if(selectedGenderState === 'male') {
-                    selectedGenderState = null;
-                    btnMale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
-                } else {
-                    selectedGenderState = 'male';
-                    btnMale.className = "py-2.5 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all";
-                    btnFemale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
-                }
+                selectedGenderState = 'male';
+                btnMale.className = "py-2.5 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all";
+                btnFemale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
             } else if(gender === 'female') {
-                if(selectedGenderState === 'female') {
-                    selectedGenderState = null;
-                    btnFemale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
-                } else {
-                    selectedGenderState = 'female';
-                    btnFemale.className = "py-2.5 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all";
-                    btnMale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
-                }
+                selectedGenderState = 'female';
+                btnFemale.className = "py-2.5 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all";
+                btnMale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
             }
         }
 
-        // --- 2. VIDEO FILE UPLOAD HANDLER FOR PUBLISHING ---
+        // --- 2. VIDEO FILE UPLOAD HANDLERS ---
         function triggerFileUpload() {
             document.getElementById('pub-video-upload').click();
         }
-
         function handleFileSelect(input) {
             if(input.files && input.files[0]) {
                 const fileName = input.files[0].name;
                 document.getElementById('uploaded-filename').innerText = fileName;
                 document.getElementById('upload-idle-state').classList.add('hidden');
                 document.getElementById('upload-file-state').classList.remove('hidden');
+            }
+        }
+
+        function triggerMatrixVideoUpload() {
+            document.getElementById('matrix-video-file-input').click();
+        }
+        function handleMatrixFileSelect(input) {
+            if(input.files && input.files[0]) {
+                const fileName = input.files[0].name;
+                document.getElementById('matrix-uploaded-filename').innerText = fileName;
+                document.getElementById('matrix-upload-idle').classList.add('hidden');
+                document.getElementById('matrix-upload-selected').classList.remove('hidden');
             }
         }
 
@@ -769,12 +827,250 @@
             document.getElementById('processing-modal').classList.remove('hidden');
             setTimeout(() => bar.style.width = '100%', 100);
         }
-
         function hideModal() {
             document.getElementById('processing-modal').classList.add('hidden');
         }
 
-        // --- 6. PLATFORMS GRID LOGIC ---
+        // --- 6. INTERACTIVE CONTENT MATRIX DATA & ENGINE ---
+        const matrixData = [
+            {
+                id: "vid",
+                icon: "🎬",
+                category: "Video Formats",
+                count: 16,
+                desc: "Ready-to-publish vertical, horizontal, and square video renders.",
+                items: [
+                    "Vertical Shorts (9:16)", "YouTube Longform (16:9)", "Square Feed (1:1)",
+                    "Banner Clips (21:9)", "Split-Screen Reaction", "Auto B-Roll Overlay",
+                    "Gamified Highlights", "4K HDR Re-render", "Cinematic Slow-Mo Cuts",
+                    "Speed-Ramped Teasers", "Subtitled Reel", "Silent Video with Text",
+                    "Looping GIF Outputs", "Picture-in-Picture Mode", "Speaker Zoom Clips", "Trailer Intro Cut"
+                ]
+            },
+            {
+                id: "high",
+                icon: "⚡",
+                category: "AI Highlights",
+                count: 15,
+                desc: "Automated peak emotion and key moment extractions.",
+                items: [
+                    "Laughter & Joy Detection", "High-Energy Climax Cuts", "Q&A Punchlines",
+                    "Controversial Take Snippets", "Screams & Shock Moments", "Key Takeaway Clips",
+                    "Viral Hook Extractions", "Storytelling Arc Shorts", "Curiosity Gap Clips",
+                    "Debate Counter-Points", "Unboxing Peak Moments", "Tutorial Step Snippets",
+                    "Clutch Gameplay Kills", "Podcast Blooper Reel", "Audience Reaction Clips"
+                ]
+            },
+            {
+                id: "aud",
+                icon: "🎙️",
+                category: "Audio & Podcasts",
+                count: 8,
+                desc: "Extracted audio assets, noise-cleaned tracks, and sound bites.",
+                items: [
+                    "Clean MP3 Podcast Track", "WAV Studio Quality Stem", "Background Noise Isolated",
+                    "Voice Enhancement Track", "Audio Soundbite Teasers", "Audiogram with Waveform",
+                    "Intro/Outro Stinger Audio", "AI Voice Clone Sample"
+                ]
+            },
+            {
+                id: "writ",
+                icon: "📝",
+                category: "Written Content",
+                count: 15,
+                desc: "AI-generated text summaries, articles, and documentation.",
+                items: [
+                    "Full SEO Blog Post", "Executive Summary", "Timestamped Transcript",
+                    "Show Notes & Links", "Newsletter Issue", "Twitter/X Thread Script",
+                    "LinkedIn Thought Piece", "Video Chapter Markers", "Key Quotes Collection",
+                    "E-Book Chapter Draft", "Action Item Checklist", "FAQ Document",
+                    "Press Release Draft", "Video Script Back-Translate", "Medium Story Format"
+                ]
+            },
+            {
+                id: "soc",
+                icon: "📲",
+                category: "Social Media",
+                count: 15,
+                desc: "Tailored posts, captions, and hashtags per platform.",
+                items: [
+                    "TikTok Trending Captions", "Instagram Reels Copy", "YouTube Shorts Titles",
+                    "LinkedIn Poll & Copy", "Twitter / X Hot Takes", "Facebook Watch Description",
+                    "Pinterest Pin Text", "Threads Post Series", "Community Tab Polls",
+                    "Viral Hashtag Packs", "Discord Announcement Text", "Reddit Post Summary",
+                    "Telegram Channel Update", "WhatsApp Status Text", "Snapchat Spotlight Script"
+                ]
+            },
+            {
+                id: "crea",
+                icon: "🎨",
+                category: "Creative Assets",
+                count: 10,
+                desc: "Visual graphics, thumbnails, and promotional art.",
+                items: [
+                    "4K YouTube Thumbnail", "Instagram Story Cards", "Quote Image Graphic",
+                    "Carousel Slide Deck", "GIF Meme Creations", "Animated Text Stills",
+                    "Channel Cover Banner", "Video Poster Art", "Infographic Outline", "Custom Overlay Stills"
+                ]
+            },
+            {
+                id: "loc",
+                icon: "🌍",
+                category: "Localization",
+                count: 10,
+                desc: "Global translation and multilingual voiceover dubbing.",
+                items: [
+                    "Spanish AI Dubbing", "Hindi AI Dubbing", "French AI Dubbing",
+                    "German Subtitle File (.srt)", "Japanese SRT Subtitles", "Multi-Language SRTs",
+                    "Localized Thumbnail Text", "Auto-Translated Captions", "Cultural Nuance Edits", "Regional Accent Switch"
+                ]
+            },
+            {
+                id: "mark",
+                icon: "📈",
+                category: "Marketing Assets",
+                count: 10,
+                desc: "Conversion-focused assets for marketing campaigns.",
+                items: [
+                    "Ad Hook Variations (15s)", "UGC Style Ad Cut", "Sales Pitch Short",
+                    "Customer Testimonial Clip", "Email Campaign Snippet", "Landing Page Video Embed",
+                    "Retargeting Ad Trim", "Product Demo Highlight", "Sponsor Read Clip", "CTA End Screen Clip"
+                ]
+            },
+            {
+                id: "ent",
+                icon: "🏢",
+                category: "Enterprise Assets",
+                count: 10,
+                desc: "Compliance, archival, and team collaboration formats.",
+                items: [
+                    "Compliance Audit Log", "Speaker Sentiment Report", "Brand Safety Flagging",
+                    "Internal Memo Summary", "Training Module Clips", "SRT/VTT Closed Captions",
+                    "Searchable Video Index", "Team Knowledge Base Clip", "High-Compression Archive", "Watermarked Preview"
+                ]
+            },
+            {
+                id: "intel",
+                icon: "🧠",
+                category: "AI Intelligence",
+                count: 15,
+                desc: "Analytics, heatmaps, and content scoring metrics.",
+                items: [
+                    "Viral Potential Score", "Audience Retention Heatmap", "Pacing & Dropoff Analytics",
+                    "Hook Strength Rating", "Keyword Density Map", "Competitor Benchmark",
+                    "CTR Prediction Score", "Emotion Graph Analysis", "Monetization Meter",
+                    "Tone of Voice Score", "Copyright Safety Check", "SEO Keyword Ranking",
+                    "Ad Placement Markers", "Thumbnail CTR Score", "Engagement Spike Points"
+                ]
+            },
+            {
+                id: "fut",
+                icon: "🚀",
+                category: "Future AI Capabilities",
+                count: "10+",
+                desc: "Upcoming experimental generative AI features.",
+                items: [
+                    "Real-time Holographic Clips", "Interactive Choose-Your-Ending", "AI Avatar Presenter Replace",
+                    "Live Voice Translation", "Auto 3D Depth Map Generation", "Personalized Viewer Renders",
+                    "Neural Sound Effect Generation", "AI B-Roll Generator 2.0", "Auto-Sponsor Integration", "Instant Multicam Sync"
+                ]
+            }
+        ];
+
+        let selectedCategoryIndex = 0;
+
+        function renderMatrixTabs() {
+            const container = document.getElementById("category-tab-container");
+            if(!container) return;
+            container.innerHTML = "";
+
+            matrixData.forEach((cat, idx) => {
+                const isSelected = idx === selectedCategoryIndex;
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.onclick = () => selectMatrixCategory(idx);
+                btn.className = `w-full text-left p-3 rounded-xl border transition-all flex items-center justify-between ${
+                    isSelected 
+                    ? "bg-brandPurple/25 border-brandPurple text-white shadow-lg shadow-brandPurple/10" 
+                    : "bg-darkBg/60 border-white/5 text-gray-400 hover:border-white/20 hover:text-gray-200"
+                }`;
+                btn.innerHTML = `
+                    <div class="flex items-center gap-2.5 truncate">
+                        <span class="text-base">${cat.icon}</span>
+                        <span class="text-xs font-bold truncate">${cat.category}</span>
+                    </div>
+                    <span class="text-[11px] font-extrabold px-2 py-0.5 rounded-md ${
+                        isSelected ? 'bg-brandPurple text-white' : 'bg-white/5 text-gray-400'
+                    }">${cat.count}</span>
+                `;
+                container.appendChild(btn);
+            });
+
+            renderActiveCategoryDetails();
+        }
+
+        function selectMatrixCategory(index) {
+            selectedCategoryIndex = index;
+            renderMatrixTabs();
+        }
+
+        function renderActiveCategoryDetails() {
+            const cat = matrixData[selectedCategoryIndex];
+            document.getElementById("active-cat-title").innerHTML = `${cat.icon} ${cat.category}`;
+            document.getElementById("active-cat-desc").innerText = cat.desc;
+            document.getElementById("active-cat-badge").innerText = `${cat.count} Outputs`;
+
+            const grid = document.getElementById("active-items-grid");
+            grid.innerHTML = "";
+
+            cat.items.forEach(item => {
+                const itemCard = document.createElement("div");
+                itemCard.className = "p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-brandCyan/40 hover:bg-brandCyan/10 transition-all cursor-pointer flex items-center justify-between group";
+                itemCard.onclick = () => {
+                    document.getElementById("item-selection-status").innerHTML = `✨ Selected: <strong class="text-brandCyan">${item}</strong> (Configured!)`;
+                };
+                itemCard.innerHTML = `
+                    <span class="text-xs font-semibold text-gray-300 group-hover:text-white truncate">${item}</span>
+                    <span class="text-[10px] text-brandCyan opacity-0 group-hover:opacity-100 transition-opacity">Select ➔</span>
+                `;
+                grid.appendChild(itemCard);
+            });
+        }
+
+        function filterMatrixItems(query) {
+            if(!query.trim()) {
+                renderMatrixTabs();
+                return;
+            }
+            const q = query.toLowerCase();
+            const grid = document.getElementById("active-items-grid");
+            grid.innerHTML = "";
+            
+            let matchesCount = 0;
+            matrixData.forEach(cat => {
+                cat.items.forEach(item => {
+                    if(item.toLowerCase().includes(q) || cat.category.toLowerCase().includes(q)) {
+                        matchesCount++;
+                        const itemCard = document.createElement("div");
+                        itemCard.className = "p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-brandCyan/40 transition-all cursor-pointer flex items-center justify-between";
+                        itemCard.innerHTML = `
+                            <div class="truncate">
+                                <span class="text-[10px] text-brandPurple font-bold block">${cat.category}</span>
+                                <span class="text-xs font-semibold text-gray-200">${item}</span>
+                            </div>
+                            <span class="text-[10px] text-brandCyan">➔</span>
+                        `;
+                        grid.appendChild(itemCard);
+                    }
+                });
+            });
+
+            document.getElementById("active-cat-title").innerHTML = `🔍 Search Results`;
+            document.getElementById("active-cat-desc").innerText = `Showing outputs matching "${query}"`;
+            document.getElementById("active-cat-badge").innerText = `${matchesCount} Found`;
+        }
+
+        // --- 7. PLATFORMS GRID LOGIC (Default: All Deselected) ---
         const platformsList = [
             "Twitch", "SOOP (AfreecaTV)", "Kick", "Trovo", "CHZZK", "Bigo Live",
             "Tango Live", "MICO Live", "Nonolive", "Poppo Live", "BLive", "DLive",
@@ -787,13 +1083,12 @@
 
         function renderPlatforms() {
             const container = document.getElementById("platforms-grid");
+            if(!container) return;
             container.innerHTML = "";
             let selectedCount = 0;
-
             platformsList.forEach((plat, idx) => {
                 const isActive = platformStates[idx];
                 if (isActive) selectedCount++;
-
                 const card = document.createElement("div");
                 card.className = `p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
                     isActive ? "bg-brandPurple/20 border-brandPurple text-white shadow-lg" : "bg-darkBg/60 border-white/5 text-gray-500 hover:border-white/20"
@@ -802,7 +1097,6 @@
                     platformStates[idx] = !platformStates[idx];
                     renderPlatforms();
                 };
-
                 card.innerHTML = `
                     <div class="flex items-center gap-2 truncate">
                         <span class="w-2 h-2 rounded-full ${isActive ? 'bg-brandCyan animate-pulse' : 'bg-gray-600'}"></span>
@@ -814,7 +1108,6 @@
                 `;
                 container.appendChild(card);
             });
-
             document.getElementById("selected-count").innerText = selectedCount;
             const toggleBtn = document.getElementById("toggle-all-btn");
             if (selectedCount === platformsList.length) {
@@ -830,7 +1123,7 @@
             renderPlatforms();
         }
 
-        // --- 7. DETAILED PLATFORM ANALYTICS DATA & SELECTOR ---
+        // --- 8. DETAILED PLATFORM ANALYTICS DATA & SELECTOR ---
         const platformAnalyticsMap = {
             'all': {
                 name: 'All Platforms Combined',
@@ -862,8 +1155,7 @@
             document.getElementById('metric-revenue').innerText = data.revenue;
             document.getElementById('current-platform-name').innerText = data.name;
             document.getElementById('analytics-platform-select').value = platKey;
-
-            // Highlight active quick pill
+            
             document.querySelectorAll('.platform-pill').forEach(pill => {
                 pill.className = "platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-darkBg/80 border border-white/10 text-gray-400 hover:text-white shrink-0";
             });
@@ -885,7 +1177,9 @@
             document.getElementById('chart-time-label').innerText = period === '30d' ? 'Last 30 Days' : period === '7d' ? 'Last 7 Days' : 'All Time';
         }
 
+        // Initialize Components
         document.addEventListener('DOMContentLoaded', () => {
+            renderMatrixTabs();
             renderPlatforms();
         });
     </script>
