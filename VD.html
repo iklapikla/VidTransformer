@@ -1,1292 +1,1158 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VidTransformer - AI Video Repurposing & Multi-Stream Platform</title>
-    <!-- Inter Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        darkBg: '#0b0f19',
-                        cardBg: 'rgba(17, 24, 39, 0.7)',
-                        brandPurple: '#8b5cf6',
-                        brandPink: '#ec4899',
-                        brandCyan: '#06b6d4',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .gradient-text {
-            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 50%, #38bdf8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .glow-purple { box-shadow: 0 0 25px -5px rgba(139, 92, 246, 0.4); }
-        .glow-pink { box-shadow: 0 0 25px -5px rgba(236, 72, 153, 0.4); }
-        .glow-cyan { box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.4); }
-        .glass-card {
-            background: rgba(17, 24, 39, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glass-card-glow {
-            background: rgba(17, 24, 39, 0.75);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            box-shadow: 0 0 35px -10px rgba(139, 92, 246, 0.25);
-        }
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3), transparent);
-            margin: 4rem 0;
-        }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0b0f19; }
-        ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #374151; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VidTransformer - AI Video Repurposing & Multi-Stream Platform</title>
+<!-- Inter Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: {
+sans: ['Inter', 'sans-serif'],
+},
+colors: {
+darkBg: '#070913',
+cardBg: 'rgba(15, 23, 42, 0.75)',
+brandPurple: '#8b5cf6',
+brandPink: '#ec4899',
+brandCyan: '#06b6d4',
+}
+}
+}
+}
+</script>
+<style>
+.gradient-text {
+background: linear-gradient(135deg, #c4b5fd 0%, #ec4899 50%, #38bdf8 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.glow-purple { box-shadow: 0 0 30px -5px rgba(139, 92, 246, 0.45); }
+.glow-pink { box-shadow: 0 0 30px -5px rgba(236, 72, 153, 0.45); }
+.glow-cyan { box-shadow: 0 0 30px -5px rgba(6, 182, 212, 0.45); }
+.glass-card {
+background: rgba(15, 23, 42, 0.65);
+backdrop-filter: blur(16px);
+border: 1px solid rgba(255, 255, 255, 0.08);
+box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+.glass-card-glow {
+background: rgba(15, 23, 42, 0.8);
+backdrop-filter: blur(20px);
+border: 1px solid rgba(139, 92, 246, 0.35);
+box-shadow: 0 0 40px -10px rgba(139, 92, 246, 0.3);
+}
+.section-divider {
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.4), transparent);
+margin: 5rem 0;
+}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #070913; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #334155; }
+</style>
 </head>
 <body class="bg-darkBg text-gray-100 font-sans antialiased selection:bg-brandPurple selection:text-white relative overflow-x-hidden">
-    <!-- Background Radial Gradients -->
-    <div class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-brandPurple/15 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-    <div class="fixed top-1/3 right-10 w-[450px] h-[450px] bg-brandPink/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
-    <div class="fixed bottom-10 left-1/3 w-[600px] h-[600px] bg-brandCyan/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+<!-- Background Ambient Glow Gradients -->
+<div class="fixed top-0 left-1/4 w-[600px] h-[600px] bg-brandPurple/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+<div class="fixed top-1/3 right-10 w-[500px] h-[500px] bg-brandPink/10 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-10 left-1/3 w-[700px] h-[700px] bg-brandCyan/10 rounded-full blur-[180px] pointer-events-none -z-10"></div>
 
-    <!-- NAVBAR -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-white/5 py-3.5 transition-all">
-        <div class="max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-16 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2 text-2xl font-black tracking-tight text-white group">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brandPurple to-brandPink flex items-center justify-center glow-purple group-hover:scale-105 transition-transform">
-                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                    </svg>
-                </div>
-                <span class="tracking-wider">Vid<span class="gradient-text">Transformer</span></span>
-            </a>
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
-                <a href="#ai-studio" class="hover:text-brandPurple transition-colors">AI Studio</a>
-                <a href="#content-matrix" class="hover:text-brandPink transition-colors">Content Matrix</a>
-                <a href="#thumbnail-studio" class="hover:text-brandPink transition-colors">Thumbnails</a>
-                <a href="#publishing" class="hover:text-brandCyan transition-colors">Multi-Publish</a>
-                <a href="#analytics" class="hover:text-brandPurple transition-colors">Analytics</a>
-                <a href="#use-cases" class="hover:text-gray-100 transition-colors">Use Cases</a>
-                <a href="#pricing" class="hover:text-gray-100 transition-colors">Pricing</a>
-            </nav>
-            <div class="flex items-center gap-4">
-                <a href="#" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors hidden sm:block">Sign In</a>
-                <a href="#ai-studio" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brandPurple via-brandPink to-brandCyan text-white text-sm font-bold glow-purple hover:opacity-90 transition-all">
-                    Try Free
-                </a>
-            </div>
-        </div>
-    </header>
 
-    <!-- MAIN CONTENT CONTAINER WITH UPDATED OPTIMAL FULL-PAGE WIDTH -->
-    <main class="pt-24 space-y-12 max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-16 w-full">
-        <!-- SECTION 1: HERO & AI STUDIO -->
-        <section id="ai-studio" class="w-full pt-8">
-            <div class="text-center max-w-5xl mx-auto space-y-6">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-xs font-semibold text-brandPink border border-brandPink/30 animate-pulse">
-                    <span class="w-2 h-2 rounded-full bg-brandPink"></span>
-                    Next-Gen AI Repurposing Engine 3.0 Live
-                </div>
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none">
-                    1 video to <span class="gradient-text">50 pieces of content.</span><br/>Created 10x faster.
-                </h1>
-                <p class="text-lg sm:text-xl text-gray-400 font-normal max-w-3xl mx-auto">
-                    Turn your podcasts, live streams, and long videos into 25+ viral clips, social posts, written summaries, and creative assets automatically.
-                </p>
-                <!-- Main Input Box -->
-                <div class="pt-4 max-w-3xl mx-auto">
-                    <div class="p-2 rounded-2xl glass-card border border-white/10 flex flex-col sm:flex-row gap-2 shadow-2xl">
-                        <div class="flex-1 flex items-center px-4 gap-3 bg-darkBg/50 rounded-xl border border-white/5">
-                            <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 105.656-5.656l-1.1 1.1"/>
-                            </svg>
-                            <input id="video-url-input" type="text" placeholder="Paste YouTube link or drag & drop video file..." value="" class="w-full bg-transparent py-3 text-sm text-white placeholder-gray-500 focus:outline-none">
-                        </div>
-                        <button onclick="generateClipsSim()" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brandPurple to-brandPink text-white font-bold text-sm glow-purple hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-                            <span>Get 25+ Clips Free</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
+<!-- NAVBAR -->
+<header class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-white/5 py-4 transition-all">
+<div class="max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-16 flex items-center justify-between">
+<a href="#" class="flex items-center gap-2.5 text-2xl font-black tracking-tight text-white group">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brandPurple to-brandPink flex items-center justify-center glow-purple group-hover:scale-105 transition-transform">
+<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+<path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+</svg>
+</div>
+<span class="tracking-wider">Vid<span class="gradient-text">Transformer</span></span>
+</a>
+<nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-gray-300">
+<a href="#ai-studio" class="hover:text-brandPurple transition-colors">AI Studio</a>
+<a href="#content-matrix" class="hover:text-brandPink transition-colors">Content Matrix</a>
+<a href="#thumbnail-studio" class="hover:text-brandPink transition-colors">Thumbnails</a>
+<a href="#publishing" class="hover:text-brandCyan transition-colors">Multi-Publish</a>
+<a href="#analytics" class="hover:text-brandPurple transition-colors">Analytics</a>
+<a href="#use-cases" class="hover:text-gray-100 transition-colors">Use Cases</a>
+<a href="#pricing" class="hover:text-gray-100 transition-colors">Pricing</a>
+</nav>
+<div class="flex items-center gap-4">
+<a href="#" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors hidden sm:block">Sign In</a>
+<a href="#ai-studio" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brandPurple via-brandPink to-brandCyan text-white text-sm font-bold glow-purple hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all">
+Try Free
+</a>
+<!-- Mobile Menu Button -->
+<button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl bg-white/5 text-gray-300 hover:text-white">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+</svg>
+</button>
+</div>
+</div>
+<!-- Mobile Nav Menu -->
+<div id="mobile-menu" class="hidden lg:hidden px-6 pt-4 pb-6 space-y-3 bg-darkBg/95 border-b border-white/10 backdrop-blur-xl">
+<a href="#ai-studio" onclick="toggleMobileMenu()" class="block text-sm font-medium text-gray-300 hover:text-brandPurple py-1.5">AI Studio</a>
+<a href="#content-matrix" onclick="toggleMobileMenu()" class="block text-sm font-medium text-gray-300 hover:text-brandPink py-1.5">Content Matrix</a>
+<a href="#thumbnail-studio" onclick="toggleMobileMenu()" class="block text-sm font-medium text-gray-300 hover:text-brandPink py-1.5">Thumbnails</a>
+<a href="#publishing" onclick="toggleMobileMenu()" class="block text-sm font-medium text-gray-300 hover:text-brandCyan py-1.5">Multi-Publish</a>
+<a href="#analytics" onclick="toggleMobileMenu()" class="block text-sm font-medium text-gray-300 hover:text-brandPurple py-1.5">Analytics</a>
+<a href="#use-cases" onclick="toggleMobileMenu()" class="block text-sm font-medium text-gray-300 hover:text-white py-1.5">Use Cases</a>
+<a href="#pricing" onclick="toggleMobileMenu()" class="block text-sm font-medium text-gray-300 hover:text-white py-1.5">Pricing</a>
+</div>
+</header>
 
-            <!-- Advanced AI Video Editing Options Panel -->
-            <div class="mt-16 glass-card-glow rounded-3xl p-6 lg:p-8 w-full relative overflow-hidden">
-                <div class="absolute -top-12 -right-12 w-40 h-40 bg-brandPurple/20 rounded-full blur-2xl"></div>
-                
-                <div class="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
-                    <div class="flex items-center gap-3">
-                        <span class="w-3 h-3 rounded-full bg-brandCyan animate-ping"></span>
-                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                            Advanced AI Studio Configuration
-                        </h3>
-                    </div>
-                    <span class="text-xs uppercase tracking-wider font-extrabold px-3 py-1 rounded-full bg-brandPurple/20 text-brandPurple border border-brandPurple/30">
-                        AI Model: VT-OmniEngine-v4
-                    </span>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Framing -->
-                    <div class="space-y-2">
-                        <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Shorts Framing & Layout</label>
-                        <select class="w-full bg-darkBg/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-gray-200 focus:border-brandPurple focus:outline-none">
-                            <option>Auto Smart Face-Center (9:16)</option>
-                            <option>Split Screen (Speaker + Gameplay)</option>
-                            <option>Dynamic Reaction Layout</option>
-                        </select>
-                    </div>
-                    <!-- Caption Style -->
-                    <div class="space-y-2">
-                        <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Caption Language & Styles</label>
-                        <select class="w-full bg-darkBg/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-gray-200 focus:border-brandPurple focus:outline-none">
-                            <option>English (Animated Hormozi Style)</option>
-                            <option>Spanish (Neon Glow Subtitles)</option>
-                            <option>Hindi (Dynamic Pop-ups)</option>
-                        </select>
-                    </div>
-                    <!-- AI Voice Dubbing -->
-                    <div class="space-y-2">
-                        <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">AI Voice Dubbing Target</label>
-                        <select class="w-full bg-darkBg/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-gray-200 focus:border-brandPurple focus:outline-none">
-                            <option>Original Audio (No Dubbing)</option>
-                            <option>Spanish (Latin America)</option>
-                            <option>Hindi (Natural Conversational)</option>
-                        </select>
-                    </div>
-                    <!-- Tone -->
-                    <div class="space-y-2">
-                        <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Highlight Detection Tone</label>
-                        <select class="w-full bg-darkBg/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-gray-200 focus:border-brandPurple focus:outline-none">
-                            <option>Energetic & High Retention</option>
-                            <option>Professional & Educational</option>
-                            <option>Dramatic & Suspenseful</option>
-                        </select>
-                    </div>
-                    <!-- Voiceover Gender Selector -->
-                    <div class="space-y-2">
-                        <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Voiceover AI Clone Gender</label>
-                        <div class="grid grid-cols-2 gap-2" id="gender-selector">
-                            <button type="button" onclick="selectGender('male')" id="btn-male" class="py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all">
-                                👨 Male
-                            </button>
-                            <button type="button" onclick="selectGender('female')" id="btn-female" class="py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all">
-                                👩 Female
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Cut Speed -->
-                    <div class="space-y-2">
-                        <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Video Pacing & Cut Speed</label>
-                        <select class="w-full bg-darkBg/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-gray-200 focus:border-brandPurple focus:outline-none">
-                            <option>Ultra Fast (TikTok/Reels Optimized)</option>
-                            <option>Balanced (YouTube Shorts)</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- Enhancers -->
-                <div class="mt-8 pt-6 border-t border-white/10">
-                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-3">Include AI Auto-Enhancers:</span>
-                    <div class="flex flex-wrap gap-2.5">
-                        <button onclick="toggleEnhancer(this)" class="enhancer-btn px-3.5 py-1.5 rounded-lg glass-card border border-white/10 text-xs font-medium text-gray-400 hover:text-white transition-all">
-                            ✨ Auto B-Roll Generator
-                        </button>
-                        <button onclick="toggleEnhancer(this)" class="enhancer-btn px-3.5 py-1.5 rounded-lg glass-card border border-white/10 text-xs font-medium text-gray-400 hover:text-white transition-all">
-                            ✂️ Smart Silence Remover
-                        </button>
-                        <button onclick="toggleEnhancer(this)" class="enhancer-btn px-3.5 py-1.5 rounded-lg glass-card border border-white/10 text-xs font-medium text-gray-400 hover:text-white transition-all">
-                            🔥 Emoji Pop-ups Engine
-                        </button>
-                        <button onclick="toggleEnhancer(this)" class="enhancer-btn px-3.5 py-1.5 rounded-lg glass-card border border-white/10 text-xs font-medium text-gray-400 hover:text-white transition-all">
-                            🎯 Active Speaker Face Tracking
-                        </button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- DUMMY RESULT OUTPUT CONTAINER (FOR CLIPS) -->
-            <div id="clips-output-container" class="mt-12 hidden">
-                <div class="glass-card rounded-3xl p-6 lg:p-8 border border-brandPurple/40 bg-darkBg/90 shadow-2xl">
-                    <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
-                        <div>
-                            <h3 class="text-2xl font-black text-white flex items-center gap-2">
-                                🎉 AI Generated Content (25 Clips Ready)
-                            </h3>
-                            <p class="text-xs text-gray-400 mt-1">Processed with Auto Face-Tracking, Viral Captions & Highlight Detection.</p>
-                        </div>
-                        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold">100% Complete</span>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Clip 1 -->
-                        <div class="rounded-2xl bg-darkBg border border-white/10 overflow-hidden hover:border-brandPurple transition-all">
-                            <div class="h-48 bg-gradient-to-br from-brandPurple/30 to-brandPink/30 relative flex items-center justify-center">
-                                <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-xl">▶</div>
-                                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/60 text-[10px] font-bold text-brandCyan">Viral Score: 98/100</span>
-                                <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/80 text-[10px] text-white">0:42</span>
-                            </div>
-                            <div class="p-4 space-y-2">
-                                <h4 class="text-sm font-bold text-white truncate">Clip #1: The AI Revolution Secret</h4>
-                                <p class="text-xs text-gray-400 line-clamp-2">"You won't believe what happens when AI replaces traditional editors in 2026..."</p>
-                                <div class="pt-2 flex gap-2">
-                                    <button onclick="alert('Downloading Clip #1 (1080p)...')" class="flex-1 py-2 rounded-lg bg-brandPurple text-white text-xs font-bold hover:bg-brandPurple/80 transition-all">Download</button>
-                                    <button onclick="document.getElementById('publishing').scrollIntoView();" class="px-3 py-2 rounded-lg bg-white/10 text-xs font-bold text-gray-300 hover:text-white">Publish</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Clip 2 -->
-                        <div class="rounded-2xl bg-darkBg border border-white/10 overflow-hidden hover:border-brandPurple transition-all">
-                            <div class="h-48 bg-gradient-to-br from-brandCyan/30 to-brandPurple/30 relative flex items-center justify-center">
-                                <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-xl">▶</div>
-                                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/60 text-[10px] font-bold text-brandCyan">Viral Score: 94/100</span>
-                                <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/80 text-[10px] text-white">0:58</span>
-                            </div>
-                            <div class="p-4 space-y-2">
-                                <h4 class="text-sm font-bold text-white truncate">Clip #2: How Creators Scale 10x</h4>
-                                <p class="text-xs text-gray-400 line-clamp-2">"Stop wasting 5 hours per video. Here is the exact workflow used by top streamers..."</p>
-                                <div class="pt-2 flex gap-2">
-                                    <button onclick="alert('Downloading Clip #2 (1080p)...')" class="flex-1 py-2 rounded-lg bg-brandPurple text-white text-xs font-bold hover:bg-brandPurple/80 transition-all">Download</button>
-                                    <button onclick="document.getElementById('publishing').scrollIntoView();" class="px-3 py-2 rounded-lg bg-white/10 text-xs font-bold text-gray-300 hover:text-white">Publish</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Clip 3 -->
-                        <div class="rounded-2xl bg-darkBg border border-white/10 overflow-hidden hover:border-brandPurple transition-all">
-                            <div class="h-48 bg-gradient-to-br from-brandPink/30 to-yellow-500/20 relative flex items-center justify-center">
-                                <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-xl">▶</div>
-                                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/60 text-[10px] font-bold text-brandCyan">Viral Score: 91/100</span>
-                                <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/80 text-[10px] text-white">0:31</span>
-                            </div>
-                            <div class="p-4 space-y-2">
-                                <h4 class="text-sm font-bold text-white truncate">Clip #3: Unbelievable Twist!</h4>
-                                <p class="text-xs text-gray-400 line-clamp-2">"The ultimate clutch moment captured automatically from yesterday's live broadcast..."</p>
-                                <div class="pt-2 flex gap-2">
-                                    <button onclick="alert('Downloading Clip #3 (1080p)...')" class="flex-1 py-2 rounded-lg bg-brandPurple text-white text-xs font-bold hover:bg-brandPurple/80 transition-all">Download</button>
-                                    <button onclick="document.getElementById('publishing').scrollIntoView();" class="px-3 py-2 rounded-lg bg-white/10 text-xs font-bold text-gray-300 hover:text-white">Publish</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- MAIN CONTAINER -->
+<main class="pt-28 space-y-16 max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-16 w-full">
 
-        <!-- SECTION DIVIDER -->
-        <div class="w-full"><div class="section-divider"></div></div>
 
-        <!-- INTERACTIVE CONTENT MATRIX EXPLORER WITH MERGED VIDEO UPLOADER & SEARCH BAR -->
-        <section id="content-matrix" class="w-full">
-            <div class="text-center max-w-4xl mx-auto mb-10 space-y-4">
-                <div class="text-brandPurple font-semibold text-sm tracking-wider uppercase">Interactive Content Explorer</div>
-                <h2 class="text-3xl sm:text-5xl font-black text-white">1 Video = 120+ Micro-Outputs</h2>
-                <p class="text-gray-400 text-sm sm:text-base">Upload your video file or search formats directly in one single unified workspace below.</p>
-            </div>
+<!-- SECTION 1: HERO & AI STUDIO -->
+<section id="ai-studio" class="w-full pt-4">
+<div class="text-center max-w-4xl mx-auto space-y-6">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-xs font-semibold text-brandPink border border-brandPink/30 animate-pulse shadow-lg">
+<span class="w-2 h-2 rounded-full bg-brandPink"></span>
+Next-Gen AI Repurposing Engine 3.0 Live
+</div>
+<h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1]">
+1 video to <span class="gradient-text">50 pieces of content.</span><br/>Created 10x faster.
+</h1>
+<p class="text-base sm:text-lg text-gray-400 font-normal max-w-2xl mx-auto leading-relaxed">
+Turn your podcasts, live streams, and long videos into 25+ viral clips, social posts, written summaries, and creative assets automatically.
+</p>
+<!-- Main Input Box -->
+<div class="pt-4 max-w-2xl mx-auto">
+<div class="p-2.5 rounded-2xl glass-card border border-white/10 flex flex-col sm:flex-row gap-2 shadow-2xl">
+<div class="flex-1 flex items-center px-4 gap-3 bg-darkBg/60 rounded-xl border border-white/5">
+<svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 105.656-5.656l-1.1 1.1"/>
+</svg>
+<input id="video-url-input" type="text" placeholder="Paste YouTube link or drag & drop video file..." class="w-full bg-transparent py-3 text-sm text-white placeholder-gray-500 focus:outline-none">
+</div>
+<button onclick="generateClipsSim()" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-brandPurple to-brandPink text-white font-bold text-sm glow-purple hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg">
+<span>Get 25+ Clips Free</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+</svg>
+</button>
+</div>
+</div>
+</div>
 
-            <!-- MERGED UNIFIED BAR: UPLOAD VIDEO + SEARCH INPUT -->
-            <div class="w-full mb-8">
-                <div class="glass-card-glow rounded-2xl p-3 border border-brandPurple/40 flex flex-col md:flex-row items-center gap-3">
-                    
-                    <!-- Integrated Video Upload Trigger -->
-                    <div class="w-full md:w-auto flex-shrink-0">
-                        <input type="file" id="matrix-video-file-input" class="hidden" accept="video/*" onchange="handleMatrixFileSelect(this)">
-                        
-                        <div id="matrix-upload-idle" onclick="triggerMatrixVideoUpload()" class="px-5 py-3 rounded-xl bg-brandPurple/20 border border-brandPurple/40 hover:bg-brandPurple/30 transition-all cursor-pointer flex items-center justify-center gap-3 group">
-                            <span class="text-xl group-hover:scale-110 transition-transform">🎬</span>
-                            <div class="text-left">
-                                <div class="text-xs font-bold text-white">Upload Video File</div>
-                                <div class="text-[10px] text-gray-400">MP4, MOV, WEBM (Up to 4K)</div>
-                            </div>
-                        </div>
 
-                        <div id="matrix-upload-selected" class="hidden px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/40 flex items-center gap-3">
-                            <span class="text-lg">📹</span>
-                            <div>
-                                <div id="matrix-uploaded-filename" class="text-xs font-bold text-emerald-400 truncate max-w-[180px]">video_file.mp4</div>
-                                <div class="text-[10px] text-gray-400">File uploaded & ready</div>
-                            </div>
-                        </div>
-                    </div>
+<!-- Advanced AI Video Editing Options Panel -->
+<div class="mt-16 glass-card-glow rounded-3xl p-6 sm:p-8 lg:p-10 w-full relative overflow-hidden">
+<div class="absolute -top-12 -right-12 w-48 h-48 bg-brandPurple/20 rounded-full blur-3xl pointer-events-none"></div>
 
-                    <!-- Divider Line on Desktop -->
-                    <div class="hidden md:block w-px h-10 bg-white/10"></div>
 
-                    <!-- Integrated Search Input -->
-                    <div class="flex-1 w-full relative">
-                        <input type="text" id="matrix-search" oninput="filterMatrixItems(this.value)" placeholder="Search 120+ outputs (e.g. Shorts, Podcast, LinkedIn, Highlights)..." class="w-full bg-darkBg/80 border border-white/10 rounded-xl pl-10 pr-4 py-3 text-xs text-white placeholder-gray-500 focus:border-brandPurple focus:outline-none">
-                        <span class="absolute left-3.5 top-3.5 text-gray-400 text-sm">🔍</span>
-                    </div>
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-white/10 mb-8 gap-4">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-brandCyan animate-ping"></span>
+<h3 class="text-xl font-bold text-white flex items-center gap-2">
+Advanced AI Studio Configuration
+</h3>
+</div>
+<span class="text-xs uppercase tracking-wider font-extrabold px-3.5 py-1.5 rounded-full bg-brandPurple/20 text-brandPurple border border-brandPurple/30">
+AI Model: VT-OmniEngine-v4
+</span>
+</div>
 
-                    <!-- Total Badge -->
-                    <div class="hidden sm:flex px-4 py-3 rounded-xl glass-card border border-brandPurple/30 text-xs font-bold text-gray-300 shrink-0 items-center gap-2">
-                        <span>Total Deliverables:</span>
-                        <span class="text-brandPink font-black text-sm">124+ Formats</span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Matrix Explorer Layout -->
-            <div class="glass-card-glow rounded-3xl p-4 sm:p-6 lg:p-8 w-full border border-brandPurple/30 grid grid-cols-1 lg:grid-cols-12 gap-6">
-                
-                <!-- Left: Category Selector Tabs -->
-                <div class="lg:col-span-4 space-y-2 max-h-[480px] overflow-y-auto pr-1" id="category-tab-container">
-                    <!-- Dynamically Rendered via JS -->
-                </div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Framing -->
+<div class="space-y-2">
+<label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Shorts Framing & Layout</label>
+<select class="w-full bg-darkBg/90 border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-200 focus:border-brandPurple focus:ring-1 focus:ring-brandPurple focus:outline-none transition-all">
+<option>Auto Smart Face-Center (9:16)</option>
+<option>Split Screen (Speaker + Gameplay)</option>
+<option>Dynamic Reaction Layout</option>
+</select>
+</div>
+<!-- Caption Style -->
+<div class="space-y-2">
+<label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Caption Language & Styles</label>
+<select class="w-full bg-darkBg/90 border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-200 focus:border-brandPurple focus:ring-1 focus:ring-brandPurple focus:outline-none transition-all">
+<option>English (Animated Hormozi Style)</option>
+<option>Spanish (Neon Glow Subtitles)</option>
+<option>Hindi (Dynamic Pop-ups)</option>
+</select>
+</div>
+<!-- AI Voice Dubbing -->
+<div class="space-y-2">
+<label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">AI Voice Dubbing Target</label>
+<select class="w-full bg-darkBg/90 border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-200 focus:border-brandPurple focus:ring-1 focus:ring-brandPurple focus:outline-none transition-all">
+<option>Original Audio (No Dubbing)</option>
+<option>Spanish (Latin America)</option>
+<option>Hindi (Natural Conversational)</option>
+</select>
+</div>
+<!-- Tone -->
+<div class="space-y-2">
+<label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Highlight Detection Tone</label>
+<select class="w-full bg-darkBg/90 border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-200 focus:border-brandPurple focus:ring-1 focus:ring-brandPurple focus:outline-none transition-all">
+<option>Energetic & High Retention</option>
+<option>Professional & Educational</option>
+<option>Dramatic & Suspenseful</option>
+</select>
+</div>
+<!-- Voiceover Gender Selector -->
+<div class="space-y-2">
+<label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Voiceover AI Clone Gender</label>
+<div class="grid grid-cols-2 gap-2" id="gender-selector">
+<button type="button" onclick="selectGender('male')" id="btn-male" class="py-3 rounded-xl bg-darkBg/90 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all">
+👨 Male
+</button>
+<button type="button" onclick="selectGender('female')" id="btn-female" class="py-3 rounded-xl bg-darkBg/90 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all">
+👩 Female
+</button>
+</div>
+</div>
+<!-- Cut Speed -->
+<div class="space-y-2">
+<label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Video Pacing & Cut Speed</label>
+<select class="w-full bg-darkBg/90 border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-200 focus:border-brandPurple focus:ring-1 focus:ring-brandPurple focus:outline-none transition-all">
+<option>Ultra Fast (TikTok/Reels Optimized)</option>
+<option>Balanced (YouTube Shorts)</option>
+</select>
+</div>
+</div>
 
-                <!-- Right: Dynamic Outputs Viewer -->
-                <div class="lg:col-span-8 bg-darkBg/80 rounded-2xl p-5 border border-white/10 flex flex-col justify-between min-h-[420px]">
-                    <div>
-                        <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
-                            <div>
-                                <h3 class="text-lg font-black text-white flex items-center gap-2" id="active-cat-title">
-                                    🎬 Video Formats
-                                </h3>
-                                <p class="text-xs text-gray-400 mt-0.5" id="active-cat-desc">Select an item to preview details</p>
-                            </div>
-                            <span class="px-3 py-1 rounded-full bg-brandPurple/20 text-brandCyan border border-brandPurple/30 text-xs font-extrabold" id="active-cat-badge">
-                                16 Outputs
-                            </span>
-                        </div>
 
-                        <!-- Dynamic Items Grid -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 max-h-[300px] overflow-y-auto pr-1" id="active-items-grid">
-                            <!-- Items rendered via JS -->
-                        </div>
-                    </div>
+<!-- Enhancers -->
+<div class="mt-8 pt-6 border-t border-white/10">
+<span class="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-3.5">Include AI Auto-Enhancers:</span>
+<div class="flex flex-wrap gap-3">
+<button onclick="toggleEnhancer(this)" class="enhancer-btn px-4 py-2 rounded-xl glass-card border border-white/10 text-xs font-semibold text-gray-300 hover:text-white transition-all">
+✨ Auto B-Roll Generator
+</button>
+<button onclick="toggleEnhancer(this)" class="enhancer-btn px-4 py-2 rounded-xl glass-card border border-white/10 text-xs font-semibold text-gray-300 hover:text-white transition-all">
+✂️ Smart Silence Remover
+</button>
+<button onclick="toggleEnhancer(this)" class="enhancer-btn px-4 py-2 rounded-xl glass-card border border-white/10 text-xs font-semibold text-gray-300 hover:text-white transition-all">
+🔥 Emoji Pop-ups Engine
+</button>
+<button onclick="toggleEnhancer(this)" class="enhancer-btn px-4 py-2 rounded-xl glass-card border border-white/10 text-xs font-semibold text-gray-300 hover:text-white transition-all">
+🎯 Active Speaker Face Tracking
+</button>
+</div>
+</div>
+</div>
 
-                    <!-- Bottom Interactive Prompt/Callout -->
-                    <div class="pt-4 border-t border-white/10 mt-4 flex items-center justify-between text-xs text-gray-400">
-                        <span id="item-selection-status">💡 Click any output to auto-configure in AI Studio</span>
-                        <button onclick="generateMatrixOutputsSim()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-brandPurple to-brandPink text-white font-bold text-xs hover:scale-105 transition-all shadow-md">
-                            ⚡ Generate Now
-                        </button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- DUMMY RESULT OUTPUT CONTAINER FOR MATRIX EXPLORER (CHANGE #1 IMPLEMENTED) -->
-            <div id="matrix-output-container" class="mt-10 hidden">
-                <div class="glass-card rounded-3xl p-6 lg:p-8 border border-brandCyan/40 bg-darkBg/95 shadow-2xl space-y-6">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-white/10 gap-3">
-                        <div>
-                            <span class="text-xs font-extrabold uppercase tracking-wider text-brandCyan bg-brandCyan/10 px-3 py-1 rounded-full border border-brandCyan/30">AI Repurposing Render Engine</span>
-                            <h3 class="text-2xl font-black text-white mt-2 flex items-center gap-2" id="matrix-output-title">
-                                🚀 Repurposed Content Deliverables Generated!
-                            </h3>
-                            <p class="text-xs text-gray-400 mt-1" id="matrix-output-subtitle">Generated assets based on your selected parameters.</p>
-                        </div>
-                        <button onclick="document.getElementById('publishing').scrollIntoView({behavior: 'smooth'});" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brandCyan to-brandPurple text-white font-bold text-xs glow-cyan hover:opacity-90 transition-all">
-                            Multi-Publish All Assets ➔
-                        </button>
-                    </div>
+<!-- DUMMY RESULT OUTPUT CONTAINER (CLIPS) -->
+<div id="clips-output-container" class="mt-12 hidden">
+<div class="glass-card rounded-3xl p-6 sm:p-8 border border-brandPurple/40 bg-darkBg/95 shadow-2xl">
+<div class="flex items-center justify-between pb-5 border-b border-white/10 mb-6">
+<div>
+<h3 class="text-2xl font-black text-white flex items-center gap-2">
+🎉 AI Generated Content (25 Clips Ready)
+</h3>
+<p class="text-xs text-gray-400 mt-1">Processed with Auto Face-Tracking, Viral Captions & Highlight Detection.</p>
+</div>
+<span class="px-3.5 py-1.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold">100% Complete</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Clip 1 -->
+<div class="rounded-2xl bg-darkBg border border-white/10 overflow-hidden hover:border-brandPurple hover:-translate-y-1 transition-all duration-300 shadow-lg">
+<div class="h-48 bg-gradient-to-br from-brandPurple/30 to-brandPink/30 relative flex items-center justify-center">
+<div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-xl">▶</div>
+<span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 text-[10px] font-bold text-brandCyan backdrop-blur-md">Viral Score: 98/100</span>
+<span class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-black/80 text-[10px] text-white">0:42</span>
+</div>
+<div class="p-4 space-y-2.5">
+<h4 class="text-sm font-bold text-white truncate">Clip #1: The AI Revolution Secret</h4>
+<p class="text-xs text-gray-400 line-clamp-2">"You won't believe what happens when AI replaces traditional editors in 2026..."</p>
+<div class="pt-2 flex gap-2">
+<button onclick="alert('Downloading Clip #1 (1080p)...')" class="flex-1 py-2 rounded-xl bg-brandPurple text-white text-xs font-bold hover:bg-brandPurple/80 transition-all">Download</button>
+<button onclick="document.getElementById('publishing').scrollIntoView();" class="px-3.5 py-2 rounded-xl bg-white/10 text-xs font-bold text-gray-300 hover:text-white">Publish</button>
+</div>
+</div>
+</div>
+<!-- Clip 2 -->
+<div class="rounded-2xl bg-darkBg border border-white/10 overflow-hidden hover:border-brandPurple hover:-translate-y-1 transition-all duration-300 shadow-lg">
+<div class="h-48 bg-gradient-to-br from-brandCyan/30 to-brandPurple/30 relative flex items-center justify-center">
+<div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-xl">▶</div>
+<span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 text-[10px] font-bold text-brandCyan backdrop-blur-md">Viral Score: 94/100</span>
+<span class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-black/80 text-[10px] text-white">0:58</span>
+</div>
+<div class="p-4 space-y-2.5">
+<h4 class="text-sm font-bold text-white truncate">Clip #2: How Creators Scale 10x</h4>
+<p class="text-xs text-gray-400 line-clamp-2">"Stop wasting 5 hours per video. Here is the exact workflow used by top streamers..."</p>
+<div class="pt-2 flex gap-2">
+<button onclick="alert('Downloading Clip #2 (1080p)...')" class="flex-1 py-2 rounded-xl bg-brandPurple text-white text-xs font-bold hover:bg-brandPurple/80 transition-all">Download</button>
+<button onclick="document.getElementById('publishing').scrollIntoView();" class="px-3.5 py-2 rounded-xl bg-white/10 text-xs font-bold text-gray-300 hover:text-white">Publish</button>
+</div>
+</div>
+</div>
+<!-- Clip 3 -->
+<div class="rounded-2xl bg-darkBg border border-white/10 overflow-hidden hover:border-brandPurple hover:-translate-y-1 transition-all duration-300 shadow-lg">
+<div class="h-48 bg-gradient-to-br from-brandPink/30 to-yellow-500/20 relative flex items-center justify-center">
+<div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-xl">▶</div>
+<span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 text-[10px] font-bold text-brandCyan backdrop-blur-md">Viral Score: 91/100</span>
+<span class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-black/80 text-[10px] text-white">0:31</span>
+</div>
+<div class="p-4 space-y-2.5">
+<h4 class="text-sm font-bold text-white truncate">Clip #3: Unbelievable Twist!</h4>
+<p class="text-xs text-gray-400 line-clamp-2">"The ultimate clutch moment captured automatically from yesterday's live broadcast..."</p>
+<div class="pt-2 flex gap-2">
+<button onclick="alert('Downloading Clip #3 (1080p)...')" class="flex-1 py-2 rounded-xl bg-brandPurple text-white text-xs font-bold hover:bg-brandPurple/80 transition-all">Download</button>
+<button onclick="document.getElementById('publishing').scrollIntoView();" class="px-3.5 py-2 rounded-xl bg-white/10 text-xs font-bold text-gray-300 hover:text-white">Publish</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-                    <!-- Dummy Generated Output Cards Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- Asset 1: Rendered Clips / Video File -->
-                        <div class="p-5 rounded-2xl bg-darkBg/90 border border-white/10 space-y-3 hover:border-brandCyan transition-all">
-                            <div class="flex items-center justify-between">
-                                <span class="px-2.5 py-0.5 rounded bg-brandPurple/30 text-brandPurple text-[10px] font-bold">Video / Clip Asset</span>
-                                <span class="text-[10px] text-emerald-400 font-bold">HD Render Ready</span>
-                            </div>
-                            <h4 class="text-sm font-bold text-white" id="out-asset-1-title">Vertical Shorts Render (9:16)</h4>
-                            <p class="text-xs text-gray-400 line-clamp-3" id="out-asset-1-desc">
-                                "The key secret to scaling video content in 2026 is automating longform clips with smart dynamic captions and face tracking..."
-                            </p>
-                            <div class="pt-2 flex items-center justify-between text-xs">
-                                <span class="text-gray-500 font-medium">Size: 48.2 MB</span>
-                                <button onclick="alert('Downloading Rendered Asset...')" class="px-3 py-1.5 rounded-lg bg-brandCyan/20 text-brandCyan border border-brandCyan/40 hover:bg-brandCyan hover:text-white text-xs font-bold transition-all">Download .MP4</button>
-                            </div>
-                        </div>
 
-                        <!-- Asset 2: Auto-Written Post / SEO Blog -->
-                        <div class="p-5 rounded-2xl bg-darkBg/90 border border-white/10 space-y-3 hover:border-brandPink transition-all">
-                            <div class="flex items-center justify-between">
-                                <span class="px-2.5 py-0.5 rounded bg-brandPink/30 text-brandPink text-[10px] font-bold">Text & Copy Asset</span>
-                                <span class="text-[10px] text-emerald-400 font-bold">SEO Score: 96/100</span>
-                            </div>
-                            <h4 class="text-sm font-bold text-white" id="out-asset-2-title">SEO Article & Social Threads</h4>
-                            <div class="p-2.5 bg-black/40 rounded-xl text-[11px] text-gray-300 font-mono line-clamp-3">
-                                📌 5 Key takeaways from today's session: 1. AI Dubbing is now indistinguishable from human voice...
-                            </div>
-                            <div class="pt-2 flex items-center justify-between text-xs">
-                                <span class="text-gray-500 font-medium">Format: Markdown / Text</span>
-                                <button onclick="navigator.clipboard.writeText('📌 5 Key takeaways from today session: 1. AI Dubbing...'); alert('Text copied to clipboard!');" class="px-3 py-1.5 rounded-lg bg-brandPink/20 text-brandPink border border-brandPink/40 hover:bg-brandPink hover:text-white text-xs font-bold transition-all">Copy Text</button>
-                            </div>
-                        </div>
+<!-- SECTION DIVIDER -->
+<div class="w-full"><div class="section-divider"></div></div>
 
-                        <!-- Asset 3: Keyframe / Graphic Card -->
-                        <div class="p-5 rounded-2xl bg-darkBg/90 border border-white/10 space-y-3 hover:border-brandPurple transition-all">
-                            <div class="flex items-center justify-between">
-                                <span class="px-2.5 py-0.5 rounded bg-brandCyan/30 text-brandCyan text-[10px] font-bold">Visual Graphic Asset</span>
-                                <span class="text-[10px] text-emerald-400 font-bold">4K UHD 300DPI</span>
-                            </div>
-                            <h4 class="text-sm font-bold text-white" id="out-asset-3-title">Carousel & Social Banner</h4>
-                            <div class="h-20 bg-gradient-to-r from-brandPurple/40 via-brandPink/30 to-brandCyan/40 rounded-xl flex items-center justify-center border border-white/10">
-                                <span class="text-xs font-extrabold text-white tracking-widest uppercase drop-shadow">🔥 High CTR Cover</span>
-                            </div>
-                            <div class="pt-2 flex items-center justify-between text-xs">
-                                <span class="text-gray-500 font-medium">PNG Format</span>
-                                <button onclick="alert('Downloading High-Res Graphic...')" class="px-3 py-1.5 rounded-lg bg-brandPurple/20 text-brandPurple border border-brandPurple/40 hover:bg-brandPurple hover:text-white text-xs font-bold transition-all">Download PNG</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- SECTION DIVIDER -->
-        <div class="w-full"><div class="section-divider"></div></div>
+<!-- SECTION 2: CONTENT MATRIX -->
+<section id="content-matrix" class="w-full">
+<div class="text-center max-w-4xl mx-auto mb-10 space-y-4">
+<div class="text-brandPurple font-semibold text-sm tracking-wider uppercase">Interactive Content Explorer</div>
+<h2 class="text-3xl sm:text-5xl font-black text-white">1 Video = 120+ Micro-Outputs</h2>
+<p class="text-gray-400 text-sm sm:text-base">Upload your video file or search formats directly in one single unified workspace below.</p>
+</div>
 
-        <!-- SECTION 2: AI THUMBNAIL GENERATOR -->
-        <section id="thumbnail-studio" class="w-full">
-            <div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-4">
-                <div>
-                    <div class="text-brandPink font-semibold text-sm tracking-wider uppercase mb-1">Visual Retention Engine</div>
-                    <h2 class="text-3xl sm:text-5xl font-black text-white">AI Thumbnail Studio</h2>
-                </div>
-                <p class="text-gray-400 max-w-md text-sm">
-                    Generate ultra-high CTR thumbnails using prompt-based generation, frame extractions, and context-aware face enhancements.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Tool 1 -->
-                <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brandPink/50 transition-all flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 rounded-xl bg-brandPink/20 flex items-center justify-center text-brandPink text-2xl font-bold">🎨</div>
-                        <h3 class="text-xl font-bold text-white">Prompt-to-Thumbnail</h3>
-                        <p class="text-sm text-gray-400">Describe your concept in plain English. AI creates hyper-realistic, high-clickability cover images instantly.</p>
-                        <textarea placeholder="e.g., Shocked streamer looking at a giant glowing purple coin..." class="w-full bg-darkBg/90 border border-white/10 rounded-xl p-3 text-sm text-gray-200 placeholder-gray-500 h-28 focus:border-brandPink focus:outline-none resize-none">Shocked face streamer with neon glowing purple background and 4K text 'IMPOSSIBLE!'</textarea>
-                    </div>
-                    <button onclick="generateThumbnailSim()" class="mt-6 w-full py-3 rounded-xl bg-gradient-to-r from-brandPink to-brandPurple text-white font-bold text-sm glow-pink hover:opacity-90 transition-all">
-                        Generate Thumbnail
-                    </button>
-                </div>
-                <!-- Tool 2 -->
-                <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brandPurple/50 transition-all flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 rounded-xl bg-brandPurple/20 flex items-center justify-center text-brandPurple text-2xl font-bold">🎬</div>
-                        <h3 class="text-xl font-bold text-white">Video Frame Extractor</h3>
-                        <p class="text-sm text-gray-400">Scan video for high-emotion keyframes, upscales to 4K, and adds contrast and edge sharpening.</p>
-                        <div class="border-2 border-dashed border-white/10 rounded-xl p-6 text-center bg-darkBg/50 hover:border-brandPurple/40 cursor-pointer">
-                            <svg class="w-8 h-8 text-gray-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
-                            </svg>
-                            <span class="text-xs text-gray-400">Upload video or drop file to extract</span>
-                        </div>
-                    </div>
-                    <button onclick="generateThumbnailSim()" class="mt-6 w-full py-3 rounded-xl bg-white/10 text-white font-bold text-sm hover:bg-white/20 transition-all">
-                        Extract Best Keyframes
-                    </button>
-                </div>
-                <!-- Tool 3 -->
-                <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brandCyan/50 transition-all flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 rounded-xl bg-brandCyan/20 flex items-center justify-center text-brandCyan text-2xl font-bold">🪄</div>
-                        <h3 class="text-xl font-bold text-white">Smart Image Inpainting</h3>
-                        <p class="text-sm text-gray-400">Upload an existing image and edit specific elements using text commands (e.g. "Add glowing eyes").</p>
-                        <input type="text" placeholder="Inpainting instruction..." class="w-full bg-darkBg/90 border border-white/10 rounded-xl p-3 text-sm text-gray-200 placeholder-gray-500 focus:border-brandCyan focus:outline-none">
-                        <div class="border-2 border-dashed border-white/10 rounded-xl p-4 text-center bg-darkBg/50">
-                            <span class="text-xs text-gray-400">Upload Base Image (.jpg, .png)</span>
-                        </div>
-                    </div>
-                    <button onclick="generateThumbnailSim()" class="mt-6 w-full py-3 rounded-xl bg-gradient-to-r from-brandCyan to-brandPurple text-white font-bold text-sm glow-cyan hover:opacity-90 transition-all">
-                        Apply AI Inpaint
-                    </button>
-                </div>
-            </div>
-            <!-- DUMMY RESULT OUTPUT CONTAINER (FOR THUMBNAILS) -->
-            <div id="thumb-output-container" class="mt-12 hidden">
-                <div class="glass-card rounded-3xl p-6 lg:p-8 border border-brandPink/40 bg-darkBg/90 shadow-2xl">
-                    <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
-                        <h3 class="text-2xl font-black text-white flex items-center gap-2">
-                            🖼️ Generated AI Thumbnails (High CTR Ready)
-                        </h3>
-                        <span class="text-xs text-brandPink font-bold">Est. CTR Boost: +310%</span>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="rounded-2xl border border-white/10 overflow-hidden bg-darkBg p-3 space-y-3">
-                            <div class="h-56 rounded-xl bg-gradient-to-r from-purple-900 via-pink-800 to-indigo-900 relative flex items-center justify-center overflow-hidden">
-                                <span class="text-4xl font-black text-yellow-400 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] tracking-wider transform -rotate-3">IMPOSSIBLE! 😱</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs text-gray-400 font-medium">Variation #1 (Neon Cyberpunk)</span>
-                                <button onclick="alert('Thumbnail Downloaded in 4K UHD!')" class="px-4 py-1.5 rounded-lg bg-brandPink text-white text-xs font-bold">Download 4K</button>
-                            </div>
-                        </div>
-                        <div class="rounded-2xl border border-white/10 overflow-hidden bg-darkBg p-3 space-y-3">
-                            <div class="h-56 rounded-xl bg-gradient-to-r from-blue-900 via-cyan-800 to-purple-900 relative flex items-center justify-center overflow-hidden">
-                                <span class="text-4xl font-black text-cyan-300 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] tracking-wider transform rotate-2">10X FASTER 🔥</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs text-gray-400 font-medium">Variation #2 (High Contrast Clean)</span>
-                                <button onclick="alert('Thumbnail Downloaded in 4K UHD!')" class="px-4 py-1.5 rounded-lg bg-brandCyan text-white text-xs font-bold">Download 4K</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- SECTION DIVIDER -->
-        <div class="w-full"><div class="section-divider"></div></div>
+<!-- UNIFIED BAR: UPLOAD + SEARCH -->
+<div class="w-full mb-8">
+<div class="glass-card-glow rounded-2xl p-3 border border-brandPurple/40 flex flex-col md:flex-row items-center gap-3">
+<div class="w-full md:w-auto flex-shrink-0">
+<input type="file" id="matrix-video-file-input" class="hidden" accept="video/*" onchange="handleMatrixFileSelect(this)">
+<div id="matrix-upload-idle" onclick="triggerMatrixVideoUpload()" class="px-5 py-3 rounded-xl bg-brandPurple/20 border border-brandPurple/40 hover:bg-brandPurple/30 transition-all cursor-pointer flex items-center justify-center gap-3 group">
+<span class="text-xl group-hover:scale-110 transition-transform">🎬</span>
+<div class="text-left">
+<div class="text-xs font-bold text-white">Upload Video File</div>
+<div class="text-[10px] text-gray-400">MP4, MOV, WEBM (Up to 4K)</div>
+</div>
+</div>
+<div id="matrix-upload-selected" class="hidden px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/40 flex items-center gap-3">
+<span class="text-lg">📹</span>
+<div>
+<div id="matrix-uploaded-filename" class="text-xs font-bold text-emerald-400 truncate max-w-[180px]">video_file.mp4</div>
+<div class="text-[10px] text-gray-400">File uploaded & ready</div>
+</div>
+</div>
+</div>
+<div class="hidden md:block w-px h-10 bg-white/10"></div>
+<div class="flex-1 w-full relative">
+<input type="text" id="matrix-search" oninput="filterMatrixItems(this.value)" placeholder="Search 120+ outputs (e.g. Shorts, Podcast, LinkedIn, Highlights)..." class="w-full bg-darkBg/90 border border-white/10 rounded-xl pl-11 pr-4 py-3.5 text-xs text-white placeholder-gray-500 focus:border-brandPurple focus:outline-none">
+<span class="absolute left-4 top-3.5 text-gray-400 text-sm">🔍</span>
+</div>
+<div class="hidden sm:flex px-4 py-3 rounded-xl glass-card border border-brandPurple/30 text-xs font-bold text-gray-300 shrink-0 items-center gap-2">
+<span>Total Deliverables:</span>
+<span class="text-brandPink font-black text-sm">124+ Formats</span>
+</div>
+</div>
+</div>
 
-        <!-- SECTION 3: MULTI-PLATFORM PUBLISHING WITH VIDEO UPLOAD -->
-        <section id="publishing" class="w-full">
-            <div class="text-center max-w-4xl mx-auto mb-16 space-y-4">
-                <div class="text-brandCyan font-semibold text-sm tracking-wider uppercase">Omnichannel Distribution</div>
-                <h2 class="text-3xl sm:text-5xl font-black text-white">One-Click Multi-Stream & Video Publishing</h2>
-                <p class="text-gray-400 text-sm sm:text-base">Upload pre-recorded videos or broadcast live simultaneously across 30 premier global streaming and social platforms.</p>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                <div class="lg:col-span-5 glass-card rounded-3xl p-6 lg:p-8 border border-white/10 space-y-6">
-                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                        <svg class="w-5 h-5 text-brandCyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
-                        </svg>
-                        Global Publish Studio
-                    </h3>
-                    <div class="space-y-2">
-                        <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider block">Upload Video File</label>
-                        <div class="border-2 border-dashed border-brandCyan/40 hover:border-brandCyan rounded-2xl p-5 text-center bg-darkBg/60 transition-all cursor-pointer relative group" onclick="triggerFileUpload()">
-                            <input type="file" id="pub-video-upload" class="hidden" accept="video/*" onchange="handleFileSelect(this)">
-                            <div id="upload-idle-state" class="space-y-2">
-                                <div class="w-10 h-10 rounded-full bg-brandCyan/10 text-brandCyan flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                                    📹
-                                </div>
-                                <div class="text-xs font-bold text-gray-200">Click to upload video or drag & drop</div>
-                                <div class="text-[10px] text-gray-500">MP4, MOV, WEBM (Up to 4K 60fps)</div>
-                            </div>
-                            <div id="upload-file-state" class="hidden text-left bg-brandCyan/10 p-3 rounded-xl border border-brandCyan/30">
-                                <div class="flex items-center justify-between text-xs font-bold text-brandCyan">
-                                    <span id="uploaded-filename" class="truncate max-w-[200px]">my_awesome_video.mp4</span>
-                                    <span>Ready</span>
-                                </div>
-                                <div class="text-[10px] text-gray-400 mt-0.5">Size: 245.8 MB</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider block mb-2">Video / Stream Title</label>
-                            <input type="text" value="THE FUTURE OF AI IN 2026! 🚀 (Unbelievable Breakthroughs)" class="w-full bg-darkBg border border-white/10 rounded-xl p-3 text-sm text-white focus:border-brandCyan focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider block mb-2">Description & Auto-Hashtags</label>
-                            <textarea class="w-full bg-darkBg border border-white/10 rounded-xl p-3 text-sm text-gray-300 focus:border-brandCyan focus:outline-none h-20 resize-none">In this short snippet, we explore how next-gen AI models are transforming video content creation. #AI #VidTransformer #ViralShorts</textarea>
-                        </div>
-                    </div>
-                    <button onclick="publishSim()" class="w-full py-4 rounded-xl bg-gradient-to-r from-brandCyan via-brandPurple to-brandPink text-white font-bold text-sm glow-cyan hover:scale-[1.01] transition-all flex items-center justify-center gap-2">
-                        <span>🚀 Publish Video To (<span id="selected-count">0</span> Selected)</span>
-                    </button>
-                </div>
-                <!-- Platform Toggles Grid -->
-                <div class="lg:col-span-7 glass-card rounded-3xl p-6 lg:p-8 border border-white/10">
-                    <div class="flex items-center justify-between mb-6">
-                        <h4 class="text-base font-bold text-white">Select Destination Platforms (30 Available)</h4>
-                        <button type="button" onclick="toggleAllPlatforms()" id="toggle-all-btn" class="px-3 py-1.5 rounded-lg bg-brandPurple/20 border border-brandPurple/40 text-xs font-semibold text-brandCyan hover:bg-brandPurple/40 transition-all">
-                            Select All
-                        </button>
-                    </div>
-                    <div id="platforms-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-[490px] overflow-y-auto pr-2"></div>
-                </div>
-            </div>
-        </section>
 
-        <!-- SECTION DIVIDER -->
-        <div class="w-full"><div class="section-divider"></div></div>
+<!-- Matrix Explorer Layout -->
+<div class="glass-card-glow rounded-3xl p-6 lg:p-8 w-full border border-brandPurple/30 grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left: Tabs -->
+<div class="lg:col-span-4 space-y-2.5 max-h-[500px] overflow-y-auto pr-2" id="category-tab-container"></div>
+<!-- Right: Viewer -->
+<div class="lg:col-span-8 bg-darkBg/85 rounded-2xl p-6 border border-white/10 flex flex-col justify-between min-h-[440px]">
+<div>
+<div class="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
+<div>
+<h3 class="text-lg font-black text-white flex items-center gap-2" id="active-cat-title">🎬 Video Formats</h3>
+<p class="text-xs text-gray-400 mt-0.5" id="active-cat-desc">Select an item to preview details</p>
+</div>
+<span class="px-3 py-1 rounded-full bg-brandPurple/20 text-brandCyan border border-brandPurple/30 text-xs font-extrabold" id="active-cat-badge">16 Outputs</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-h-[310px] overflow-y-auto pr-1" id="active-items-grid"></div>
+</div>
+<div class="pt-4 border-t border-white/10 mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400">
+<span id="item-selection-status">💡 Click any output to auto-configure in AI Studio</span>
+<button onclick="generateMatrixOutputsSim()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brandPurple to-brandPink text-white font-bold text-xs hover:scale-105 transition-all shadow-md">
+⚡ Generate Now
+</button>
+</div>
+</div>
+</div>
 
-        <!-- SECTION 4: COMBINED ANALYTICS WITH PLATFORM SELECTOR -->
-        <section id="analytics" class="w-full">
-            <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 gap-4">
-                <div>
-                    <div class="text-brandPurple font-semibold text-sm tracking-wider uppercase mb-1">Central Intelligence</div>
-                    <h2 class="text-3xl sm:text-5xl font-black text-white">Unified Cross-Platform Analytics</h2>
-                </div>
-                
-                <div class="flex flex-wrap items-center gap-3">
-                    <div class="flex items-center gap-2 bg-darkBg px-3 py-2 rounded-xl border border-white/10">
-                        <span class="text-xs text-gray-400 font-semibold">Platform:</span>
-                        <select id="analytics-platform-select" onchange="filterAnalyticsPlatform(this.value)" class="bg-transparent text-xs font-bold text-brandCyan focus:outline-none cursor-pointer">
-                            <option value="all" class="bg-darkBg text-white">🌐 All Platforms Combined</option>
-                            <option value="twitch" class="bg-darkBg text-white">💜 Twitch</option>
-                            <option value="youtube" class="bg-darkBg text-white">🔴 YouTube Shorts / Live</option>
-                            <option value="tiktok" class="bg-darkBg text-white">🎵 TikTok LIVE</option>
-                            <option value="kick" class="bg-darkBg text-white">🟢 Kick</option>
-                        </select>
-                    </div>
-                    <!-- Timeframe Switcher -->
-                    <div class="flex items-center gap-1 bg-darkBg p-1.5 rounded-xl border border-white/10" id="analytics-filter">
-                        <button type="button" onclick="setAnalyticsTimeframe('30d', this)" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-brandPurple text-white transition-all">30D</button>
-                        <button type="button" onclick="setAnalyticsTimeframe('7d', this)" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">7D</button>
-                        <button type="button" onclick="setAnalyticsTimeframe('all', this)" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">All</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Platform Quick Switch Pills -->
-            <div class="flex items-center gap-2 mb-6 overflow-x-auto pb-2">
-                <span class="text-xs text-gray-500 font-medium shrink-0">Quick Filter:</span>
-                <button onclick="selectPlatformPill('all')" id="pill-all" class="platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-brandPurple/30 border border-brandPurple text-white shrink-0">All Combined</button>
-                <button onclick="selectPlatformPill('twitch')" id="pill-twitch" class="platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-darkBg/80 border border-white/10 text-gray-400 hover:text-white shrink-0">Twitch</button>
-                <button onclick="selectPlatformPill('youtube')" id="pill-youtube" class="platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-darkBg/80 border border-white/10 text-gray-400 hover:text-white shrink-0">YouTube Shorts</button>
-                <button onclick="selectPlatformPill('tiktok')" id="pill-tiktok" class="platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-darkBg/80 border border-white/10 text-gray-400 hover:text-white shrink-0">TikTok LIVE</button>
-                <button onclick="selectPlatformPill('kick')" id="pill-kick" class="platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-darkBg/80 border border-white/10 text-gray-400 hover:text-white shrink-0">Kick</button>
-            </div>
-            <div class="glass-card rounded-3xl p-6 lg:p-8 border border-white/10 space-y-8">
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="p-5 rounded-2xl bg-darkBg/60 border border-white/5 space-y-2">
-                        <div class="text-xs font-medium text-gray-400">Total Aggregated Views</div>
-                        <div class="text-2xl sm:text-4xl font-black text-white" id="metric-views">14.8M</div>
-                    </div>
-                    <div class="p-5 rounded-2xl bg-darkBg/60 border border-white/5 space-y-2">
-                        <div class="text-xs font-medium text-gray-400">Combined Watch Time</div>
-                        <div class="text-2xl sm:text-4xl font-black text-white" id="metric-watch">382.5k hrs</div>
-                    </div>
-                    <div class="p-5 rounded-2xl bg-darkBg/60 border border-white/5 space-y-2">
-                        <div class="text-xs font-medium text-gray-400">Avg Engagement Rate</div>
-                        <div class="text-2xl sm:text-4xl font-black text-white" id="metric-engagement">8.64%</div>
-                    </div>
-                    <div class="p-5 rounded-2xl bg-darkBg/60 border border-white/5 space-y-2">
-                        <div class="text-xs font-medium text-gray-400">Estimated Revenue & Tips</div>
-                        <div class="text-2xl sm:text-4xl font-black text-brandCyan" id="metric-revenue">$42,910</div>
-                    </div>
-                </div>
-                <div class="p-6 rounded-2xl bg-darkBg/80 border border-white/5 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h4 class="text-sm font-bold text-white flex items-center gap-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-brandPink"></span>
-                            Growth Trajectory for <span id="current-platform-name" class="text-brandCyan font-bold">All Platforms Combined</span> (<span id="chart-time-label">Last 30 Days</span>)
-                        </h4>
-                        <span class="text-xs text-gray-400">Updated 5 mins ago</span>
-                    </div>
-                    <div class="h-64 w-full relative flex items-end pt-8">
-                        <svg class="w-full h-full overflow-visible" viewBox="0 0 1000 200" preserveAspectRatio="none">
-                            <defs>
-                                <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.5"/>
-                                    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.0"/>
-                                </linearGradient>
-                            </defs>
-                            <line x1="0" y1="0" x2="1000" y2="0" stroke="rgba(255,255,255,0.05)" stroke-dasharray="4"/>
-                            <line x1="0" y1="50" x2="1000" y2="50" stroke="rgba(255,255,255,0.05)" stroke-dasharray="4"/>
-                            <line x1="0" y1="100" x2="1000" y2="100" stroke="rgba(255,255,255,0.05)" stroke-dasharray="4"/>
-                            <line x1="0" y1="150" x2="1000" y2="150" stroke="rgba(255,255,255,0.05)" stroke-dasharray="4"/>
-                            
-                            <path id="chart-area" d="M0,160 Q 150,120 300,140 T 600,60 T 900,30 L 1000,10 L 1000,200 L 0,200 Z" fill="url(#chartGradient)" />
-                            <path id="chart-line" d="M0,160 Q 150,120 300,140 T 600,60 T 900,30 L 1000,10" fill="none" stroke="#ec4899" stroke-width="4" />
-                        </svg>
-                    </div>
-                    <div class="flex justify-between text-xs text-gray-500 pt-2 border-t border-white/5" id="chart-x-labels">
-                        <span>Week 1</span>
-                        <span>Week 2</span>
-                        <span>Week 3</span>
-                        <span>Week 4</span>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- SECTION DIVIDER -->
-        <div class="w-full"><div class="section-divider"></div></div>
+<!-- MATRIX OUTPUT CONTAINER -->
+<div id="matrix-output-container" class="mt-10 hidden">
+<div class="glass-card rounded-3xl p-6 lg:p-8 border border-brandCyan/40 bg-darkBg/95 shadow-2xl space-y-6">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-white/10 gap-3">
+<div>
+<span class="text-xs font-extrabold uppercase tracking-wider text-brandCyan bg-brandCyan/10 px-3 py-1 rounded-full border border-brandCyan/30">AI Repurposing Render Engine</span>
+<h3 class="text-2xl font-black text-white mt-2 flex items-center gap-2" id="matrix-output-title">🚀 Repurposed Content Deliverables Generated!</h3>
+<p class="text-xs text-gray-400 mt-1" id="matrix-output-subtitle">Generated assets based on your selected parameters.</p>
+</div>
+<button onclick="document.getElementById('publishing').scrollIntoView({behavior: 'smooth'});" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brandCyan to-brandPurple text-white font-bold text-xs glow-cyan hover:opacity-90 transition-all">
+Multi-Publish All Assets ➔
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Asset 1 -->
+<div class="p-5 rounded-2xl bg-darkBg/90 border border-white/10 space-y-3 hover:border-brandCyan transition-all">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-0.5 rounded bg-brandPurple/30 text-brandPurple text-[10px] font-bold">Video Asset</span>
+<span class="text-[10px] text-emerald-400 font-bold">HD Render Ready</span>
+</div>
+<h4 class="text-sm font-bold text-white" id="out-asset-1-title">Vertical Shorts Render (9:16)</h4>
+<p class="text-xs text-gray-400 line-clamp-3" id="out-asset-1-desc">"The key secret to scaling video content in 2026 is automating longform clips with smart dynamic captions..."</p>
+<div class="pt-2 flex items-center justify-between text-xs">
+<span class="text-gray-500 font-medium">Size: 48.2 MB</span>
+<button onclick="alert('Downloading Rendered Asset...')" class="px-3 py-1.5 rounded-lg bg-brandCyan/20 text-brandCyan border border-brandCyan/40 hover:bg-brandCyan hover:text-white text-xs font-bold transition-all">Download .MP4</button>
+</div>
+</div>
+<!-- Asset 2 -->
+<div class="p-5 rounded-2xl bg-darkBg/90 border border-white/10 space-y-3 hover:border-brandPink transition-all">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-0.5 rounded bg-brandPink/30 text-brandPink text-[10px] font-bold">Text & Copy</span>
+<span class="text-[10px] text-emerald-400 font-bold">SEO Score: 96/100</span>
+</div>
+<h4 class="text-sm font-bold text-white" id="out-asset-2-title">SEO Article & Social Threads</h4>
+<div class="p-2.5 bg-black/40 rounded-xl text-[11px] text-gray-300 font-mono line-clamp-3">📌 5 Key takeaways from today's session: 1. AI Dubbing is now indistinguishable from human voice...</div>
+<div class="pt-2 flex items-center justify-between text-xs">
+<span class="text-gray-500 font-medium">Format: Markdown</span>
+<button onclick="navigator.clipboard.writeText('📌 5 Key takeaways...'); alert('Text copied!');" class="px-3 py-1.5 rounded-lg bg-brandPink/20 text-brandPink border border-brandPink/40 hover:bg-brandPink hover:text-white text-xs font-bold transition-all">Copy Text</button>
+</div>
+</div>
+<!-- Asset 3 -->
+<div class="p-5 rounded-2xl bg-darkBg/90 border border-white/10 space-y-3 hover:border-brandPurple transition-all">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-0.5 rounded bg-brandCyan/30 text-brandCyan text-[10px] font-bold">Visual Graphic</span>
+<span class="text-[10px] text-emerald-400 font-bold">4K UHD 300DPI</span>
+</div>
+<h4 class="text-sm font-bold text-white" id="out-asset-3-title">Carousel & Social Banner</h4>
+<div class="h-20 bg-gradient-to-r from-brandPurple/40 via-brandPink/30 to-brandCyan/40 rounded-xl flex items-center justify-center border border-white/10">
+<span class="text-xs font-extrabold text-white tracking-widest uppercase drop-shadow">🔥 High CTR Cover</span>
+</div>
+<div class="pt-2 flex items-center justify-between text-xs">
+<span class="text-gray-500 font-medium">PNG Format</span>
+<button onclick="alert('Downloading Graphic...')" class="px-3 py-1.5 rounded-lg bg-brandPurple/20 text-brandPurple border border-brandPurple/40 hover:bg-brandPurple hover:text-white text-xs font-bold transition-all">Download PNG</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-        <!-- SECTION 5: USE CASES -->
-        <section id="use-cases" class="w-full">
-            <div class="text-center max-w-4xl mx-auto mb-16 space-y-4">
-                <div class="text-brandPink font-semibold text-sm tracking-wider uppercase">Built For Creators</div>
-                <h2 class="text-3xl sm:text-5xl font-black text-white">How It Works & Custom Use Cases</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-card rounded-2xl p-6 border border-white/10 space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-brandPurple/20 flex items-center justify-center text-brandPurple text-xl font-bold">🎙️</div>
-                    <h3 class="text-lg font-bold text-white">For Podcasters</h3>
-                    <p class="text-xs text-gray-400">Import long podcasts and auto-extract viral debate clips.</p>
-                </div>
-                <div class="glass-card rounded-2xl p-6 border border-white/10 space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-brandPink/20 flex items-center justify-center text-brandPink text-xl font-bold">🎮</div>
-                    <h3 class="text-lg font-bold text-white">Gaming Streamers</h3>
-                    <p class="text-xs text-gray-400">Auto-detect kills, screams, and clutch moments.</p>
-                </div>
-                <div class="glass-card rounded-2xl p-6 border border-white/10 space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-brandCyan/20 flex items-center justify-center text-brandCyan text-xl font-bold">📈</div>
-                    <h3 class="text-lg font-bold text-white">Growth Marketers</h3>
-                    <p class="text-xs text-gray-400">Translate and dub webinars into 15+ global languages.</p>
-                </div>
-                <div class="glass-card rounded-2xl p-6 border border-white/10 space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-brandPurple/20 flex items-center justify-center text-brandPurple text-xl font-bold">🎓</div>
-                    <h3 class="text-lg font-bold text-white">Educators</h3>
-                    <p class="text-xs text-gray-400">Convert long lectures into engaging micro-lessons.</p>
-                </div>
-            </div>
-        </section>
 
-        <!-- SECTION DIVIDER -->
-        <div class="w-full"><div class="section-divider"></div></div>
+<!-- SECTION DIVIDER -->
+<div class="w-full"><div class="section-divider"></div></div>
 
-        <!-- SECTION 6: PRICING -->
-        <section id="pricing" class="w-full">
-            <div class="text-center max-w-4xl mx-auto mb-16 space-y-4">
-                <div class="text-brandCyan font-semibold text-sm tracking-wider uppercase">Predictable Scaling</div>
-                <h2 class="text-3xl sm:text-5xl font-black text-white">Simple, Transparent Pricing</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-                <div class="glass-card rounded-3xl p-8 border border-white/10 flex flex-col justify-between space-y-6">
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Starter</h3>
-                        <div class="text-4xl font-black text-white mt-2">$19<span class="text-sm font-normal text-gray-400">/mo</span></div>
-                    </div>
-                    <button class="w-full py-3 rounded-xl bg-white/10 text-white font-bold text-sm">Get Started</button>
-                </div>
-                <div class="glass-card-glow rounded-3xl p-8 border-2 border-brandPurple flex flex-col justify-between space-y-6 lg:scale-105">
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Creator Pro</h3>
-                        <div class="text-4xl font-black text-white mt-2">$49<span class="text-sm font-normal text-gray-400">/mo</span></div>
-                    </div>
-                    <button class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brandPurple to-brandPink text-white font-bold text-sm">Get Started Free Trial</button>
-                </div>
-                <div class="glass-card rounded-3xl p-8 border border-white/10 flex flex-col justify-between space-y-6">
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Enterprise</h3>
-                        <div class="text-4xl font-black text-white mt-2">$149<span class="text-sm font-normal text-gray-400">/mo</span></div>
-                    </div>
-                    <button class="w-full py-3 rounded-xl bg-white/10 text-white font-bold text-sm">Contact Sales</button>
-                </div>
-            </div>
-        </section>
 
-        <!-- SECTION DIVIDER -->
-        <div class="w-full"><div class="section-divider"></div></div>
+<!-- SECTION 3: THUMBNAIL STUDIO -->
+<section id="thumbnail-studio" class="w-full">
+<div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-4">
+<div>
+<div class="text-brandPink font-semibold text-sm tracking-wider uppercase mb-1">Visual Retention Engine</div>
+<h2 class="text-3xl sm:text-5xl font-black text-white">AI Thumbnail Studio</h2>
+</div>
+<p class="text-gray-400 max-w-md text-sm leading-relaxed">
+Generate ultra-high CTR thumbnails using prompt-based generation, frame extractions, and context-aware face enhancements.
+</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Tool 1 -->
+<div class="glass-card rounded-3xl p-7 border border-white/10 hover:border-brandPink/50 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between shadow-lg">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-2xl bg-brandPink/20 flex items-center justify-center text-brandPink text-2xl font-bold">🎨</div>
+<h3 class="text-xl font-bold text-white">Prompt-to-Thumbnail</h3>
+<p class="text-sm text-gray-400">Describe your concept in plain English. AI creates hyper-realistic, high-clickability cover images instantly.</p>
+<textarea class="w-full bg-darkBg/90 border border-white/10 rounded-xl p-3.5 text-sm text-gray-200 placeholder-gray-500 h-32 focus:border-brandPink focus:outline-none resize-none">Shocked face streamer with neon glowing purple background and 4K text 'IMPOSSIBLE!'</textarea>
+</div>
+<button onclick="generateThumbnailSim()" class="mt-6 w-full py-3.5 rounded-xl bg-gradient-to-r from-brandPink to-brandPurple text-white font-bold text-sm glow-pink hover:opacity-90 transition-all">
+Generate Thumbnail
+</button>
+</div>
+<!-- Tool 2 -->
+<div class="glass-card rounded-3xl p-7 border border-white/10 hover:border-brandPurple/50 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between shadow-lg">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-2xl bg-brandPurple/20 flex items-center justify-center text-brandPurple text-2xl font-bold">🎬</div>
+<h3 class="text-xl font-bold text-white">Video Frame Extractor</h3>
+<p class="text-sm text-gray-400">Scan video for high-emotion keyframes, upscales to 4K, and adds contrast and edge sharpening.</p>
+<div class="border-2 border-dashed border-white/10 rounded-2xl p-7 text-center bg-darkBg/50 hover:border-brandPurple/40 cursor-pointer">
+<svg class="w-8 h-8 text-gray-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+</svg>
+<span class="text-xs text-gray-400">Upload video or drop file to extract</span>
+</div>
+</div>
+<button onclick="generateThumbnailSim()" class="mt-6 w-full py-3.5 rounded-xl bg-white/10 text-white font-bold text-sm hover:bg-white/20 transition-all">
+Extract Best Keyframes
+</button>
+</div>
+<!-- Tool 3 -->
+<div class="glass-card rounded-3xl p-7 border border-white/10 hover:border-brandCyan/50 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between shadow-lg">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-2xl bg-brandCyan/20 flex items-center justify-center text-brandCyan text-2xl font-bold">🪄</div>
+<h3 class="text-xl font-bold text-white">Smart Image Inpainting</h3>
+<p class="text-sm text-gray-400">Upload an existing image and edit specific elements using text commands (e.g. "Add glowing eyes").</p>
+<input type="text" placeholder="Inpainting instruction..." class="w-full bg-darkBg/90 border border-white/10 rounded-xl p-3.5 text-sm text-gray-200 placeholder-gray-500 focus:border-brandCyan focus:outline-none">
+<div class="border-2 border-dashed border-white/10 rounded-2xl p-5 text-center bg-darkBg/50">
+<span class="text-xs text-gray-400">Upload Base Image (.jpg, .png)</span>
+</div>
+</div>
+<button onclick="generateThumbnailSim()" class="mt-6 w-full py-3.5 rounded-xl bg-gradient-to-r from-brandCyan to-brandPurple text-white font-bold text-sm glow-cyan hover:opacity-90 transition-all">
+Apply AI Inpaint
+</button>
+</div>
+</div>
 
-        <!-- SECTION 7: FAQ -->
-        <section id="faq" class="w-full pb-16">
-            <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
-                <h2 class="text-3xl font-black text-white">Frequently Asked Questions</h2>
-                <p class="text-xs text-gray-500">FAQ placeholder section ready for your custom questions and answers.</p>
-            </div>
-            <div class="space-y-4">
-                <div class="glass-card rounded-2xl p-6 border border-dashed border-white/15 text-center">
-                    <p class="text-sm font-medium text-gray-500">Add your questions here (Accordion Item 1 Placeholder)</p>
-                </div>
-            </div>
-        </section>
-    </main>
 
-    <!-- PROCESSING MODAL / SIMULATION -->
-    <div id="processing-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center hidden">
-        <div class="glass-card-glow p-8 rounded-3xl max-w-md w-full text-center space-y-4 border border-brandPurple">
-            <div class="w-16 h-16 rounded-full border-4 border-brandPurple border-t-transparent animate-spin mx-auto"></div>
-            <h3 id="modal-status-title" class="text-xl font-bold text-white">AI Engine Processing...</h3>
-            <p id="modal-status-desc" class="text-xs text-gray-400">Analyzing video frames, removing silences, and detecting viral highlights.</p>
-            <div class="w-full bg-darkBg rounded-full h-2 overflow-hidden border border-white/10">
-                <div id="modal-progress-bar" class="bg-gradient-to-r from-brandPurple to-brandPink h-full w-0 transition-all duration-300"></div>
-            </div>
-        </div>
-    </div>
+<!-- THUMBNAIL OUTPUT CONTAINER -->
+<div id="thumb-output-container" class="mt-12 hidden">
+<div class="glass-card rounded-3xl p-6 lg:p-8 border border-brandPink/40 bg-darkBg/95 shadow-2xl">
+<div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+<h3 class="text-2xl font-black text-white flex items-center gap-2">🖼️ Generated AI Thumbnails (High CTR Ready)</h3>
+<span class="text-xs text-brandPink font-bold">Est. CTR Boost: +310%</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="rounded-2xl border border-white/10 overflow-hidden bg-darkBg p-3.5 space-y-3">
+<div class="h-60 rounded-xl bg-gradient-to-r from-purple-950 via-pink-900 to-indigo-950 relative flex items-center justify-center overflow-hidden">
+<span class="text-4xl font-black text-yellow-400 drop-shadow-[0_5px_8px_rgba(0,0,0,0.85)] tracking-wider transform -rotate-3">IMPOSSIBLE! 😱</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs text-gray-400 font-medium">Variation #1 (Neon Cyberpunk)</span>
+<button onclick="alert('Thumbnail Downloaded!')" class="px-4 py-2 rounded-xl bg-brandPink text-white text-xs font-bold">Download 4K</button>
+</div>
+</div>
+<div class="rounded-2xl border border-white/10 overflow-hidden bg-darkBg p-3.5 space-y-3">
+<div class="h-60 rounded-xl bg-gradient-to-r from-blue-950 via-cyan-900 to-purple-950 relative flex items-center justify-center overflow-hidden">
+<span class="text-4xl font-black text-cyan-300 drop-shadow-[0_5px_8px_rgba(0,0,0,0.85)] tracking-wider transform rotate-2">10X FASTER 🔥</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs text-gray-400 font-medium">Variation #2 (High Contrast)</span>
+<button onclick="alert('Thumbnail Downloaded!')" class="px-4 py-2 rounded-xl bg-brandCyan text-white text-xs font-bold">Download 4K</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- FOOTER -->
-    <footer class="border-t border-white/10 bg-darkBg py-12 w-full">
-        <div class="max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-gray-500">
-            <span class="font-bold text-gray-300">VidTransformer Platform Inc. © 2026</span>
-        </div>
-    </footer>
 
-    <!-- INTERACTIVE SCRIPTS -->
-    <script>
-        // Selected Item Tracking
-        let currentSelectedItem = "Vertical Shorts (9:16)";
+<!-- SECTION DIVIDER -->
+<div class="w-full"><div class="section-divider"></div></div>
 
-        // --- 0. AI ENHANCERS TOGGLE HANDLER ---
-        function toggleEnhancer(btn) {
-            btn.classList.toggle('bg-brandPurple');
-            btn.classList.toggle('border-brandPurple');
-            btn.classList.toggle('text-white');
-            btn.classList.toggle('text-gray-400');
-        }
 
-        // --- 1. VOICE GENDER SELECTION ---
-        let selectedGenderState = null;
-        function selectGender(gender) {
-            const btnMale = document.getElementById('btn-male');
-            const btnFemale = document.getElementById('btn-female');
-            
-            if(gender === 'male') {
-                if(selectedGenderState === 'male') {
-                    selectedGenderState = null;
-                    btnMale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
-                } else {
-                    selectedGenderState = 'male';
-                    btnMale.className = "py-2.5 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all";
-                    btnFemale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
-                }
-            } else if(gender === 'female') {
-                if(selectedGenderState === 'female') {
-                    selectedGenderState = null;
-                    btnFemale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
-                } else {
-                    selectedGenderState = 'female';
-                    btnFemale.className = "py-2.5 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all";
-                    btnMale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
-                }
-            }
-        }
+<!-- SECTION 4: MULTI-PLATFORM PUBLISHING -->
+<section id="publishing" class="w-full">
+<div class="text-center max-w-4xl mx-auto mb-16 space-y-4">
+<div class="text-brandCyan font-semibold text-sm tracking-wider uppercase">Omnichannel Distribution</div>
+<h2 class="text-3xl sm:text-5xl font-black text-white">One-Click Multi-Stream & Video Publishing</h2>
+<p class="text-gray-400 text-sm sm:text-base">Upload pre-recorded videos or broadcast live simultaneously across 30 premier global streaming and social platforms.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-5 glass-card rounded-3xl p-6 lg:p-8 border border-white/10 space-y-6 shadow-xl">
+<h3 class="text-xl font-bold text-white flex items-center gap-2">
+<svg class="w-5 h-5 text-brandCyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+</svg>
+Global Publish Studio
+</h3>
+<div class="space-y-2">
+<label class="text-xs font-semibold text-gray-300 uppercase tracking-wider block">Upload Video File</label>
+<div class="border-2 border-dashed border-brandCyan/40 hover:border-brandCyan rounded-2xl p-6 text-center bg-darkBg/60 transition-all cursor-pointer relative group" onclick="triggerFileUpload()">
+<input type="file" id="pub-video-upload" class="hidden" accept="video/*" onchange="handleFileSelect(this)">
+<div id="upload-idle-state" class="space-y-2">
+<div class="w-12 h-12 rounded-full bg-brandCyan/10 text-brandCyan flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">📹</div>
+<div class="text-xs font-bold text-gray-200">Click to upload video or drag & drop</div>
+<div class="text-[10px] text-gray-500">MP4, MOV, WEBM (Up to 4K 60fps)</div>
+</div>
+<div id="upload-file-state" class="hidden text-left bg-brandCyan/10 p-3.5 rounded-xl border border-brandCyan/30">
+<div class="flex items-center justify-between text-xs font-bold text-brandCyan">
+<span id="uploaded-filename" class="truncate max-w-[200px]">my_awesome_video.mp4</span>
+<span>Ready</span>
+</div>
+<div class="text-[10px] text-gray-400 mt-1">Size: 245.8 MB</div>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<label class="text-xs font-semibold text-gray-300 uppercase tracking-wider block mb-2">Video / Stream Title</label>
+<input type="text" value="THE FUTURE OF AI IN 2026! 🚀 (Unbelievable Breakthroughs)" class="w-full bg-darkBg border border-white/10 rounded-xl p-3.5 text-sm text-white focus:border-brandCyan focus:outline-none">
+</div>
+<div>
+<label class="text-xs font-semibold text-gray-300 uppercase tracking-wider block mb-2">Description & Auto-Hashtags</label>
+<textarea class="w-full bg-darkBg border border-white/10 rounded-xl p-3.5 text-sm text-gray-300 focus:border-brandCyan focus:outline-none h-24 resize-none">In this short snippet, we explore how next-gen AI models are transforming video content creation. #AI #VidTransformer #ViralShorts</textarea>
+</div>
+</div>
+<button onclick="publishSim()" class="w-full py-4 rounded-xl bg-gradient-to-r from-brandCyan via-brandPurple to-brandPink text-white font-bold text-sm glow-cyan hover:scale-[1.01] transition-all flex items-center justify-center gap-2 shadow-lg">
+<span>🚀 Publish Video To (<span id="selected-count">0</span> Selected)</span>
+</button>
+</div>
+<!-- Platforms Grid -->
+<div class="lg:col-span-7 glass-card rounded-3xl p-6 lg:p-8 border border-white/10 shadow-xl">
+<div class="flex items-center justify-between mb-6">
+<h4 class="text-base font-bold text-white">Select Destination Platforms (30 Available)</h4>
+<button type="button" onclick="toggleAllPlatforms()" id="toggle-all-btn" class="px-3.5 py-1.5 rounded-xl bg-brandPurple/20 border border-brandPurple/40 text-xs font-semibold text-brandCyan hover:bg-brandPurple/40 transition-all">
+Select All
+</button>
+</div>
+<div id="platforms-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-[510px] overflow-y-auto pr-2"></div>
+</div>
+</div>
+</section>
 
-        // --- 2. VIDEO FILE UPLOAD HANDLERS ---
-        function triggerFileUpload() {
-            document.getElementById('pub-video-upload').click();
-        }
-        function handleFileSelect(input) {
-            if(input.files && input.files[0]) {
-                const fileName = input.files[0].name;
-                document.getElementById('uploaded-filename').innerText = fileName;
-                document.getElementById('upload-idle-state').classList.add('hidden');
-                document.getElementById('upload-file-state').classList.remove('hidden');
-            }
-        }
 
-        function triggerMatrixVideoUpload() {
-            document.getElementById('matrix-video-file-input').click();
-        }
-        function handleMatrixFileSelect(input) {
-            if(input.files && input.files[0]) {
-                const fileName = input.files[0].name;
-                document.getElementById('matrix-uploaded-filename').innerText = fileName;
-                document.getElementById('matrix-upload-idle').classList.add('hidden');
-                document.getElementById('matrix-upload-selected').classList.remove('hidden');
-            }
-        }
+<!-- SECTION DIVIDER -->
+<div class="w-full"><div class="section-divider"></div></div>
 
-        // --- 3. GENERATE CLIPS SIMULATION ---
-        function generateClipsSim() {
-            showModal("Generating Viral Shorts...", "Scanning audio peaks, face-centering frames, and generating auto-captions.");
-            setTimeout(() => {
-                hideModal();
-                const out = document.getElementById('clips-output-container');
-                out.classList.remove('hidden');
-                out.scrollIntoView({ behavior: 'smooth' });
-            }, 2000);
-        }
 
-        // --- 3.1 MATRIX OUTPUT GENERATION SIMULATION (CHANGE #1 FUNCTION) ---
-        function generateMatrixOutputsSim() {
-            showModal("Extracting Repurposed Formats...", `Processing video asset into '${currentSelectedItem}' and complementary social outputs.`);
-            setTimeout(() => {
-                hideModal();
-                const outContainer = document.getElementById('matrix-output-container');
-                document.getElementById('matrix-output-title').innerHTML = `🚀 Output Ready: <span class="gradient-text">${currentSelectedItem}</span>`;
-                document.getElementById('matrix-output-subtitle').innerText = `Successfully converted video into multi-platform deliverables. Ready for download & publish.`;
-                document.getElementById('out-asset-1-title').innerText = `${currentSelectedItem} Render`;
-                
-                outContainer.classList.remove('hidden');
-                outContainer.scrollIntoView({ behavior: 'smooth' });
-            }, 1800);
-        }
+<!-- SECTION 5: ANALYTICS -->
+<section id="analytics" class="w-full">
+<div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 gap-4">
+<div>
+<div class="text-brandPurple font-semibold text-sm tracking-wider uppercase mb-1">Central Intelligence</div>
+<h2 class="text-3xl sm:text-5xl font-black text-white">Unified Cross-Platform Analytics</h2>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<div class="flex items-center gap-2 bg-darkBg px-3.5 py-2.5 rounded-xl border border-white/10">
+<span class="text-xs text-gray-400 font-semibold">Platform:</span>
+<select id="analytics-platform-select" onchange="filterAnalyticsPlatform(this.value)" class="bg-transparent text-xs font-bold text-brandCyan focus:outline-none cursor-pointer">
+<option value="all" class="bg-darkBg text-white">🌐 All Platforms Combined</option>
+<option value="twitch" class="bg-darkBg text-white">💜 Twitch</option>
+<option value="youtube" class="bg-darkBg text-white">🔴 YouTube Shorts / Live</option>
+<option value="tiktok" class="bg-darkBg text-white">🎵 TikTok LIVE</option>
+<option value="kick" class="bg-darkBg text-white">🟢 Kick</option>
+</select>
+</div>
+<div class="flex items-center gap-1 bg-darkBg p-1.5 rounded-xl border border-white/10" id="analytics-filter">
+<button type="button" onclick="setAnalyticsTimeframe('30d', this)" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-brandPurple text-white transition-all">30D</button>
+<button type="button" onclick="setAnalyticsTimeframe('7d', this)" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">7D</button>
+<button type="button" onclick="setAnalyticsTimeframe('all', this)" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">All</button>
+</div>
+</div>
+</div>
+<!-- Quick Filter Pills -->
+<div class="flex items-center gap-2 mb-6 overflow-x-auto pb-2">
+<span class="text-xs text-gray-500 font-medium shrink-0">Quick Filter:</span>
+<button onclick="selectPlatformPill('all')" id="pill-all" class="platform-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brandPurple/30 border border-brandPurple text-white shrink-0">All Combined</button>
+<button onclick="selectPlatformPill('twitch')" id="pill-twitch" class="platform-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-darkBg/90 border border-white/10 text-gray-400 hover:text-white shrink-0">Twitch</button>
+<button onclick="selectPlatformPill('youtube')" id="pill-youtube" class="platform-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-darkBg/90 border border-white/10 text-gray-400 hover:text-white shrink-0">YouTube Shorts</button>
+<button onclick="selectPlatformPill('tiktok')" id="pill-tiktok" class="platform-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-darkBg/90 border border-white/10 text-gray-400 hover:text-white shrink-0">TikTok LIVE</button>
+<button onclick="selectPlatformPill('kick')" id="pill-kick" class="platform-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-darkBg/90 border border-white/10 text-gray-400 hover:text-white shrink-0">Kick</button>
+</div>
+<div class="glass-card rounded-3xl p-6 lg:p-8 border border-white/10 space-y-8 shadow-xl">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="p-5 rounded-2xl bg-darkBg/70 border border-white/5 space-y-2">
+<div class="text-xs font-medium text-gray-400">Total Aggregated Views</div>
+<div class="text-2xl sm:text-4xl font-black text-white" id="metric-views">14.8M</div>
+</div>
+<div class="p-5 rounded-2xl bg-darkBg/70 border border-white/5 space-y-2">
+<div class="text-xs font-medium text-gray-400">Combined Watch Time</div>
+<div class="text-2xl sm:text-4xl font-black text-white" id="metric-watch">382.5k hrs</div>
+</div>
+<div class="p-5 rounded-2xl bg-darkBg/70 border border-white/5 space-y-2">
+<div class="text-xs font-medium text-gray-400">Avg Engagement Rate</div>
+<div class="text-2xl sm:text-4xl font-black text-white" id="metric-engagement">8.64%</div>
+</div>
+<div class="p-5 rounded-2xl bg-darkBg/70 border border-white/5 space-y-2">
+<div class="text-xs font-medium text-gray-400">Estimated Revenue & Tips</div>
+<div class="text-2xl sm:text-4xl font-black text-brandCyan" id="metric-revenue">$42,910</div>
+</div>
+</div>
+<div class="p-6 rounded-2xl bg-darkBg/90 border border-white/5 space-y-4">
+<div class="flex items-center justify-between">
+<h4 class="text-sm font-bold text-white flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-brandPink"></span>
+Growth Trajectory for <span id="current-platform-name" class="text-brandCyan font-bold">All Platforms Combined</span> (<span id="chart-time-label">Last 30 Days</span>)
+</h4>
+<span class="text-xs text-gray-400">Updated 5 mins ago</span>
+</div>
+<div class="h-64 w-full relative flex items-end pt-8">
+<svg class="w-full h-full overflow-visible" viewBox="0 0 1000 200" preserveAspectRatio="none">
+<defs>
+<linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.5"/>
+<stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.0"/>
+</linearGradient>
+</defs>
+<line x1="0" y1="0" x2="1000" y2="0" stroke="rgba(255,255,255,0.05)" stroke-dasharray="4"/>
+<line x1="0" y1="50" x2="1000" y2="50" stroke="rgba(255,255,255,0.05)" stroke-dasharray="4"/>
+<line x1="0" y1="100" x2="1000" y2="100" stroke="rgba(255,255,255,0.05)" stroke-dasharray="4"/>
+<line x1="0" y1="150" x2="1000" y2="150" stroke="rgba(255,255,255,0.05)" stroke-dasharray="4"/>
+<path id="chart-area" d="M0,160 Q 150,120 300,140 T 600,60 T 900,30 L 1000,10 L 1000,200 L 0,200 Z" fill="url(#chartGradient)" />
+<path id="chart-line" d="M0,160 Q 150,120 300,140 T 600,60 T 900,30 L 1000,10" fill="none" stroke="#ec4899" stroke-width="4" />
+</svg>
+</div>
+<div class="flex justify-between text-xs text-gray-500 pt-2 border-t border-white/5">
+<span>Week 1</span><span>Week 2</span><span>Week 3</span><span>Week 4</span>
+</div>
+</div>
+</div>
+</section>
 
-        // --- 4. GENERATE THUMBNAILS SIMULATION ---
-        function generateThumbnailSim() {
-            showModal("Rendering AI Thumbnails...", "Generating 4K compositions and applying high-CTR face expressions.");
-            setTimeout(() => {
-                hideModal();
-                const out = document.getElementById('thumb-output-container');
-                out.classList.remove('hidden');
-                out.scrollIntoView({ behavior: 'smooth' });
-            }, 1800);
-        }
 
-        // --- 5. MULTI-STREAM PUBLISH SIMULATION ---
-        function publishSim() {
-            const count = document.getElementById('selected-count').innerText;
-            if(count === "0") {
-                alert("Kripya kam se kam ek platform select karein!");
-                return;
-            }
-            showModal("Publishing Multi-Stream...", `Uploading video file and broadcasting to ${count} destination servers.`);
-            setTimeout(() => {
-                hideModal();
-                alert(`SUCCESS! 🎉 Video file published live across ${count} selected platforms!`);
-            }, 2200);
-        }
+<!-- SECTION DIVIDER -->
+<div class="w-full"><div class="section-divider"></div></div>
 
-        // Modal Helpers
-        function showModal(title, desc) {
-            document.getElementById('modal-status-title').innerText = title;
-            document.getElementById('modal-status-desc').innerText = desc;
-            const bar = document.getElementById('modal-progress-bar');
-            bar.style.width = '0%';
-            document.getElementById('processing-modal').classList.remove('hidden');
-            setTimeout(() => bar.style.width = '100%', 100);
-        }
-        function hideModal() {
-            document.getElementById('processing-modal').classList.add('hidden');
-        }
 
-        // --- 6. INTERACTIVE CONTENT MATRIX DATA & ENGINE ---
-        const matrixData = [
-            {
-                id: "vid",
-                icon: "🎬",
-                category: "Video Formats",
-                count: 16,
-                desc: "Ready-to-publish vertical, horizontal, and square video renders.",
-                items: [
-                    "Vertical Shorts (9:16)", "YouTube Longform (16:9)", "Square Feed (1:1)",
-                    "Banner Clips (21:9)", "Split-Screen Reaction", "Auto B-Roll Overlay",
-                    "Gamified Highlights", "4K HDR Re-render", "Cinematic Slow-Mo Cuts",
-                    "Speed-Ramped Teasers", "Subtitled Reel", "Silent Video with Text",
-                    "Looping GIF Outputs", "Picture-in-Picture Mode", "Speaker Zoom Clips", "Trailer Intro Cut"
-                ]
-            },
-            {
-                id: "high",
-                icon: "⚡",
-                category: "AI Highlights",
-                count: 15,
-                desc: "Automated peak emotion and key moment extractions.",
-                items: [
-                    "Laughter & Joy Detection", "High-Energy Climax Cuts", "Q&A Punchlines",
-                    "Controversial Take Snippets", "Screams & Shock Moments", "Key Takeaway Clips",
-                    "Viral Hook Extractions", "Storytelling Arc Shorts", "Curiosity Gap Clips",
-                    "Debate Counter-Points", "Unboxing Peak Moments", "Tutorial Step Snippets",
-                    "Clutch Gameplay Kills", "Podcast Blooper Reel", "Audience Reaction Clips"
-                ]
-            },
-            {
-                id: "aud",
-                icon: "🎙️",
-                category: "Audio & Podcasts",
-                count: 8,
-                desc: "Extracted audio assets, noise-cleaned tracks, and sound bites.",
-                items: [
-                    "Clean MP3 Podcast Track", "WAV Studio Quality Stem", "Background Noise Isolated",
-                    "Voice Enhancement Track", "Audio Soundbite Teasers", "Audiogram with Waveform",
-                    "Intro/Outro Stinger Audio", "AI Voice Clone Sample"
-                ]
-            },
-            {
-                id: "writ",
-                icon: "📝",
-                category: "Written Content",
-                count: 15,
-                desc: "AI-generated text summaries, articles, and documentation.",
-                items: [
-                    "Full SEO Blog Post", "Executive Summary", "Timestamped Transcript",
-                    "Show Notes & Links", "Newsletter Issue", "Twitter/X Thread Script",
-                    "LinkedIn Thought Piece", "Video Chapter Markers", "Key Quotes Collection",
-                    "E-Book Chapter Draft", "Action Item Checklist", "FAQ Document",
-                    "Press Release Draft", "Video Script Back-Translate", "Medium Story Format"
-                ]
-            },
-            {
-                id: "soc",
-                icon: "📲",
-                category: "Social Media",
-                count: 15,
-                desc: "Tailored posts, captions, and hashtags per platform.",
-                items: [
-                    "TikTok Trending Captions", "Instagram Reels Copy", "YouTube Shorts Titles",
-                    "LinkedIn Poll & Copy", "Twitter / X Hot Takes", "Facebook Watch Description",
-                    "Pinterest Pin Text", "Threads Post Series", "Community Tab Polls",
-                    "Viral Hashtag Packs", "Discord Announcement Text", "Reddit Post Summary",
-                    "Telegram Channel Update", "WhatsApp Status Text", "Snapchat Spotlight Script"
-                ]
-            },
-            {
-                id: "crea",
-                icon: "🎨",
-                category: "Creative Assets",
-                count: 10,
-                desc: "Visual graphics, thumbnails, and promotional art.",
-                items: [
-                    "4K YouTube Thumbnail", "Instagram Story Cards", "Quote Image Graphic",
-                    "Carousel Slide Deck", "GIF Meme Creations", "Animated Text Stills",
-                    "Channel Cover Banner", "Video Poster Art", "Infographic Outline", "Custom Overlay Stills"
-                ]
-            },
-            {
-                id: "loc",
-                icon: "🌍",
-                category: "Localization",
-                count: 10,
-                desc: "Global translation and multilingual voiceover dubbing.",
-                items: [
-                    "Spanish AI Dubbing", "Hindi AI Dubbing", "French AI Dubbing",
-                    "German Subtitle File (.srt)", "Japanese SRT Subtitles", "Multi-Language SRTs",
-                    "Localized Thumbnail Text", "Auto-Translated Captions", "Cultural Nuance Edits", "Regional Accent Switch"
-                ]
-            },
-            {
-                id: "mark",
-                icon: "📈",
-                category: "Marketing Assets",
-                count: 10,
-                desc: "Conversion-focused assets for marketing campaigns.",
-                items: [
-                    "Ad Hook Variations (15s)", "UGC Style Ad Cut", "Sales Pitch Short",
-                    "Customer Testimonial Clip", "Email Campaign Snippet", "Landing Page Video Embed",
-                    "Retargeting Ad Trim", "Product Demo Highlight", "Sponsor Read Clip", "CTA End Screen Clip"
-                ]
-            },
-            {
-                id: "ent",
-                icon: "🏢",
-                category: "Enterprise Assets",
-                count: 10,
-                desc: "Compliance, archival, and team collaboration formats.",
-                items: [
-                    "Compliance Audit Log", "Speaker Sentiment Report", "Brand Safety Flagging",
-                    "Internal Memo Summary", "Training Module Clips", "SRT/VTT Closed Captions",
-                    "Searchable Video Index", "Team Knowledge Base Clip", "High-Compression Archive", "Watermarked Preview"
-                ]
-            },
-            {
-                id: "intel",
-                icon: "🧠",
-                category: "AI Intelligence",
-                count: 15,
-                desc: "Analytics, heatmaps, and content scoring metrics.",
-                items: [
-                    "Viral Potential Score", "Audience Retention Heatmap", "Pacing & Dropoff Analytics",
-                    "Hook Strength Rating", "Keyword Density Map", "Competitor Benchmark",
-                    "CTR Prediction Score", "Emotion Graph Analysis", "Monetization Meter",
-                    "Tone of Voice Score", "Copyright Safety Check", "SEO Keyword Ranking",
-                    "Ad Placement Markers", "Thumbnail CTR Score", "Engagement Spike Points"
-                ]
-            },
-            {
-                id: "fut",
-                icon: "🚀",
-                category: "Future AI Capabilities",
-                count: "10+",
-                desc: "Upcoming experimental generative AI features.",
-                items: [
-                    "Real-time Holographic Clips", "Interactive Choose-Your-Ending", "AI Avatar Presenter Replace",
-                    "Live Voice Translation", "Auto 3D Depth Map Generation", "Personalized Viewer Renders",
-                    "Neural Sound Effect Generation", "AI B-Roll Generator 2.0", "Auto-Sponsor Integration", "Instant Multicam Sync"
-                ]
-            }
-        ];
+<!-- SECTION 6: USE CASES -->
+<section id="use-cases" class="w-full">
+<div class="text-center max-w-4xl mx-auto mb-16 space-y-4">
+<div class="text-brandPink font-semibold text-sm tracking-wider uppercase">Built For Creators</div>
+<h2 class="text-3xl sm:text-5xl font-black text-white">How It Works & Custom Use Cases</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="glass-card rounded-3xl p-6 border border-white/10 space-y-4 hover:border-brandPurple/50 hover:-translate-y-1 transition-all">
+<div class="w-12 h-12 rounded-2xl bg-brandPurple/20 flex items-center justify-center text-brandPurple text-xl font-bold">🎙️</div>
+<h3 class="text-lg font-bold text-white">For Podcasters</h3>
+<p class="text-xs text-gray-400 leading-relaxed">Import long podcasts and auto-extract viral debate clips effortlessly.</p>
+</div>
+<div class="glass-card rounded-3xl p-6 border border-white/10 space-y-4 hover:border-brandPink/50 hover:-translate-y-1 transition-all">
+<div class="w-12 h-12 rounded-2xl bg-brandPink/20 flex items-center justify-center text-brandPink text-xl font-bold">🎮</div>
+<h3 class="text-lg font-bold text-white">Gaming Streamers</h3>
+<p class="text-xs text-gray-400 leading-relaxed">Auto-detect kills, screams, and clutch moments instantly.</p>
+</div>
+<div class="glass-card rounded-3xl p-6 border border-white/10 space-y-4 hover:border-brandCyan/50 hover:-translate-y-1 transition-all">
+<div class="w-12 h-12 rounded-2xl bg-brandCyan/20 flex items-center justify-center text-brandCyan text-xl font-bold">📈</div>
+<h3 class="text-lg font-bold text-white">Growth Marketers</h3>
+<p class="text-xs text-gray-400 leading-relaxed">Translate and dub webinars into 15+ global languages.</p>
+</div>
+<div class="glass-card rounded-3xl p-6 border border-white/10 space-y-4 hover:border-brandPurple/50 hover:-translate-y-1 transition-all">
+<div class="w-12 h-12 rounded-2xl bg-brandPurple/20 flex items-center justify-center text-brandPurple text-xl font-bold">🎓</div>
+<h3 class="text-lg font-bold text-white">Educators</h3>
+<p class="text-xs text-gray-400 leading-relaxed">Convert long lectures into engaging micro-lessons.</p>
+</div>
+</div>
+</section>
 
-        let selectedCategoryIndex = 0;
 
-        function renderMatrixTabs() {
-            const container = document.getElementById("category-tab-container");
-            if(!container) return;
-            container.innerHTML = "";
+<!-- SECTION DIVIDER -->
+<div class="w-full"><div class="section-divider"></div></div>
 
-            matrixData.forEach((cat, idx) => {
-                const isSelected = idx === selectedCategoryIndex;
-                const btn = document.createElement("button");
-                btn.type = "button";
-                btn.onclick = () => selectMatrixCategory(idx);
-                btn.className = `w-full text-left p-3 rounded-xl border transition-all flex items-center justify-between ${
-                    isSelected 
-                    ? "bg-brandPurple/25 border-brandPurple text-white shadow-lg shadow-brandPurple/10" 
-                    : "bg-darkBg/60 border-white/5 text-gray-400 hover:border-white/20 hover:text-gray-200"
-                }`;
-                btn.innerHTML = `
-                    <div class="flex items-center gap-2.5 truncate">
-                        <span class="text-base">${cat.icon}</span>
-                        <span class="text-xs font-bold truncate">${cat.category}</span>
-                    </div>
-                    <span class="text-[11px] font-extrabold px-2 py-0.5 rounded-md ${
-                        isSelected ? 'bg-brandPurple text-white' : 'bg-white/5 text-gray-400'
-                    }">${cat.count}</span>
-                `;
-                container.appendChild(btn);
-            });
 
-            renderActiveCategoryDetails();
-        }
+<!-- SECTION 7: PRICING -->
+<section id="pricing" class="w-full">
+<div class="text-center max-w-4xl mx-auto mb-16 space-y-4">
+<div class="text-brandCyan font-semibold text-sm tracking-wider uppercase">Predictable Scaling</div>
+<h2 class="text-3xl sm:text-5xl font-black text-white">Simple, Transparent Pricing</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+<div class="glass-card rounded-3xl p-8 border border-white/10 flex flex-col justify-between space-y-6 shadow-xl">
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-white">Starter</h3>
+<div class="text-4xl font-black text-white">$19<span class="text-sm font-normal text-gray-400">/mo</span></div>
+<p class="text-xs text-gray-400">Perfect for individual creators starting out.</p>
+</div>
+<button class="w-full py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm transition-all">Get Started</button>
+</div>
+<div class="glass-card-glow rounded-3xl p-8 border-2 border-brandPurple flex flex-col justify-between space-y-6 lg:scale-105 shadow-2xl relative">
+<span class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-brandPurple text-white text-[10px] font-extrabold uppercase tracking-widest shadow-md">Most Popular</span>
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-white">Creator Pro</h3>
+<div class="text-4xl font-black text-white">$49<span class="text-sm font-normal text-gray-400">/mo</span></div>
+<p class="text-xs text-gray-400">Advanced AI features for professional content scaling.</p>
+</div>
+<button class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brandPurple to-brandPink text-white font-bold text-sm glow-purple hover:opacity-90 transition-all">Get Started Free Trial</button>
+</div>
+<div class="glass-card rounded-3xl p-8 border border-white/10 flex flex-col justify-between space-y-6 shadow-xl">
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-white">Enterprise</h3>
+<div class="text-4xl font-black text-white">$149<span class="text-sm font-normal text-gray-400">/mo</span></div>
+<p class="text-xs text-gray-400">Custom limits and dedicated support for teams.</p>
+</div>
+<button class="w-full py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm transition-all">Contact Sales</button>
+</div>
+</div>
+</section>
 
-        function selectMatrixCategory(index) {
-            selectedCategoryIndex = index;
-            renderMatrixTabs();
-        }
 
-        function renderActiveCategoryDetails() {
-            const cat = matrixData[selectedCategoryIndex];
-            document.getElementById("active-cat-title").innerHTML = `${cat.icon} ${cat.category}`;
-            document.getElementById("active-cat-desc").innerText = cat.desc;
-            document.getElementById("active-cat-badge").innerText = `${cat.count} Outputs`;
+<!-- SECTION DIVIDER -->
+<div class="w-full"><div class="section-divider"></div></div>
 
-            const grid = document.getElementById("active-items-grid");
-            grid.innerHTML = "";
 
-            cat.items.forEach(item => {
-                const itemCard = document.createElement("div");
-                itemCard.className = "p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-brandCyan/40 hover:bg-brandCyan/10 transition-all cursor-pointer flex items-center justify-between group";
-                itemCard.onclick = function() {
-                    currentSelectedItem = item;
-                    document.querySelectorAll('#active-items-grid > div').forEach(el => el.classList.remove('border-brandCyan', 'bg-brandCyan/20'));
-                    this.classList.add('border-brandCyan', 'bg-brandCyan/20');
-                    document.getElementById("item-selection-status").innerHTML = `✨ Selected: <strong class="text-brandCyan">${item}</strong> (Ready to Generate!)`;
-                };
-                itemCard.innerHTML = `
-                    <span class="text-xs font-semibold text-gray-300 group-hover:text-white truncate">${item}</span>
-                    <span class="text-[10px] text-brandCyan opacity-0 group-hover:opacity-100 transition-opacity">Select ➔</span>
-                `;
-                grid.appendChild(itemCard);
-            });
-        }
+<!-- SECTION 8: FAQ -->
+<section id="faq" class="w-full pb-16">
+<div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+<h2 class="text-3xl font-black text-white">Frequently Asked Questions</h2>
+<p class="text-xs text-gray-400">Got questions? We've got answers.</p>
+</div>
+<div class="max-w-3xl mx-auto space-y-4">
+<div class="glass-card rounded-2xl p-6 border border-white/10">
+<h4 class="text-sm font-bold text-white mb-2">How long does AI take to generate clips?</h4>
+<p class="text-xs text-gray-400 leading-relaxed">Most videos take under 2 minutes to process 25+ clips with automated face tracking and captions.</p>
+</div>
+<div class="glass-card rounded-2xl p-6 border border-white/10">
+<h4 class="text-sm font-bold text-white mb-2">Can I publish directly to TikTok and YouTube?</h4>
+<p class="text-xs text-gray-400 leading-relaxed">Yes! You can connect 30+ streaming and social platforms and publish simultaneously with a single click.</p>
+</div>
+</div>
+</section>
+</main>
 
-        function filterMatrixItems(query) {
-            if(!query.trim()) {
-                renderMatrixTabs();
-                return;
-            }
-            const q = query.toLowerCase();
-            const grid = document.getElementById("active-items-grid");
-            grid.innerHTML = "";
-            
-            let matchesCount = 0;
-            matrixData.forEach(cat => {
-                cat.items.forEach(item => {
-                    if(item.toLowerCase().includes(q) || cat.category.toLowerCase().includes(q)) {
-                        matchesCount++;
-                        const itemCard = document.createElement("div");
-                        itemCard.className = "p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-brandCyan/40 transition-all cursor-pointer flex items-center justify-between";
-                        itemCard.onclick = function() {
-                            currentSelectedItem = item;
-                            document.querySelectorAll('#active-items-grid > div').forEach(el => el.classList.remove('border-brandCyan', 'bg-brandCyan/20'));
-                            this.classList.add('border-brandCyan', 'bg-brandCyan/20');
-                            document.getElementById("item-selection-status").innerHTML = `✨ Selected: <strong class="text-brandCyan">${item}</strong> (Ready to Generate!)`;
-                        };
-                        itemCard.innerHTML = `
-                            <div class="truncate">
-                                <span class="text-[10px] text-brandPurple font-bold block">${cat.category}</span>
-                                <span class="text-xs font-semibold text-gray-200">${item}</span>
-                            </div>
-                            <span class="text-[10px] text-brandCyan">➔</span>
-                        `;
-                        grid.appendChild(itemCard);
-                    }
-                });
-            });
 
-            document.getElementById("active-cat-title").innerHTML = `🔍 Search Results`;
-            document.getElementById("active-cat-desc").innerText = `Showing outputs matching "${query}"`;
-            document.getElementById("active-cat-badge").innerText = `${matchesCount} Found`;
-        }
+<!-- PROCESSING MODAL -->
+<div id="processing-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center hidden">
+<div class="glass-card-glow p-8 rounded-3xl max-w-md w-full text-center space-y-4 border border-brandPurple shadow-2xl">
+<div class="w-16 h-16 rounded-full border-4 border-brandPurple border-t-transparent animate-spin mx-auto"></div>
+<h3 id="modal-status-title" class="text-xl font-bold text-white">AI Engine Processing...</h3>
+<p id="modal-status-desc" class="text-xs text-gray-400">Analyzing video frames, removing silences, and detecting viral highlights.</p>
+<div class="w-full bg-darkBg rounded-full h-2 overflow-hidden border border-white/10">
+<div id="modal-progress-bar" class="bg-gradient-to-r from-brandPurple to-brandPink h-full w-0 transition-all duration-300"></div>
+</div>
+</div>
+</div>
 
-        // --- 7. PLATFORMS GRID LOGIC ---
-        const platformsList = [
-            "Twitch", "SOOP (AfreecaTV)", "Kick", "Trovo", "CHZZK", "Bigo Live",
-            "Tango Live", "MICO Live", "Nonolive", "Poppo Live", "BLive", "DLive",
-            "Caffeine", "YouTube Live", "Facebook Live", "TikTok LIVE", "Instagram Live",
-            "X Live (Twitter)", "Discord Stage", "Nimo TV", "Huya Live", "DouYu",
-            "YY Live", "Panda Live", "Mildom", "Livestream", "Streamable Live",
-            "AfreecaTV Global", "KakaoTV Live", "NAVER TV Live"
-        ];
-        let platformStates = new Array(platformsList.length).fill(false);
-        function renderPlatforms() {
-            const container = document.getElementById("platforms-grid");
-            if(!container) return;
-            container.innerHTML = "";
-            let selectedCount = 0;
-            platformsList.forEach((plat, idx) => {
-                const isActive = platformStates[idx];
-                if (isActive) selectedCount++;
-                const card = document.createElement("div");
-                card.className = `p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
-                    isActive ? "bg-brandPurple/20 border-brandPurple text-white shadow-lg" : "bg-darkBg/60 border-white/5 text-gray-500 hover:border-white/20"
-                }`;
-                card.onclick = () => {
-                    platformStates[idx] = !platformStates[idx];
-                    renderPlatforms();
-                };
-                card.innerHTML = `
-                    <div class="flex items-center gap-2 truncate">
-                        <span class="w-2 h-2 rounded-full ${isActive ? 'bg-brandCyan animate-pulse' : 'bg-gray-600'}"></span>
-                        <span class="text-xs font-semibold truncate">${idx + 1}. ${plat}</span>
-                    </div>
-                    <div class="w-7 h-4 rounded-full bg-white/10 p-0.5 flex items-center">
-                        <div class="w-3 h-3 rounded-full ${isActive ? 'bg-brandCyan translate-x-3' : 'bg-gray-500'} transition-transform"></div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-            document.getElementById("selected-count").innerText = selectedCount;
-            const toggleBtn = document.getElementById("toggle-all-btn");
-            if (selectedCount === platformsList.length) {
-                toggleBtn.innerText = "Deselect All";
-            } else {
-                toggleBtn.innerText = "Select All";
-            }
-        }
-        function toggleAllPlatforms() {
-            const areAllSelected = platformStates.every(state => state === true);
-            platformStates = platformStates.map(() => !areAllSelected);
-            renderPlatforms();
-        }
 
-        // --- 8. DETAILED PLATFORM ANALYTICS DATA & SELECTOR ---
-        const platformAnalyticsMap = {
-            'all': {
-                name: 'All Platforms Combined',
-                views: '14.8M', watch: '382.5k hrs', engagement: '8.64%', revenue: '$42,910'
-            },
-            'twitch': {
-                name: 'Twitch',
-                views: '3.4M', watch: '185.2k hrs', engagement: '11.2%', revenue: '$18,400'
-            },
-            'youtube': {
-                name: 'YouTube Shorts / Live',
-                views: '6.1M', watch: '120.4k hrs', engagement: '7.8%', revenue: '$14,250'
-            },
-            'tiktok': {
-                name: 'TikTok LIVE',
-                views: '4.2M', watch: '54.1k hrs', engagement: '9.4%', revenue: '$7,810'
-            },
-            'kick': {
-                name: 'Kick',
-                views: '1.1M', watch: '22.8k hrs', engagement: '6.5%', revenue: '$2,450'
-            }
-        };
-        function filterAnalyticsPlatform(platKey) {
-            const data = platformAnalyticsMap[platKey] || platformAnalyticsMap['all'];
-            document.getElementById('metric-views').innerText = data.views;
-            document.getElementById('metric-watch').innerText = data.watch;
-            document.getElementById('metric-engagement').innerText = data.engagement;
-            document.getElementById('metric-revenue').innerText = data.revenue;
-            document.getElementById('current-platform-name').innerText = data.name;
-            document.getElementById('analytics-platform-select').value = platKey;
-            
-            document.querySelectorAll('.platform-pill').forEach(pill => {
-                pill.className = "platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-darkBg/80 border border-white/10 text-gray-400 hover:text-white shrink-0";
-            });
-            const activePill = document.getElementById(`pill-${platKey}`);
-            if(activePill) {
-                activePill.className = "platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-brandPurple/30 border border-brandPurple text-white shrink-0";
-            }
-        }
-        function selectPlatformPill(platKey) {
-            filterAnalyticsPlatform(platKey);
-        }
-        function setAnalyticsTimeframe(period, btn) {
-            document.querySelectorAll('#analytics-filter .filter-btn').forEach(b => {
-                b.className = "filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all";
-            });
-            btn.className = "filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-brandPurple text-white transition-all";
-            document.getElementById('chart-time-label').innerText = period === '30d' ? 'Last 30 Days' : period === '7d' ? 'Last 7 Days' : 'All Time';
-        }
+<!-- FOOTER -->
+<footer class="border-t border-white/10 bg-darkBg py-12 w-full">
+<div class="max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-gray-500">
+<span class="font-bold text-gray-300">VidTransformer Platform Inc. © 2026</span>
+<div class="flex gap-6">
+<a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+<a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+<a href="#" class="hover:text-white transition-colors">Support</a>
+</div>
+</div>
+</footer>
 
-        // Initialize Components
-        document.addEventListener('DOMContentLoaded', () => {
-            renderMatrixTabs();
-            renderPlatforms();
-        });
-    </script>
+
+<!-- INTERACTIVE SCRIPTS -->
+<script>
+let currentSelectedItem = "Vertical Shorts (9:16)";
+
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+const menu = document.getElementById('mobile-menu');
+menu.classList.toggle('hidden');
+}
+
+
+function toggleEnhancer(btn) {
+btn.classList.toggle('bg-brandPurple');
+btn.classList.toggle('border-brandPurple');
+btn.classList.toggle('text-white');
+btn.classList.toggle('text-gray-300');
+}
+
+
+let selectedGenderState = null;
+function selectGender(gender) {
+const btnMale = document.getElementById('btn-male');
+const btnFemale = document.getElementById('btn-female');
+if(gender === 'male') {
+if(selectedGenderState === 'male') {
+selectedGenderState = null;
+btnMale.className = "py-3 rounded-xl bg-darkBg/90 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
+} else {
+selectedGenderState = 'male';
+btnMale.className = "py-3 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all";
+btnFemale.className = "py-3 rounded-xl bg-darkBg/90 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
+}
+} else if(gender === 'female') {
+if(selectedGenderState === 'female') {
+selectedGenderState = null;
+btnFemale.className = "py-3 rounded-xl bg-darkBg/90 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
+} else {
+selectedGenderState = 'female';
+btnFemale.className = "py-3 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all";
+btnMale.className = "py-3 rounded-xl bg-darkBg/90 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
+}
+}
+}
+
+
+function triggerFileUpload() { document.getElementById('pub-video-upload').click(); }
+function handleFileSelect(input) {
+if(input.files && input.files[0]) {
+document.getElementById('uploaded-filename').innerText = input.files[0].name;
+document.getElementById('upload-idle-state').classList.add('hidden');
+document.getElementById('upload-file-state').classList.remove('hidden');
+}
+}
+function triggerMatrixVideoUpload() { document.getElementById('matrix-video-file-input').click(); }
+function handleMatrixFileSelect(input) {
+if(input.files && input.files[0]) {
+document.getElementById('matrix-uploaded-filename').innerText = input.files[0].name;
+document.getElementById('matrix-upload-idle').classList.add('hidden');
+document.getElementById('matrix-upload-selected').classList.remove('hidden');
+}
+}
+
+
+function generateClipsSim() {
+showModal("Generating Viral Shorts...", "Scanning audio peaks, face-centering frames, and generating auto-captions.");
+setTimeout(() => {
+hideModal();
+const out = document.getElementById('clips-output-container');
+out.classList.remove('hidden');
+out.scrollIntoView({ behavior: 'smooth' });
+}, 2000);
+}
+
+
+function generateMatrixOutputsSim() {
+showModal("Extracting Repurposed Formats...", `Processing video asset into '${currentSelectedItem}' and complementary social outputs.`);
+setTimeout(() => {
+hideModal();
+const outContainer = document.getElementById('matrix-output-container');
+document.getElementById('matrix-output-title').innerHTML = `🚀 Output Ready: <span class="gradient-text">${currentSelectedItem}</span>`;
+document.getElementById('out-asset-1-title').innerText = `${currentSelectedItem} Render`;
+outContainer.classList.remove('hidden');
+outContainer.scrollIntoView({ behavior: 'smooth' });
+}, 1800);
+}
+
+
+function generateThumbnailSim() {
+showModal("Rendering AI Thumbnails...", "Generating 4K compositions and applying high-CTR face expressions.");
+setTimeout(() => {
+hideModal();
+const out = document.getElementById('thumb-output-container');
+out.classList.remove('hidden');
+out.scrollIntoView({ behavior: 'smooth' });
+}, 1800);
+}
+
+
+function publishSim() {
+const count = document.getElementById('selected-count').innerText;
+if(count === "0") {
+alert("Kripya kam se kam ek platform select karein!");
+return;
+}
+showModal("Publishing Multi-Stream...", `Uploading video file and broadcasting to ${count} destination servers.`);
+setTimeout(() => {
+hideModal();
+alert(`SUCCESS! 🎉 Video file published live across ${count} selected platforms!`);
+}, 2200);
+}
+
+
+function showModal(title, desc) {
+document.getElementById('modal-status-title').innerText = title;
+document.getElementById('modal-status-desc').innerText = desc;
+const bar = document.getElementById('modal-progress-bar');
+bar.style.width = '0%';
+document.getElementById('processing-modal').classList.remove('hidden');
+setTimeout(() => bar.style.width = '100%', 100);
+}
+function hideModal() { document.getElementById('processing-modal').classList.add('hidden'); }
+
+
+const matrixData = [
+{ id: "vid", icon: "🎬", category: "Video Formats", count: 16, desc: "Ready-to-publish vertical, horizontal, and square video renders.", items: ["Vertical Shorts (9:16)", "YouTube Longform (16:9)", "Square Feed (1:1)", "Banner Clips (21:9)", "Split-Screen Reaction", "Auto B-Roll Overlay", "Gamified Highlights", "4K HDR Re-render", "Cinematic Slow-Mo Cuts", "Speed-Ramped Teasers", "Subtitled Reel", "Silent Video with Text", "Looping GIF Outputs", "Picture-in-Picture Mode", "Speaker Zoom Clips", "Trailer Intro Cut"] },
+{ id: "high", icon: "⚡", category: "AI Highlights", count: 15, desc: "Automated peak emotion and key moment extractions.", items: ["Laughter & Joy Detection", "High-Energy Climax Cuts", "Q&A Punchlines", "Controversial Take Snippets", "Screams & Shock Moments", "Key Takeaway Clips", "Viral Hook Extractions", "Storytelling Arc Shorts", "Curiosity Gap Clips", "Debate Counter-Points", "Unboxing Peak Moments", "Tutorial Step Snippets", "Clutch Gameplay Kills", "Podcast Blooper Reel", "Audience Reaction Clips"] },
+{ id: "aud", icon: "🎙️", category: "Audio & Podcasts", count: 8, desc: "Extracted audio assets, noise-cleaned tracks, and sound bites.", items: ["Clean MP3 Podcast Track", "WAV Studio Quality Stem", "Background Noise Isolated", "Voice Enhancement Track", "Audio Soundbite Teasers", "Audiogram with Waveform", "Intro/Outro Stinger Audio", "AI Voice Clone Sample"] },
+{ id: "writ", icon: "📝", category: "Written Content", count: 15, desc: "AI-generated text summaries, articles, and documentation.", items: ["Full SEO Blog Post", "Executive Summary", "Timestamped Transcript", "Show Notes & Links", "Newsletter Issue", "Twitter/X Thread Script", "LinkedIn Thought Piece", "Video Chapter Markers", "Key Quotes Collection", "E-Book Chapter Draft", "Action Item Checklist", "FAQ Document", "Press Release Draft", "Video Script Back-Translate", "Medium Story Format"] },
+{ id: "soc", icon: "📲", category: "Social Media", count: 15, desc: "Tailored posts, captions, and hashtags per platform.", items: ["TikTok Trending Captions", "Instagram Reels Copy", "YouTube Shorts Titles", "LinkedIn Poll & Copy", "Twitter / X Hot Takes", "Facebook Watch Description", "Pinterest Pin Text", "Threads Post Series", "Community Tab Polls", "Viral Hashtag Packs", "Discord Announcement Text", "Reddit Post Summary", "Telegram Channel Update", "WhatsApp Status Text", "Snapchat Spotlight Script"] },
+{ id: "crea", icon: "🎨", category: "Creative Assets", count: 10, desc: "Visual graphics, thumbnails, and promotional art.", items: ["4K YouTube Thumbnail", "Instagram Story Cards", "Quote Image Graphic", "Carousel Slide Deck", "GIF Meme Creations", "Animated Text Stills", "Channel Cover Banner", "Video Poster Art", "Infographic Outline", "Custom Overlay Stills"] },
+{ id: "loc", icon: "🌍", category: "Localization", count: 10, desc: "Global translation and multilingual voiceover dubbing.", items: ["Spanish AI Dubbing", "Hindi AI Dubbing", "French AI Dubbing", "German Subtitle File (.srt)", "Japanese SRT Subtitles", "Multi-Language SRTs", "Localized Thumbnail Text", "Auto-Translated Captions", "Cultural Nuance Edits", "Regional Accent Switch"] },
+{ id: "mark", icon: "📈", category: "Marketing Assets", count: 10, desc: "Conversion-focused assets for marketing campaigns.", items: ["Ad Hook Variations (15s)", "UGC Style Ad Cut", "Sales Pitch Short", "Customer Testimonial Clip", "Email Campaign Snippet", "Landing Page Video Embed", "Retargeting Ad Trim", "Product Demo Highlight", "Sponsor Read Clip", "CTA End Screen Clip"] },
+{ id: "ent", icon: "🏢", category: "Enterprise Assets", count: 10, desc: "Compliance, archival, and team collaboration formats.", items: ["Compliance Audit Log", "Speaker Sentiment Report", "Brand Safety Flagging", "Internal Memo Summary", "Training Module Clips", "SRT/VTT Closed Captions", "Searchable Video Index", "Team Knowledge Base Clip", "High-Compression Archive", "Watermarked Preview"] },
+{ id: "intel", icon: "🧠", category: "AI Intelligence", count: 15, desc: "Analytics, heatmaps, and content scoring metrics.", items: ["Viral Potential Score", "Audience Retention Heatmap", "Pacing & Dropoff Analytics", "Hook Strength Rating", "Keyword Density Map", "Competitor Benchmark", "CTR Prediction Score", "Emotion Graph Analysis", "Monetization Meter", "Tone of Voice Score", "Copyright Safety Check", "SEO Keyword Ranking", "Ad Placement Markers", "Thumbnail CTR Score", "Engagement Spike Points"] },
+{ id: "fut", icon: "🚀", category: "Future AI Capabilities", count: "10+", desc: "Upcoming experimental generative AI features.", items: ["Real-time Holographic Clips", "Interactive Choose-Your-Ending", "AI Avatar Presenter Replace", "Live Voice Translation", "Auto 3D Depth Map Generation", "Personalized Viewer Renders", "Neural Sound Effect Generation", "AI B-Roll Generator 2.0", "Auto-Sponsor Integration", "Instant Multicam Sync"] }
+];
+
+
+let selectedCategoryIndex = 0;
+function renderMatrixTabs() {
+const container = document.getElementById("category-tab-container");
+if(!container) return;
+container.innerHTML = "";
+matrixData.forEach((cat, idx) => {
+const isSelected = idx === selectedCategoryIndex;
+const btn = document.createElement("button");
+btn.type = "button";
+btn.onclick = () => selectMatrixCategory(idx);
+btn.className = `w-full text-left p-3.5 rounded-xl border transition-all flex items-center justify-between ${
+isSelected
+? "bg-brandPurple/25 border-brandPurple text-white shadow-lg shadow-brandPurple/10"
+: "bg-darkBg/60 border-white/5 text-gray-400 hover:border-white/20 hover:text-gray-200"
+}`;
+btn.innerHTML = `
+<div class="flex items-center gap-3 truncate">
+<span class="text-base">${cat.icon}</span>
+<span class="text-xs font-bold truncate">${cat.category}</span>
+</div>
+<span class="text-[11px] font-extrabold px-2 py-0.5 rounded-md ${
+isSelected ? 'bg-brandPurple text-white' : 'bg-white/5 text-gray-400'
+}">${cat.count}</span>
+`;
+container.appendChild(btn);
+});
+renderActiveCategoryDetails();
+}
+
+
+function selectMatrixCategory(index) {
+selectedCategoryIndex = index;
+renderMatrixTabs();
+}
+
+
+function renderActiveCategoryDetails() {
+const cat = matrixData[selectedCategoryIndex];
+document.getElementById("active-cat-title").innerHTML = `${cat.icon} ${cat.category}`;
+document.getElementById("active-cat-desc").innerText = cat.desc;
+document.getElementById("active-cat-badge").innerText = `${cat.count} Outputs`;
+const grid = document.getElementById("active-items-grid");
+grid.innerHTML = "";
+cat.items.forEach(item => {
+const itemCard = document.createElement("div");
+itemCard.className = "p-3 rounded-xl bg-white/5 border border-white/5 hover:border-brandCyan/40 hover:bg-brandCyan/10 transition-all cursor-pointer flex items-center justify-between group";
+itemCard.onclick = function() {
+currentSelectedItem = item;
+document.querySelectorAll('#active-items-grid > div').forEach(el => el.classList.remove('border-brandCyan', 'bg-brandCyan/20'));
+this.classList.add('border-brandCyan', 'bg-brandCyan/20');
+document.getElementById("item-selection-status").innerHTML = `✨ Selected: <strong class="text-brandCyan">${item}</strong> (Ready to Generate!)`;
+};
+itemCard.innerHTML = `
+<span class="text-xs font-semibold text-gray-300 group-hover:text-white truncate">${item}</span>
+<span class="text-[10px] text-brandCyan opacity-0 group-hover:opacity-100 transition-opacity">Select ➔</span>
+`;
+grid.appendChild(itemCard);
+});
+}
+
+
+function filterMatrixItems(query) {
+if(!query.trim()) { renderMatrixTabs(); return; }
+const q = query.toLowerCase();
+const grid = document.getElementById("active-items-grid");
+grid.innerHTML = "";
+let matchesCount = 0;
+matrixData.forEach(cat => {
+cat.items.forEach(item => {
+if(item.toLowerCase().includes(q) || cat.category.toLowerCase().includes(q)) {
+matchesCount++;
+const itemCard = document.createElement("div");
+itemCard.className = "p-3 rounded-xl bg-white/5 border border-white/5 hover:border-brandCyan/40 transition-all cursor-pointer flex items-center justify-between";
+itemCard.onclick = function() {
+currentSelectedItem = item;
+document.querySelectorAll('#active-items-grid > div').forEach(el => el.classList.remove('border-brandCyan', 'bg-brandCyan/20'));
+this.classList.add('border-brandCyan', 'bg-brandCyan/20');
+document.getElementById("item-selection-status").innerHTML = `✨ Selected: <strong class="text-brandCyan">${item}</strong> (Ready to Generate!)`;
+};
+itemCard.innerHTML = `
+<div class="truncate">
+<span class="text-[10px] text-brandPurple font-bold block">${cat.category}</span>
+<span class="text-xs font-semibold text-gray-200">${item}</span>
+</div>
+<span class="text-[10px] text-brandCyan">➔</span>
+`;
+grid.appendChild(itemCard);
+}
+});
+});
+document.getElementById("active-cat-title").innerHTML = `🔍 Search Results`;
+document.getElementById("active-cat-desc").innerText = `Showing outputs matching "${query}"`;
+document.getElementById("active-cat-badge").innerText = `${matchesCount} Found`;
+}
+
+
+const platformsList = [
+"Twitch", "SOOP (AfreecaTV)", "Kick", "Trovo", "CHZZK", "Bigo Live",
+"Tango Live", "MICO Live", "Nonolive", "Poppo Live", "BLive", "DLive",
+"Caffeine", "YouTube Live", "Facebook Live", "TikTok LIVE", "Instagram Live",
+"X Live (Twitter)", "Discord Stage", "Nimo TV", "Huya Live", "DouYu",
+"YY Live", "Panda Live", "Mildom", "Livestream", "Streamable Live",
+"AfreecaTV Global", "KakaoTV Live", "NAVER TV Live"
+];
+let platformStates = new Array(platformsList.length).fill(false);
+
+
+function renderPlatforms() {
+const container = document.getElementById("platforms-grid");
+if(!container) return;
+container.innerHTML = "";
+let selectedCount = 0;
+platformsList.forEach((plat, idx) => {
+const isActive = platformStates[idx];
+if (isActive) selectedCount++;
+const card = document.createElement("div");
+card.className = `p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
+isActive ? "bg-brandPurple/20 border-brandPurple text-white shadow-lg" : "bg-darkBg/60 border-white/5 text-gray-500 hover:border-white/20"
+}`;
+card.onclick = () => {
+platformStates[idx] = !platformStates[idx];
+renderPlatforms();
+};
+card.innerHTML = `
+<div class="flex items-center gap-2.5 truncate">
+<span class="w-2 h-2 rounded-full ${isActive ? 'bg-brandCyan animate-pulse' : 'bg-gray-600'}"></span>
+<span class="text-xs font-semibold truncate">${idx + 1}. ${plat}</span>
+</div>
+<div class="w-7 h-4 rounded-full bg-white/10 p-0.5 flex items-center">
+<div class="w-3 h-3 rounded-full ${isActive ? 'bg-brandCyan translate-x-3' : 'bg-gray-500'} transition-transform"></div>
+</div>
+`;
+container.appendChild(card);
+});
+document.getElementById("selected-count").innerText = selectedCount;
+document.getElementById("toggle-all-btn").innerText = (selectedCount === platformsList.length) ? "Deselect All" : "Select All";
+}
+
+
+function toggleAllPlatforms() {
+const areAllSelected = platformStates.every(state => state === true);
+platformStates = platformStates.map(() => !areAllSelected);
+renderPlatforms();
+}
+
+
+const platformAnalyticsMap = {
+'all': { name: 'All Platforms Combined', views: '14.8M', watch: '382.5k hrs', engagement: '8.64%', revenue: '$42,910' },
+'twitch': { name: 'Twitch', views: '3.4M', watch: '185.2k hrs', engagement: '11.2%', revenue: '$18,400' },
+'youtube': { name: 'YouTube Shorts / Live', views: '6.1M', watch: '120.4k hrs', engagement: '7.8%', revenue: '$14,250' },
+'tiktok': { name: 'TikTok LIVE', views: '4.2M', watch: '54.1k hrs', engagement: '9.4%', revenue: '$7,810' },
+'kick': { name: 'Kick', views: '1.1M', watch: '22.8k hrs', engagement: '6.5%', revenue: '$2,450' }
+};
+
+
+function filterAnalyticsPlatform(platKey) {
+const data = platformAnalyticsMap[platKey] || platformAnalyticsMap['all'];
+document.getElementById('metric-views').innerText = data.views;
+document.getElementById('metric-watch').innerText = data.watch;
+document.getElementById('metric-engagement').innerText = data.engagement;
+document.getElementById('metric-revenue').innerText = data.revenue;
+document.getElementById('current-platform-name').innerText = data.name;
+document.getElementById('analytics-platform-select').value = platKey;
+
+
+document.querySelectorAll('.platform-pill').forEach(pill => {
+pill.className = "platform-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-darkBg/90 border border-white/10 text-gray-400 hover:text-white shrink-0";
+});
+const activePill = document.getElementById(`pill-${platKey}`);
+if(activePill) {
+activePill.className = "platform-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brandPurple/30 border border-brandPurple text-white shrink-0";
+}
+}
+function selectPlatformPill(platKey) { filterAnalyticsPlatform(platKey); }
+
+
+function setAnalyticsTimeframe(period, btn) {
+document.querySelectorAll('#analytics-filter .filter-btn').forEach(b => {
+b.className = "filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all";
+});
+btn.className = "filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-brandPurple text-white transition-all";
+document.getElementById('chart-time-label').innerText = period === '30d' ? 'Last 30 Days' : period === '7d' ? 'Last 7 Days' : 'All Time';
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+renderMatrixTabs();
+renderPlatforms();
+});
+</script>
 </body>
 </html>
+
+
