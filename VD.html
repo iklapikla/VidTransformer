@@ -66,8 +66,8 @@
     <div class="fixed bottom-10 left-1/3 w-[600px] h-[600px] bg-brandCyan/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
 
     <!-- NAVBAR -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-white/5 px-4 lg:px-8 py-3.5 transition-all">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-white/5 py-3.5 transition-all">
+        <div class="max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-16 flex items-center justify-between">
             <a href="#" class="flex items-center gap-2 text-2xl font-black tracking-tight text-white group">
                 <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brandPurple to-brandPink flex items-center justify-center glow-purple group-hover:scale-105 transition-transform">
                     <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -94,11 +94,11 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="pt-24 space-y-12">
+    <!-- MAIN CONTENT CONTAINER WITH UPDATED OPTIMAL FULL-PAGE WIDTH -->
+    <main class="pt-24 space-y-12 max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-16 w-full">
         <!-- SECTION 1: HERO & AI STUDIO -->
-        <section id="ai-studio" class="max-w-7xl mx-auto px-4 lg:px-8 pt-8">
-            <div class="text-center max-w-4xl mx-auto space-y-6">
+        <section id="ai-studio" class="w-full pt-8">
+            <div class="text-center max-w-5xl mx-auto space-y-6">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-xs font-semibold text-brandPink border border-brandPink/30 animate-pulse">
                     <span class="w-2 h-2 rounded-full bg-brandPink"></span>
                     Next-Gen AI Repurposing Engine 3.0 Live
@@ -106,25 +106,20 @@
                 <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none">
                     1 video to <span class="gradient-text">50 pieces of content.</span><br/>Created 10x faster.
                 </h1>
-                <p class="text-lg sm:text-xl text-gray-400 font-normal max-w-2xl mx-auto">
+                <p class="text-lg sm:text-xl text-gray-400 font-normal max-w-3xl mx-auto">
                     Turn your podcasts, live streams, and long videos into 25+ viral clips, social posts, written summaries, and creative assets automatically.
                 </p>
-                <!-- Main Input Box: Multi-Input Options -->
-                <div class="pt-4 max-w-2xl mx-auto">
-                    <div class="p-2 rounded-2xl glass-card border border-white/10 flex flex-col sm:flex-row gap-2 shadow-2xl items-center">
-                        <div class="flex-1 flex items-center px-4 gap-2.5 bg-darkBg/50 rounded-xl border border-white/5 w-full">
+                <!-- Main Input Box -->
+                <div class="pt-4 max-w-3xl mx-auto">
+                    <div class="p-2 rounded-2xl glass-card border border-white/10 flex flex-col sm:flex-row gap-2 shadow-2xl">
+                        <div class="flex-1 flex items-center px-4 gap-3 bg-darkBg/50 rounded-xl border border-white/5">
                             <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 105.656-5.656l-1.1 1.1"/>
                             </svg>
-                            <input id="video-url-input" type="url" placeholder="Paste Video Link (YouTube, Drive, etc.)..." class="w-full bg-transparent py-3 text-sm text-white placeholder-gray-500 focus:outline-none">
-                            <span class="text-xs text-gray-500 font-semibold px-1 select-none">OR</span>
-                            <label class="cursor-pointer px-3 py-1.5 rounded-lg bg-brandPurple/20 border border-brandPurple/40 hover:bg-brandPurple/40 text-xs font-semibold text-brandCyan transition-colors shrink-0 flex items-center gap-1.5">
-                                <span>📁 Upload Video</span>
-                                <input type="file" accept="video/*" class="hidden" onchange="if(this.files[0]) document.getElementById('video-url-input').value = this.files[0].name;">
-                            </label>
+                            <input id="video-url-input" type="text" placeholder="Paste YouTube link or drag & drop video file..." value="" class="w-full bg-transparent py-3 text-sm text-white placeholder-gray-500 focus:outline-none">
                         </div>
-                        <button onclick="generateClipsSim()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-brandPurple to-brandPink text-white font-bold text-sm glow-purple hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shrink-0">
-                            <span>Get Clips Free</span>
+                        <button onclick="generateClipsSim()" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brandPurple to-brandPink text-white font-bold text-sm glow-purple hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                            <span>Get 25+ Clips Free</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                             </svg>
@@ -134,7 +129,7 @@
             </div>
 
             <!-- Advanced AI Video Editing Options Panel -->
-            <div class="mt-16 glass-card-glow rounded-3xl p-6 lg:p-8 max-w-5xl mx-auto relative overflow-hidden">
+            <div class="mt-16 glass-card-glow rounded-3xl p-6 lg:p-8 w-full relative overflow-hidden">
                 <div class="absolute -top-12 -right-12 w-40 h-40 bg-brandPurple/20 rounded-full blur-2xl"></div>
                 
                 <div class="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
@@ -185,11 +180,11 @@
                             <option>Dramatic & Suspenseful</option>
                         </select>
                     </div>
-                    <!-- Voiceover Gender Selector (Male Default Selected) -->
+                    <!-- Voiceover Gender Selector -->
                     <div class="space-y-2">
                         <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Voiceover AI Clone Gender</label>
                         <div class="grid grid-cols-2 gap-2" id="gender-selector">
-                            <button type="button" onclick="selectGender('male')" id="btn-male" class="py-2.5 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all">
+                            <button type="button" onclick="selectGender('male')" id="btn-male" class="py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all">
                                 👨 Male
                             </button>
                             <button type="button" onclick="selectGender('female')" id="btn-female" class="py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all">
@@ -210,16 +205,16 @@
                 <div class="mt-8 pt-6 border-t border-white/10">
                     <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-3">Include AI Auto-Enhancers:</span>
                     <div class="flex flex-wrap gap-2.5">
-                        <button onclick="this.classList.toggle('bg-brandPurple'); this.classList.toggle('border-brandPurple')" class="px-3.5 py-1.5 rounded-lg glass-card border border-white/10 text-xs font-medium text-gray-200 transition-all">
+                        <button onclick="toggleEnhancer(this)" class="enhancer-btn px-3.5 py-1.5 rounded-lg glass-card border border-white/10 text-xs font-medium text-gray-400 hover:text-white transition-all">
                             ✨ Auto B-Roll Generator
                         </button>
-                        <button onclick="this.classList.toggle('bg-brandPurple'); this.classList.toggle('border-brandPurple')" class="px-3.5 py-1.5 rounded-lg glass-card border border-white/10 text-xs font-medium text-gray-200 transition-all">
+                        <button onclick="toggleEnhancer(this)" class="enhancer-btn px-3.5 py-1.5 rounded-lg glass-card border border-white/10 text-xs font-medium text-gray-400 hover:text-white transition-all">
                             ✂️ Smart Silence Remover
                         </button>
-                        <button onclick="this.classList.toggle('bg-brandPurple'); this.classList.toggle('border-brandPurple')" class="px-3.5 py-1.5 rounded-lg glass-card border border-white/10 text-xs font-medium text-gray-200 transition-all">
+                        <button onclick="toggleEnhancer(this)" class="enhancer-btn px-3.5 py-1.5 rounded-lg glass-card border border-white/10 text-xs font-medium text-gray-400 hover:text-white transition-all">
                             🔥 Emoji Pop-ups Engine
                         </button>
-                        <button onclick="this.classList.toggle('bg-brandPurple'); this.classList.toggle('border-brandPurple')" class="px-3.5 py-1.5 rounded-lg glass-card border border-white/10 text-xs font-medium text-gray-200 transition-all">
+                        <button onclick="toggleEnhancer(this)" class="enhancer-btn px-3.5 py-1.5 rounded-lg glass-card border border-white/10 text-xs font-medium text-gray-400 hover:text-white transition-all">
                             🎯 Active Speaker Face Tracking
                         </button>
                     </div>
@@ -293,66 +288,68 @@
         </section>
 
         <!-- SECTION DIVIDER -->
-        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
+        <div class="w-full"><div class="section-divider"></div></div>
 
-        <!-- INTERACTIVE CONTENT MATRIX EXPLORER WITH VIDEO UPLOADER -->
-        <section id="content-matrix" class="max-w-7xl mx-auto px-4 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+        <!-- INTERACTIVE CONTENT MATRIX EXPLORER WITH MERGED VIDEO UPLOADER & SEARCH BAR -->
+        <section id="content-matrix" class="w-full">
+            <div class="text-center max-w-4xl mx-auto mb-10 space-y-4">
                 <div class="text-brandPurple font-semibold text-sm tracking-wider uppercase">Interactive Content Explorer</div>
                 <h2 class="text-3xl sm:text-5xl font-black text-white">1 Video = 120+ Micro-Outputs</h2>
-                <p class="text-gray-400 text-sm sm:text-base">Upload your raw video or click on any category below to explore exact deliverables generated by VidTransformer AI.</p>
+                <p class="text-gray-400 text-sm sm:text-base">Upload your video file or search formats directly in one single unified workspace below.</p>
             </div>
 
-            <!-- Upload Video Box Added Here -->
-            <div class="max-w-5xl mx-auto mb-8">
-                <div class="border-2 border-dashed border-brandPurple/40 hover:border-brandPurple rounded-3xl p-6 text-center bg-darkBg/80 transition-all cursor-pointer relative group" onclick="triggerMatrixVideoUpload()">
-                    <input type="file" id="matrix-video-file-input" class="hidden" accept="video/*" onchange="handleMatrixFileSelect(this)">
-                    <div id="matrix-upload-idle" class="space-y-3">
-                        <div class="w-12 h-12 rounded-2xl bg-brandPurple/20 text-brandPurple flex items-center justify-center mx-auto group-hover:scale-110 transition-transform text-2xl">
-                            🎬
-                        </div>
-                        <div>
-                            <h4 class="text-sm font-bold text-white">Upload Your Video File to Explore Formats</h4>
-                            <p class="text-xs text-gray-400 mt-1">Drag & drop MP4, MOV, WEBM (Up to 4K) or click to browse from device</p>
-                        </div>
-                        <span class="inline-block px-4 py-1.5 rounded-xl bg-brandPurple/30 border border-brandPurple text-xs font-bold text-brandCyan">
-                            Browse File
-                        </span>
-                    </div>
-                    <div id="matrix-upload-selected" class="hidden text-left bg-brandPurple/10 p-4 rounded-2xl border border-brandPurple/40 flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <span class="text-2xl">📹</span>
-                            <div>
-                                <div id="matrix-uploaded-filename" class="text-xs font-bold text-white truncate max-w-xs">video_file.mp4</div>
-                                <div class="text-[10px] text-gray-400">File uploaded & ready for AI transformation</div>
+            <!-- MERGED UNIFIED BAR: UPLOAD VIDEO + SEARCH INPUT -->
+            <div class="w-full mb-8">
+                <div class="glass-card-glow rounded-2xl p-3 border border-brandPurple/40 flex flex-col md:flex-row items-center gap-3">
+                    
+                    <!-- Integrated Video Upload Trigger -->
+                    <div class="w-full md:w-auto flex-shrink-0">
+                        <input type="file" id="matrix-video-file-input" class="hidden" accept="video/*" onchange="handleMatrixFileSelect(this)">
+                        
+                        <div id="matrix-upload-idle" onclick="triggerMatrixVideoUpload()" class="px-5 py-3 rounded-xl bg-brandPurple/20 border border-brandPurple/40 hover:bg-brandPurple/30 transition-all cursor-pointer flex items-center justify-center gap-3 group">
+                            <span class="text-xl group-hover:scale-110 transition-transform">🎬</span>
+                            <div class="text-left">
+                                <div class="text-xs font-bold text-white">Upload Video File</div>
+                                <div class="text-[10px] text-gray-400">MP4, MOV, WEBM (Up to 4K)</div>
                             </div>
                         </div>
-                        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold">Ready</span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Search & Total Badge -->
-            <div class="max-w-5xl mx-auto mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="relative w-full sm:w-80">
-                    <input type="text" id="matrix-search" oninput="filterMatrixItems(this.value)" placeholder="Search outputs (e.g. Shorts, Podcast, LinkedIn)..." class="w-full bg-darkBg/90 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-500 focus:border-brandPurple focus:outline-none">
-                    <span class="absolute right-3 top-2.5 text-gray-500 text-xs">🔍</span>
-                </div>
-                <div class="px-4 py-2 rounded-xl glass-card border border-brandPurple/30 text-xs font-bold text-gray-300">
-                    Total Deliverables: <span class="text-brandPink font-black text-sm">124+ Formats</span>
+                        <div id="matrix-upload-selected" class="hidden px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/40 flex items-center gap-3">
+                            <span class="text-lg">📹</span>
+                            <div>
+                                <div id="matrix-uploaded-filename" class="text-xs font-bold text-emerald-400 truncate max-w-[180px]">video_file.mp4</div>
+                                <div class="text-[10px] text-gray-400">File uploaded & ready</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Divider Line on Desktop -->
+                    <div class="hidden md:block w-px h-10 bg-white/10"></div>
+
+                    <!-- Integrated Search Input -->
+                    <div class="flex-1 w-full relative">
+                        <input type="text" id="matrix-search" oninput="filterMatrixItems(this.value)" placeholder="Search 120+ outputs (e.g. Shorts, Podcast, LinkedIn, Highlights)..." class="w-full bg-darkBg/80 border border-white/10 rounded-xl pl-10 pr-4 py-3 text-xs text-white placeholder-gray-500 focus:border-brandPurple focus:outline-none">
+                        <span class="absolute left-3.5 top-3.5 text-gray-400 text-sm">🔍</span>
+                    </div>
+
+                    <!-- Total Badge -->
+                    <div class="hidden sm:flex px-4 py-3 rounded-xl glass-card border border-brandPurple/30 text-xs font-bold text-gray-300 shrink-0 items-center gap-2">
+                        <span>Total Deliverables:</span>
+                        <span class="text-brandPink font-black text-sm">124+ Formats</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Matrix Explorer Layout -->
-            <div class="glass-card-glow rounded-3xl p-4 sm:p-6 lg:p-8 max-w-5xl mx-auto border border-brandPurple/30 grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="glass-card-glow rounded-3xl p-4 sm:p-6 lg:p-8 w-full border border-brandPurple/30 grid grid-cols-1 lg:grid-cols-12 gap-6">
                 
                 <!-- Left: Category Selector Tabs -->
-                <div class="lg:col-span-5 space-y-2 max-h-[480px] overflow-y-auto pr-1" id="category-tab-container">
+                <div class="lg:col-span-4 space-y-2 max-h-[480px] overflow-y-auto pr-1" id="category-tab-container">
                     <!-- Dynamically Rendered via JS -->
                 </div>
 
                 <!-- Right: Dynamic Outputs Viewer -->
-                <div class="lg:col-span-7 bg-darkBg/80 rounded-2xl p-5 border border-white/10 flex flex-col justify-between min-h-[420px]">
+                <div class="lg:col-span-8 bg-darkBg/80 rounded-2xl p-5 border border-white/10 flex flex-col justify-between min-h-[420px]">
                     <div>
                         <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
                             <div>
@@ -367,7 +364,7 @@
                         </div>
 
                         <!-- Dynamic Items Grid -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[300px] overflow-y-auto pr-1" id="active-items-grid">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 max-h-[300px] overflow-y-auto pr-1" id="active-items-grid">
                             <!-- Items rendered via JS -->
                         </div>
                     </div>
@@ -375,19 +372,88 @@
                     <!-- Bottom Interactive Prompt/Callout -->
                     <div class="pt-4 border-t border-white/10 mt-4 flex items-center justify-between text-xs text-gray-400">
                         <span id="item-selection-status">💡 Click any output to auto-configure in AI Studio</span>
-                        <button onclick="document.getElementById('ai-studio').scrollIntoView({behavior: 'smooth'});" class="px-3 py-1.5 rounded-lg bg-brandPurple/30 border border-brandPurple text-white font-bold hover:bg-brandPurple transition-all">
-                            Generate Now
+                        <button onclick="generateMatrixOutputsSim()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-brandPurple to-brandPink text-white font-bold text-xs hover:scale-105 transition-all shadow-md">
+                            ⚡ Generate Now
                         </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DUMMY RESULT OUTPUT CONTAINER FOR MATRIX EXPLORER (CHANGE #1 IMPLEMENTED) -->
+            <div id="matrix-output-container" class="mt-10 hidden">
+                <div class="glass-card rounded-3xl p-6 lg:p-8 border border-brandCyan/40 bg-darkBg/95 shadow-2xl space-y-6">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-white/10 gap-3">
+                        <div>
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-brandCyan bg-brandCyan/10 px-3 py-1 rounded-full border border-brandCyan/30">AI Repurposing Render Engine</span>
+                            <h3 class="text-2xl font-black text-white mt-2 flex items-center gap-2" id="matrix-output-title">
+                                🚀 Repurposed Content Deliverables Generated!
+                            </h3>
+                            <p class="text-xs text-gray-400 mt-1" id="matrix-output-subtitle">Generated assets based on your selected parameters.</p>
+                        </div>
+                        <button onclick="document.getElementById('publishing').scrollIntoView({behavior: 'smooth'});" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brandCyan to-brandPurple text-white font-bold text-xs glow-cyan hover:opacity-90 transition-all">
+                            Multi-Publish All Assets ➔
+                        </button>
+                    </div>
+
+                    <!-- Dummy Generated Output Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Asset 1: Rendered Clips / Video File -->
+                        <div class="p-5 rounded-2xl bg-darkBg/90 border border-white/10 space-y-3 hover:border-brandCyan transition-all">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-0.5 rounded bg-brandPurple/30 text-brandPurple text-[10px] font-bold">Video / Clip Asset</span>
+                                <span class="text-[10px] text-emerald-400 font-bold">HD Render Ready</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white" id="out-asset-1-title">Vertical Shorts Render (9:16)</h4>
+                            <p class="text-xs text-gray-400 line-clamp-3" id="out-asset-1-desc">
+                                "The key secret to scaling video content in 2026 is automating longform clips with smart dynamic captions and face tracking..."
+                            </p>
+                            <div class="pt-2 flex items-center justify-between text-xs">
+                                <span class="text-gray-500 font-medium">Size: 48.2 MB</span>
+                                <button onclick="alert('Downloading Rendered Asset...')" class="px-3 py-1.5 rounded-lg bg-brandCyan/20 text-brandCyan border border-brandCyan/40 hover:bg-brandCyan hover:text-white text-xs font-bold transition-all">Download .MP4</button>
+                            </div>
+                        </div>
+
+                        <!-- Asset 2: Auto-Written Post / SEO Blog -->
+                        <div class="p-5 rounded-2xl bg-darkBg/90 border border-white/10 space-y-3 hover:border-brandPink transition-all">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-0.5 rounded bg-brandPink/30 text-brandPink text-[10px] font-bold">Text & Copy Asset</span>
+                                <span class="text-[10px] text-emerald-400 font-bold">SEO Score: 96/100</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white" id="out-asset-2-title">SEO Article & Social Threads</h4>
+                            <div class="p-2.5 bg-black/40 rounded-xl text-[11px] text-gray-300 font-mono line-clamp-3">
+                                📌 5 Key takeaways from today's session: 1. AI Dubbing is now indistinguishable from human voice...
+                            </div>
+                            <div class="pt-2 flex items-center justify-between text-xs">
+                                <span class="text-gray-500 font-medium">Format: Markdown / Text</span>
+                                <button onclick="navigator.clipboard.writeText('📌 5 Key takeaways from today session: 1. AI Dubbing...'); alert('Text copied to clipboard!');" class="px-3 py-1.5 rounded-lg bg-brandPink/20 text-brandPink border border-brandPink/40 hover:bg-brandPink hover:text-white text-xs font-bold transition-all">Copy Text</button>
+                            </div>
+                        </div>
+
+                        <!-- Asset 3: Keyframe / Graphic Card -->
+                        <div class="p-5 rounded-2xl bg-darkBg/90 border border-white/10 space-y-3 hover:border-brandPurple transition-all">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-0.5 rounded bg-brandCyan/30 text-brandCyan text-[10px] font-bold">Visual Graphic Asset</span>
+                                <span class="text-[10px] text-emerald-400 font-bold">4K UHD 300DPI</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white" id="out-asset-3-title">Carousel & Social Banner</h4>
+                            <div class="h-20 bg-gradient-to-r from-brandPurple/40 via-brandPink/30 to-brandCyan/40 rounded-xl flex items-center justify-center border border-white/10">
+                                <span class="text-xs font-extrabold text-white tracking-widest uppercase drop-shadow">🔥 High CTR Cover</span>
+                            </div>
+                            <div class="pt-2 flex items-center justify-between text-xs">
+                                <span class="text-gray-500 font-medium">PNG Format</span>
+                                <button onclick="alert('Downloading High-Res Graphic...')" class="px-3 py-1.5 rounded-lg bg-brandPurple/20 text-brandPurple border border-brandPurple/40 hover:bg-brandPurple hover:text-white text-xs font-bold transition-all">Download PNG</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- SECTION DIVIDER -->
-        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
+        <div class="w-full"><div class="section-divider"></div></div>
 
         <!-- SECTION 2: AI THUMBNAIL GENERATOR -->
-        <section id="thumbnail-studio" class="max-w-7xl mx-auto px-4 lg:px-8">
+        <section id="thumbnail-studio" class="w-full">
             <div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-4">
                 <div>
                     <div class="text-brandPink font-semibold text-sm tracking-wider uppercase mb-1">Visual Retention Engine</div>
@@ -410,7 +476,7 @@
                         Generate Thumbnail
                     </button>
                 </div>
-                <!-- Tool 2: Active Colorful Button State -->
+                <!-- Tool 2 -->
                 <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brandPurple/50 transition-all flex flex-col justify-between">
                     <div class="space-y-4">
                         <div class="w-12 h-12 rounded-xl bg-brandPurple/20 flex items-center justify-center text-brandPurple text-2xl font-bold">🎬</div>
@@ -423,9 +489,8 @@
                             <span class="text-xs text-gray-400">Upload video or drop file to extract</span>
                         </div>
                     </div>
-                    <!-- Extract Best Keyframe Colorful Vibrant Button -->
-                    <button onclick="generateThumbnailSim()" class="mt-6 w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-500 hover:via-indigo-500 hover:to-blue-500 text-white font-bold text-sm glow-purple shadow-lg transition-all active:scale-[0.98]">
-                        Extract Best Keyframe
+                    <button onclick="generateThumbnailSim()" class="mt-6 w-full py-3 rounded-xl bg-white/10 text-white font-bold text-sm hover:bg-white/20 transition-all">
+                        Extract Best Keyframes
                     </button>
                 </div>
                 <!-- Tool 3 -->
@@ -478,11 +543,11 @@
         </section>
 
         <!-- SECTION DIVIDER -->
-        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
+        <div class="w-full"><div class="section-divider"></div></div>
 
         <!-- SECTION 3: MULTI-PLATFORM PUBLISHING WITH VIDEO UPLOAD -->
-        <section id="publishing" class="max-w-7xl mx-auto px-4 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <section id="publishing" class="w-full">
+            <div class="text-center max-w-4xl mx-auto mb-16 space-y-4">
                 <div class="text-brandCyan font-semibold text-sm tracking-wider uppercase">Omnichannel Distribution</div>
                 <h2 class="text-3xl sm:text-5xl font-black text-white">One-Click Multi-Stream & Video Publishing</h2>
                 <p class="text-gray-400 text-sm sm:text-base">Upload pre-recorded videos or broadcast live simultaneously across 30 premier global streaming and social platforms.</p>
@@ -543,10 +608,10 @@
         </section>
 
         <!-- SECTION DIVIDER -->
-        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
+        <div class="w-full"><div class="section-divider"></div></div>
 
         <!-- SECTION 4: COMBINED ANALYTICS WITH PLATFORM SELECTOR -->
-        <section id="analytics" class="max-w-7xl mx-auto px-4 lg:px-8">
+        <section id="analytics" class="w-full">
             <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 gap-4">
                 <div>
                     <div class="text-brandPurple font-semibold text-sm tracking-wider uppercase mb-1">Central Intelligence</div>
@@ -564,11 +629,11 @@
                             <option value="kick" class="bg-darkBg text-white">🟢 Kick</option>
                         </select>
                     </div>
-                    <!-- Timeframe Switcher (All Active & Dynamic) -->
+                    <!-- Timeframe Switcher -->
                     <div class="flex items-center gap-1 bg-darkBg p-1.5 rounded-xl border border-white/10" id="analytics-filter">
-                        <button type="button" onclick="setAnalyticsTimeframe('30d', this)" id="timeframe-30d" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-brandPurple text-white transition-all">30D</button>
-                        <button type="button" onclick="setAnalyticsTimeframe('7d', this)" id="timeframe-7d" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">7D</button>
-                        <button type="button" onclick="setAnalyticsTimeframe('all', this)" id="timeframe-all" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">All Time</button>
+                        <button type="button" onclick="setAnalyticsTimeframe('30d', this)" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-brandPurple text-white transition-all">30D</button>
+                        <button type="button" onclick="setAnalyticsTimeframe('7d', this)" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">7D</button>
+                        <button type="button" onclick="setAnalyticsTimeframe('all', this)" class="filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all">All</button>
                     </div>
                 </div>
             </div>
@@ -636,11 +701,11 @@
         </section>
 
         <!-- SECTION DIVIDER -->
-        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
+        <div class="w-full"><div class="section-divider"></div></div>
 
         <!-- SECTION 5: USE CASES -->
-        <section id="use-cases" class="max-w-7xl mx-auto px-4 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <section id="use-cases" class="w-full">
+            <div class="text-center max-w-4xl mx-auto mb-16 space-y-4">
                 <div class="text-brandPink font-semibold text-sm tracking-wider uppercase">Built For Creators</div>
                 <h2 class="text-3xl sm:text-5xl font-black text-white">How It Works & Custom Use Cases</h2>
             </div>
@@ -669,11 +734,11 @@
         </section>
 
         <!-- SECTION DIVIDER -->
-        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
+        <div class="w-full"><div class="section-divider"></div></div>
 
         <!-- SECTION 6: PRICING -->
-        <section id="pricing" class="max-w-7xl mx-auto px-4 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <section id="pricing" class="w-full">
+            <div class="text-center max-w-4xl mx-auto mb-16 space-y-4">
                 <div class="text-brandCyan font-semibold text-sm tracking-wider uppercase">Predictable Scaling</div>
                 <h2 class="text-3xl sm:text-5xl font-black text-white">Simple, Transparent Pricing</h2>
             </div>
@@ -685,7 +750,7 @@
                     </div>
                     <button class="w-full py-3 rounded-xl bg-white/10 text-white font-bold text-sm">Get Started</button>
                 </div>
-                <div class="glass-card-glow rounded-3xl p-8 border-2 border-brandPurple flex flex-col justify-between space-y-6 scale-105">
+                <div class="glass-card-glow rounded-3xl p-8 border-2 border-brandPurple flex flex-col justify-between space-y-6 lg:scale-105">
                     <div>
                         <h3 class="text-xl font-bold text-white">Creator Pro</h3>
                         <div class="text-4xl font-black text-white mt-2">$49<span class="text-sm font-normal text-gray-400">/mo</span></div>
@@ -703,10 +768,10 @@
         </section>
 
         <!-- SECTION DIVIDER -->
-        <div class="max-w-7xl mx-auto px-4"><div class="section-divider"></div></div>
+        <div class="w-full"><div class="section-divider"></div></div>
 
         <!-- SECTION 7: FAQ -->
-        <section id="faq" class="max-w-5xl mx-auto px-4 lg:px-8 pb-16">
+        <section id="faq" class="w-full pb-16">
             <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
                 <h2 class="text-3xl font-black text-white">Frequently Asked Questions</h2>
                 <p class="text-xs text-gray-500">FAQ placeholder section ready for your custom questions and answers.</p>
@@ -732,28 +797,49 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="border-t border-white/10 bg-darkBg py-12 px-4 lg:px-8">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-gray-500">
+    <footer class="border-t border-white/10 bg-darkBg py-12 w-full">
+        <div class="max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-gray-500">
             <span class="font-bold text-gray-300">VidTransformer Platform Inc. © 2026</span>
         </div>
     </footer>
 
     <!-- INTERACTIVE SCRIPTS -->
     <script>
-        // --- 1. VOICE GENDER SELECTION (Default: Male Selected) ---
-        let selectedGenderState = 'male';
+        // Selected Item Tracking
+        let currentSelectedItem = "Vertical Shorts (9:16)";
+
+        // --- 0. AI ENHANCERS TOGGLE HANDLER ---
+        function toggleEnhancer(btn) {
+            btn.classList.toggle('bg-brandPurple');
+            btn.classList.toggle('border-brandPurple');
+            btn.classList.toggle('text-white');
+            btn.classList.toggle('text-gray-400');
+        }
+
+        // --- 1. VOICE GENDER SELECTION ---
+        let selectedGenderState = null;
         function selectGender(gender) {
             const btnMale = document.getElementById('btn-male');
             const btnFemale = document.getElementById('btn-female');
             
             if(gender === 'male') {
-                selectedGenderState = 'male';
-                btnMale.className = "py-2.5 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all";
-                btnFemale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
+                if(selectedGenderState === 'male') {
+                    selectedGenderState = null;
+                    btnMale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
+                } else {
+                    selectedGenderState = 'male';
+                    btnMale.className = "py-2.5 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all";
+                    btnFemale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
+                }
             } else if(gender === 'female') {
-                selectedGenderState = 'female';
-                btnFemale.className = "py-2.5 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all";
-                btnMale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
+                if(selectedGenderState === 'female') {
+                    selectedGenderState = null;
+                    btnFemale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
+                } else {
+                    selectedGenderState = 'female';
+                    btnFemale.className = "py-2.5 rounded-xl bg-brandPurple/30 border-2 border-brandPurple text-white text-sm font-semibold flex items-center justify-center gap-1.5 shadow-md transition-all";
+                    btnMale.className = "py-2.5 rounded-xl bg-darkBg/80 border border-white/10 text-gray-400 text-sm font-semibold hover:border-white/20 flex items-center justify-center gap-1.5 transition-all";
+                }
             }
         }
 
@@ -791,6 +877,21 @@
                 out.classList.remove('hidden');
                 out.scrollIntoView({ behavior: 'smooth' });
             }, 2000);
+        }
+
+        // --- 3.1 MATRIX OUTPUT GENERATION SIMULATION (CHANGE #1 FUNCTION) ---
+        function generateMatrixOutputsSim() {
+            showModal("Extracting Repurposed Formats...", `Processing video asset into '${currentSelectedItem}' and complementary social outputs.`);
+            setTimeout(() => {
+                hideModal();
+                const outContainer = document.getElementById('matrix-output-container');
+                document.getElementById('matrix-output-title').innerHTML = `🚀 Output Ready: <span class="gradient-text">${currentSelectedItem}</span>`;
+                document.getElementById('matrix-output-subtitle').innerText = `Successfully converted video into multi-platform deliverables. Ready for download & publish.`;
+                document.getElementById('out-asset-1-title').innerText = `${currentSelectedItem} Render`;
+                
+                outContainer.classList.remove('hidden');
+                outContainer.scrollIntoView({ behavior: 'smooth' });
+            }, 1800);
         }
 
         // --- 4. GENERATE THUMBNAILS SIMULATION ---
@@ -1026,8 +1127,11 @@
             cat.items.forEach(item => {
                 const itemCard = document.createElement("div");
                 itemCard.className = "p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-brandCyan/40 hover:bg-brandCyan/10 transition-all cursor-pointer flex items-center justify-between group";
-                itemCard.onclick = () => {
-                    document.getElementById("item-selection-status").innerHTML = `✨ Selected: <strong class="text-brandCyan">${item}</strong> (Configured!)`;
+                itemCard.onclick = function() {
+                    currentSelectedItem = item;
+                    document.querySelectorAll('#active-items-grid > div').forEach(el => el.classList.remove('border-brandCyan', 'bg-brandCyan/20'));
+                    this.classList.add('border-brandCyan', 'bg-brandCyan/20');
+                    document.getElementById("item-selection-status").innerHTML = `✨ Selected: <strong class="text-brandCyan">${item}</strong> (Ready to Generate!)`;
                 };
                 itemCard.innerHTML = `
                     <span class="text-xs font-semibold text-gray-300 group-hover:text-white truncate">${item}</span>
@@ -1053,6 +1157,12 @@
                         matchesCount++;
                         const itemCard = document.createElement("div");
                         itemCard.className = "p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-brandCyan/40 transition-all cursor-pointer flex items-center justify-between";
+                        itemCard.onclick = function() {
+                            currentSelectedItem = item;
+                            document.querySelectorAll('#active-items-grid > div').forEach(el => el.classList.remove('border-brandCyan', 'bg-brandCyan/20'));
+                            this.classList.add('border-brandCyan', 'bg-brandCyan/20');
+                            document.getElementById("item-selection-status").innerHTML = `✨ Selected: <strong class="text-brandCyan">${item}</strong> (Ready to Generate!)`;
+                        };
                         itemCard.innerHTML = `
                             <div class="truncate">
                                 <span class="text-[10px] text-brandPurple font-bold block">${cat.category}</span>
@@ -1070,7 +1180,7 @@
             document.getElementById("active-cat-badge").innerText = `${matchesCount} Found`;
         }
 
-        // --- 7. PLATFORMS GRID LOGIC (Default: All Deselected) ---
+        // --- 7. PLATFORMS GRID LOGIC ---
         const platformsList = [
             "Twitch", "SOOP (AfreecaTV)", "Kick", "Trovo", "CHZZK", "Bigo Live",
             "Tango Live", "MICO Live", "Nonolive", "Poppo Live", "BLive", "DLive",
@@ -1080,7 +1190,6 @@
             "AfreecaTV Global", "KakaoTV Live", "NAVER TV Live"
         ];
         let platformStates = new Array(platformsList.length).fill(false);
-
         function renderPlatforms() {
             const container = document.getElementById("platforms-grid");
             if(!container) return;
@@ -1116,7 +1225,6 @@
                 toggleBtn.innerText = "Select All";
             }
         }
-
         function toggleAllPlatforms() {
             const areAllSelected = platformStates.every(state => state === true);
             platformStates = platformStates.map(() => !areAllSelected);
@@ -1146,7 +1254,6 @@
                 views: '1.1M', watch: '22.8k hrs', engagement: '6.5%', revenue: '$2,450'
             }
         };
-
         function filterAnalyticsPlatform(platKey) {
             const data = platformAnalyticsMap[platKey] || platformAnalyticsMap['all'];
             document.getElementById('metric-views').innerText = data.views;
@@ -1164,11 +1271,9 @@
                 activePill.className = "platform-pill px-3 py-1 rounded-full text-xs font-semibold bg-brandPurple/30 border border-brandPurple text-white shrink-0";
             }
         }
-
         function selectPlatformPill(platKey) {
             filterAnalyticsPlatform(platKey);
         }
-
         function setAnalyticsTimeframe(period, btn) {
             document.querySelectorAll('#analytics-filter .filter-btn').forEach(b => {
                 b.className = "filter-btn px-3 py-1 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition-all";
